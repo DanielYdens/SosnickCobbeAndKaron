@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="98" id="KGk-i7-Jjw" customClass="MessagesTableViewCell" customModule="Sosnick_App" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="418" height="98"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="MessagesTableViewCell" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM" customClass="MessagesTableViewCell" customModule="Sosnick_App" customModuleProvider="target">
+                <rect key="frame" x="0.0" y="0.0" width="418" height="97.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PNk-O7-66P">
+                        <rect key="frame" x="10" y="10" width="378" height="77.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Jh-x6-RlG">
+                                <rect key="frame" x="9" y="6" width="371" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message Body" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hpe-5a-kbB">
+                                <rect key="frame" x="9" y="37" width="372" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0080377394333481789" green="0.99699157476425171" blue="0.85067188739776611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="hpe-5a-kbB" firstAttribute="top" secondItem="6Jh-x6-RlG" secondAttribute="bottom" constant="10" id="4qG-OA-f5n"/>
+                            <constraint firstAttribute="trailing" secondItem="hpe-5a-kbB" secondAttribute="trailing" constant="-3" id="8fO-iC-EnC"/>
+                            <constraint firstItem="6Jh-x6-RlG" firstAttribute="leading" secondItem="PNk-O7-66P" secondAttribute="leading" constant="9" id="FOI-Z7-ZXt"/>
+                            <constraint firstItem="6Jh-x6-RlG" firstAttribute="top" secondItem="PNk-O7-66P" secondAttribute="top" constant="6" id="QDo-FG-YQb"/>
+                            <constraint firstAttribute="trailing" secondItem="6Jh-x6-RlG" secondAttribute="trailing" constant="-2" id="URG-s7-02o"/>
+                            <constraint firstAttribute="bottom" secondItem="hpe-5a-kbB" secondAttribute="bottom" constant="20" id="Vv1-pW-TNC"/>
+                            <constraint firstItem="hpe-5a-kbB" firstAttribute="leading" secondItem="PNk-O7-66P" secondAttribute="leading" constant="9" id="iZV-OL-eyZ"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="PNk-O7-66P" secondAttribute="trailing" constant="10" id="44b-Kp-5IY"/>
+                    <constraint firstItem="PNk-O7-66P" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="RBA-eB-z5h"/>
+                    <constraint firstAttribute="bottom" secondItem="PNk-O7-66P" secondAttribute="bottom" constant="10" id="mIL-Hk-CBm"/>
+                    <constraint firstItem="PNk-O7-66P" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="yzO-hF-OOk"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="backgroundVIew" destination="PNk-O7-66P" id="9OH-7S-DQh"/>
+                <outlet property="messageBodyTextLabel" destination="hpe-5a-kbB" id="6dP-Id-yFV"/>
+                <outlet property="senderTextLabel" destination="6Jh-x6-RlG" id="W6Y-iL-qm1"/>
+            </connections>
+            <point key="canvasLocation" x="94.20289855072464" y="77.008928571428569"/>
+        </tableViewCell>
+    </objects>
+</document>

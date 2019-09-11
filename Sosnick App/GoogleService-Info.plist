@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>177131500362-u6626sbinqc4919ali3l6vbe2epj45ge.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.177131500362-u6626sbinqc4919ali3l6vbe2epj45ge</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCVUK9JBJHoM4bLx73Hx2AbWdTDf3h08cg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>177131500362</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.danielydens.Sosnick-App</string>
+	<key>PROJECT_ID</key>
+	<string>sosnick-app</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sosnick-app.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:177131500362:ios:7ab1369056de9a81</string>
+	<key>DATABASE_URL</key>
+	<string>https://sosnick-app.firebaseio.com</string>
+</dict>
+</plist>
