@@ -21,29 +21,31 @@ class RequestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         submitButton.isEnabled = false
         
         var ref: DocumentReference? = nil
-        ref = db.collection("userRequestB").addDocument(data: [
-            "category": pickerTextField.text!,
-            "description": descriptionTextField.text!,
-            "isProcessed" : false,
-            "date" : requestDate,
-            "uid" : userUID,
-            "dateNum" : 999999999999 - requestDateNum,
-            "user" : Auth.auth().currentUser?.email ?? "",
-            "message" : false,
-            "name" : name
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Document added with ID: \(ref!.documentID)")
-                self.initializeChatVariables(DocumentID: ref!.documentID)
-                self.pickerTextField.text = ""
-                self.descriptionTextField.text = ""
-                self.submitButton.isEnabled = true
-                let banner = GrowingNotificationBanner(title: "Success!", subtitle: "Your request has been submitted and will be processed as soon as possible", leftView: self.leftView, style: .success)
-                banner.show()
-                
-                
+        if let userName = name{
+            ref = db.collection("userRequestB").addDocument(data: [
+                "category": pickerTextField.text!,
+                "description": descriptionTextField.text!,
+                "isProcessed" : false,
+                "date" : requestDate,
+                "uid" : userUID,
+                "dateNum" : 999999999999 - requestDateNum,
+                "user" : Auth.auth().currentUser?.email ?? "",
+                "message" : false,
+                "name" : userName
+            ]) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                } else {
+                    print("Document added with ID: \(ref!.documentID)")
+                    self.initializeChatVariables(DocumentID: ref!.documentID)
+                    self.pickerTextField.text = ""
+                    self.descriptionTextField.text = ""
+                    self.submitButton.isEnabled = true
+                    let banner = GrowingNotificationBanner(title: "Success!", subtitle: "Your request has been submitted and will be processed as soon as possible", leftView: self.leftView, style: .success)
+                    banner.show()
+                    
+                    
+                }
             }
         }
     }
@@ -55,13 +57,14 @@ class RequestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
 
     @IBOutlet weak var submitButton: UIBarButtonItem!
     
-    var name : String = ""
+    var name : String? = ""
     let leftView = UIImageView(image: #imageLiteral(resourceName: "greenCheck"))
-    var userUID = ""
+    var userUID : String = ""
     let categories = ["","Equipment","Airfare","Concert/Event Tickets","Hotel", "Other"]
     let db = Firestore.firestore()
-    var requestDate = ""
-    var requestDateNum = 0 // FIXME dont have so many globals
+    var requestDate : String = ""
+    var requestDateNum : Int = 0 // FIXME dont have so many globals
+    var isNil = false
     
    // var date =
     
@@ -69,6 +72,7 @@ class RequestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         getName()
         getUID()
 //        view.addBackground(imageName: "stadium", contentMode: .scaleAspectFill)
@@ -136,10 +140,8 @@ class RequestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-        super.touchesBegan(touches, with: event)
-    }
+
+   
     
     /*
     // MARK: - Navigation
@@ -164,16 +166,26 @@ class RequestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
 
     func getName(){
         let userDB = Firestore.firestore().collection("users")
-        userDB.whereField("Email", isEqualTo: Auth.auth().currentUser?.email ?? "").getDocuments { (QuerySnapshot, Error) in
+        userDB.whereField("Email", isEqualTo: Auth.auth().currentUser!.email!).getDocuments { (QuerySnapshot, Error) in
             if Error != nil{
-                print(Error!)
+                if let error = Error{
+                    self.handleError(error)
+                }
                 return
             }
             else{
+                print(QuerySnapshot!.count)
+                print(Auth.auth().currentUser!.email!)
                 for document in QuerySnapshot!.documents{
-                    self.name = document.get("First") as? String ?? ""
-                    self.name += " "
-                    self.name += document.get("last") as? String ?? ""
+                    print(document.data())
+                    if let first = document.get("First") as? String{
+                        self.name = first
+                    }
+                    self.name? += " "
+                    if let last = document.get("last") as? String{
+                        self.name? += last
+                    }
+                    
                 }
             }
         }

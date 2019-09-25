@@ -84,7 +84,30 @@ class CompletedRequestsViewController: UIViewController, UITableViewDataSource, 
                     self.completedUserData.removeAll()
                     for document in querySnapshot!.documents{
                         print("\(document.documentID) => \(document.data())")
-                        self.currentRequest = Request(category: document.get("category") as! String, description: document.get("description") as! String, date: document.get("date") as! String, isProcessed: document.get("isProcessed") as! Bool, dateNum: document.get("dateNum") as! Int, docID: document.documentID, user: document.get("user") as! String, message: document.get("message") as! Bool)
+                        self.currentRequest = Request()
+                        if let category = document.get("category") as? String {
+                            self.currentRequest.category = category
+                        }
+                        if let description = document.get("description") as? String {
+                            self.currentRequest.description = description
+                        }
+                        if let date = document.get("date") as? String {
+                            self.currentRequest.date = date
+                        }
+                        if let isProcessed = document.get("isProcessed") as? Bool {
+                            self.currentRequest.isProcessed = isProcessed
+                        }
+                        if let dateNum = document.get("dateNum") as? Int {
+                            self.currentRequest.dateNum = dateNum
+                        }
+                        self.currentRequest.docID = document.documentID
+                        if let user = document.get("user") as? String {
+                            self.currentRequest.user = user
+                        }
+                        if let message = document.get("message") as? Bool {
+                            self.currentRequest.message = message
+                        }
+                        //self.currentRequest = Request(category: document.get("category") as! String, description: document.get("description") as! String, date: document.get("date") as! String, isProcessed: document.get("isProcessed") as! Bool, dateNum: document.get("dateNum") as! Int, docID: document.documentID, user: document.get("user") as! String, message: document.get("message") as! Bool)
                         self.currentRequest.haveData = true
                         self.completedUserData.append(self.currentRequest)
                         

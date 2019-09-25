@@ -38,8 +38,7 @@ class ViewController: UIViewController {
             
             if error != nil {
                 print(error!)
-                let banner = NotificationBanner(title: "Error!", subtitle: "Please enter a valid email and password.", leftView: self.leftView, style: .danger)
-                banner.show()
+                self.handleError(error!)
                 
             }
             else {

@@ -28,6 +28,8 @@
 		965F3FCC22E6F8DC006A6A26 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F3FCB22E6F8DC006A6A26 /* Message.swift */; };
 		965F3FD122E95DA7006A6A26 /* CustomMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F3FCF22E95DA7006A6A26 /* CustomMessageCell.swift */; };
 		965F3FD222E95DA7006A6A26 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 965F3FD022E95DA7006A6A26 /* MessageCell.xib */; };
+		9660875C232982C100C440C4 /* viewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9660875B232982C100C440C4 /* viewExtension.swift */; };
+		9660875E232ACA9800C440C4 /* ErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9660875D232ACA9800C440C4 /* ErrorExtension.swift */; };
 		969CCAA823061E7D00DEBD75 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969CCAA723061E7D00DEBD75 /* NewsViewController.swift */; };
 		969CCAAA23061EB900DEBD75 /* CompletedRequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969CCAA923061EB900DEBD75 /* CompletedRequestsViewController.swift */; };
 		969CCAAC23061F0B00DEBD75 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969CCAAB23061F0B00DEBD75 /* ProfileViewController.swift */; };
@@ -75,6 +77,8 @@
 		965F3FCF22E95DA7006A6A26 /* CustomMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMessageCell.swift; sourceTree = "<group>"; };
 		965F3FD022E95DA7006A6A26 /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MessageCell.xib; path = "../../../../Downloads/Flash-Chat-iOS12/Flash Chat/MessageCell.xib"; sourceTree = "<group>"; };
 		965F3FD322F00052006A6A26 /* Sosnick App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Sosnick App.entitlements"; sourceTree = "<group>"; };
+		9660875B232982C100C440C4 /* viewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewExtension.swift; sourceTree = "<group>"; };
+		9660875D232ACA9800C440C4 /* ErrorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ErrorExtension.swift; path = adminVCFiles/ErrorExtension.swift; sourceTree = "<group>"; };
 		969CCAA723061E7D00DEBD75 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		969CCAA923061EB900DEBD75 /* CompletedRequestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedRequestsViewController.swift; sourceTree = "<group>"; };
 		969CCAAB23061F0B00DEBD75 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -89,7 +93,7 @@
 		96C3631822DED537007762B4 /* AdminRequestInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminRequestInfoViewController.swift; sourceTree = "<group>"; };
 		96C3631A22DFCAA6007762B4 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		96C3631C22E038A7007762B4 /* UserMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMessagesViewController.swift; sourceTree = "<group>"; };
-		96E981FF22BA070900FA5D93 /* Sosnick App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sosnick App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		96E981FF22BA070900FA5D93 /* SCK Sports.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SCK Sports.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96E9820222BA070900FA5D93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96E9820422BA070900FA5D93 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		96E9820722BA070900FA5D93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -190,7 +194,7 @@
 		96E9820022BA070900FA5D93 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				96E981FF22BA070900FA5D93 /* Sosnick App.app */,
+				96E981FF22BA070900FA5D93 /* SCK Sports.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -206,8 +210,10 @@
 				965F3FC622E56BD7006A6A26 /* userVCFiles */,
 				964B6EC322C49A07003C9A31 /* Model */,
 				96E9820622BA070900FA5D93 /* Main.storyboard */,
+				9660875D232ACA9800C440C4 /* ErrorExtension.swift */,
 				965F3FCF22E95DA7006A6A26 /* CustomMessageCell.swift */,
 				965F3FD022E95DA7006A6A26 /* MessageCell.xib */,
+				9660875B232982C100C440C4 /* viewExtension.swift */,
 				96C3630822D563E5007762B4 /* backgroundExtension.swift */,
 				969CCAB3230D15FA00DEBD75 /* imageViewCircle.swift */,
 				9659FCDB2311E0B7000D6C3A /* ImageViewExtension.swift */,
@@ -242,6 +248,7 @@
 				96E981FC22BA070900FA5D93 /* Frameworks */,
 				96E981FD22BA070900FA5D93 /* Resources */,
 				45F3BC0C0F6E080447BDE2BD /* [CP] Embed Pods Frameworks */,
+				9660875F2331C43D00C440C4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -249,7 +256,7 @@
 			);
 			name = "Sosnick App";
 			productName = "Sosnick App";
-			productReference = 96E981FF22BA070900FA5D93 /* Sosnick App.app */;
+			productReference = 96E981FF22BA070900FA5D93 /* SCK Sports.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -315,6 +322,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Sosnick App/Pods-Sosnick App-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
@@ -331,6 +339,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
@@ -370,6 +379,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9660875F2331C43D00C440C4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/Fabric/run\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -390,6 +417,7 @@
 				96E9820522BA070900FA5D93 /* ViewController.swift in Sources */,
 				969CCAAA23061EB900DEBD75 /* CompletedRequestsViewController.swift in Sources */,
 				96C3631522DD6F82007762B4 /* AdminTableViewCell.swift in Sources */,
+				9660875C232982C100C440C4 /* viewExtension.swift in Sources */,
 				969CCAAE2307AAE800DEBD75 /* TabBarControllerViewController.swift in Sources */,
 				969CCAB02307B5FC00DEBD75 /* AdminTabBarControllerViewController.swift in Sources */,
 				969CCAA823061E7D00DEBD75 /* NewsViewController.swift in Sources */,
@@ -404,6 +432,7 @@
 				96C3631922DED537007762B4 /* AdminRequestInfoViewController.swift in Sources */,
 				965F3FC322E569FD006A6A26 /* CreateUserViewController.swift in Sources */,
 				960E2BAE22FC853E00D934D1 /* ForgotPasswordViewController.swift in Sources */,
+				9660875E232ACA9800C440C4 /* ErrorExtension.swift in Sources */,
 				96F67C3B231EE6D2007D088A /* PopoverViewController.swift in Sources */,
 				9630BA2F231DB1E4003D9C58 /* AdminNewsViewController.swift in Sources */,
 				96E9820322BA070900FA5D93 /* AppDelegate.swift in Sources */,
@@ -568,7 +597,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.danielydens.Sosnick-App";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "SCK Sports";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -588,7 +617,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.danielydens.Sosnick-App";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "SCK Sports";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

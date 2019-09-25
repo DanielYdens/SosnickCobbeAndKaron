@@ -19,6 +19,8 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet weak var adminTableView: UITableView!
     
+    
+    
     var searchRequest : [Request] = []
     var allUserRequests : [Request] = []
     var equipmentRequestsOnly : [Request] = []
@@ -44,7 +46,20 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
-//        accessData()
+        currentReq.haveData = false
+        if self.isConnectedToInternet(){
+            accessData()
+        }
+        else{
+            let alert = UIAlertController(title: "Error", message: "No network connection, please try again", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            
+            alert.addAction(okAction)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+        
     }
 
     
@@ -52,7 +67,7 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        accessData()
+        //accessData()
         
         self.adminTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.adminTableView.dataSource = self
@@ -67,30 +82,58 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func accessData(){
         let db = Firestore.firestore()
-       if currentReq.haveData == false{
-        db.collection("userRequestB").whereField("isProcessed", isEqualTo: false).order(by: "dateNum").addSnapshotListener { (QuerySnapshot
-            , Error) in
-            if Error != nil{
-                print("Error getting docs")
-            }
-            else{
-                self.allUserRequests.removeAll()
-                self.equipmentRequestsOnly.removeAll()
-                self.nonEquipmentRequests.removeAll()
-                for document in QuerySnapshot!.documents{
-                    print("THE DATA IS: \(document.data())")
-                    self.currentReq = Request(category: document.get("category") as! String, description: document.get("description") as! String, date: document.get("date") as! String, isProcessed: document.get("isProcessed") as! Bool, dateNum: document.get("dateNum") as! Int, docID: document.documentID, user: document.get("user") as! String, message: document.get("message") as! Bool, name: document.get("name") as! String)
-                    self.allUserRequests.append(self.currentReq)
+        if currentReq.haveData == false{
+            db.collection("userRequestB").whereField("isProcessed", isEqualTo: false).order(by: "dateNum").getDocuments { (QuerySnapshot
+                , Error) in
+                if Error != nil{
+                    print("Error getting docs")
+                    self.handleError(Error!)
+                }
+                else{
+                    self.allUserRequests.removeAll()
+                    self.equipmentRequestsOnly.removeAll()
+                    self.nonEquipmentRequests.removeAll()
+                    for document in QuerySnapshot!.documents{
+                        print("THE DATA IS: \(document.data())")
+                        self.currentReq = Request()
+                        if let category = document.get("category") as? String {
+                            self.currentReq.category = category
+                        }
+                        if let description = document.get("description") as? String {
+                            self.currentReq.description = description
+                        }
+                        if let date = document.get("date") as? String {
+                            self.currentReq.date = date
+                        }
+                        if let isProcessed = document.get("isProcessed") as? Bool {
+                            self.currentReq.isProcessed = isProcessed
+                        }
+                        if let dateNum = document.get("dateNum") as? Int {
+                            self.currentReq.dateNum = dateNum
+                        }
+                        self.currentReq.docID = document.documentID
+                        if let user = document.get("user") as? String {
+                            self.currentReq.user = user
+                        }
+                        if let message = document.get("message") as? Bool {
+                            self.currentReq.message = message
+                        }
+                        if let name = document.get("name") as? String {
+                            self.currentReq.name = name
+                        }
+                        //self.currentReq = Request(category: document.get("category") as? String, description: document.get("description") as? String, date: document.get("date") as? String, isProcessed: document.get("isProcessed") as? Bool, dateNum: document.get("dateNum") as? Int, docID: document.documentID, user: document.get("user") as? String, message: document.get("message") as? Bool, name: document.get("name") as? String)
+                        self.allUserRequests.append(self.currentReq)
+                        
+                    }
+                    self.sortArrayIntoTwo(Array: self.allUserRequests)
+                    self.isInitialized = true
+                    self.getUserRole()
                     
                 }
-                self.sortArrayIntoTwo(Array: self.allUserRequests)
-                self.isInitialized = true
-                self.getUserRole()
-                
             }
-        }
         
        }
+        
         
     }
     
@@ -218,7 +261,9 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
             let documentRef = userDatabase.collection("users").document(uid)
             documentRef.getDocument { (snapshot, Error) in
                 if Error != nil{
-                    print(Error!)
+                    if let error = Error{
+                        self.handleError(error)
+                    }
                     return
                 }
                 else{

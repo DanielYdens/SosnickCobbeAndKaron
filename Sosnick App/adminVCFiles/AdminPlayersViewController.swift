@@ -17,20 +17,35 @@ class AdminPlayersViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var searchBar: UISearchBar!
     
-    
+    let imagePlayerPictureCache = NSCache<NSString, UIImage>()
     var players = [Player]()
     var searchName = [Player]()
     var database = Firestore.firestore()
     var row : Int = 0
     var searching = false
     
+    override func viewDidAppear(_ animated: Bool) {
+        if self.isConnectedToInternet(){
+            getPlayers()
+        }
+        else{
+            let alert = UIAlertController(title: "Error", message: "No network connection, please try again", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            
+            alert.addAction(okAction)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.playersTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         searchBar.delegate = self
         playersTable.delegate = self
         playersTable.dataSource = self
-        getPlayers()
+        
         // Do any additional setup after loading the view.
     }
     //search bar functionality
@@ -112,7 +127,19 @@ class AdminPlayersViewController: UIViewController, UITableViewDelegate, UITable
         if searching { //if searching bring use the new array
             playerCell.name.text = searchName[indexPath.row].name
             if searchName[indexPath.row].profilePicURL != ""{
-                playerCell.profilePicImageView.downloaded(from: searchName[indexPath.row].profilePicURL)
+                
+                let url = NSURL(string: searchName[indexPath.row].profilePicURL)
+                downloadImage(url: url! as URL) { (Image) in
+                    if Image != nil{
+                        DispatchQueue.main.async {
+                             playerCell.profilePicImageView.image = Image
+                        }
+                        
+                    }
+                    else{
+                        return
+                    }
+                }
                 playerCell.profilePicImageView.roundedImage()
             }
             else{
@@ -122,7 +149,20 @@ class AdminPlayersViewController: UIViewController, UITableViewDelegate, UITable
         else{
             playerCell.name.text = players[indexPath.row].name
             if players[indexPath.row].profilePicURL != ""{
-                playerCell.profilePicImageView.downloaded(from: players[indexPath.row].profilePicURL)
+                
+                
+                let url = NSURL(string: players[indexPath.row].profilePicURL)
+                downloadImage(url: url! as URL) { (Image) in
+                    if Image != nil{
+                        DispatchQueue.main.async {
+                            playerCell.profilePicImageView.image = Image
+                        }
+                        
+                    }
+                    else{
+                        return
+                    }
+                    }
                 playerCell.profilePicImageView.roundedImage()
             }
             else{
@@ -136,10 +176,13 @@ class AdminPlayersViewController: UIViewController, UITableViewDelegate, UITable
     func getPlayers(){
         database.collection("users").whereField("Role", isEqualTo: "Player").getDocuments { (snapshot, Error) in
             if Error != nil{
-                print(Error!)
+                if let error = Error{
+                    self.handleError(error)
+                }
                 return
             }
             else{
+                self.players.removeAll()
                 for document in snapshot!.documents{
                     let currentPlayer =  Player()
                     currentPlayer.uid = document.documentID
@@ -178,7 +221,9 @@ class AdminPlayersViewController: UIViewController, UITableViewDelegate, UITable
     func removeUsersRequests(UID: String){
         database.collection("userRequestB").whereField("uid", isEqualTo: UID).getDocuments { (snapshot, error) in
             if error != nil{
-                print(error!)
+                if let Error = error{
+                    self.handleError(Error)
+                }
                 return
             }
             else{
@@ -195,6 +240,34 @@ class AdminPlayersViewController: UIViewController, UITableViewDelegate, UITable
             }
         }
         
+    }
+    
+    func downloadImage(url: URL, completion: @escaping (UIImage?) -> Void) {
+        
+        if let cachedImage = imagePlayerPictureCache.object(forKey: url.absoluteString as NSString){
+            print("in")
+            completion(cachedImage)
+            
+        }
+        else{
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
+                //download hit an error
+                if error != nil{
+                    if let Error = error{
+                        self.handleError(Error)
+                    }
+                    return
+                }
+                if let pictureData =  data{
+                    self.imagePlayerPictureCache.setObject(UIImage(data: pictureData)!, forKey: url.absoluteString as NSString)
+                    print("not in")
+                    completion(UIImage(data: pictureData))
+                }
+                
+                
+                }.resume()
+            
+        }
     }
     /*
     // MARK: - Navigation""

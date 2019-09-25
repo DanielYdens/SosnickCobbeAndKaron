@@ -25,9 +25,9 @@ class PlayerProfileInfoViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var apparelTopSizeTextField: UITextField!
     @IBOutlet weak var apparelBottomSizeTextField: UITextField!
     @IBOutlet weak var battingGloveSizeTextField: UITextField!
-    @IBOutlet weak var throwsSegmentController: UISegmentedControl!
+   // @IBOutlet weak var throwsSegmentController: UISegmentedControl!
     
-    @IBOutlet weak var batsSegmentController: UISegmentedControl!
+   // @IBOutlet weak var batsSegmentController: UISegmentedControl!
     @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
         _ = navigationController?.popViewController(animated: true)
     }
@@ -41,6 +41,7 @@ class PlayerProfileInfoViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         self.scrollView.delegate = self
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 500)
         setupTextFields()
@@ -61,11 +62,11 @@ class PlayerProfileInfoViewController: UIViewController, UIScrollViewDelegate {
                 self.apparelTopSizeTextField.text = document.get("apparelTopSize") as? String
                 self.apparelBottomSizeTextField.text = document.get("apparelBottomSize") as? String
                 self.battingGloveSizeTextField.text = document.get("battingGloveSize") as? String
-                self.battingStance = document.get("bats") as? String ?? "Right"
-                self.throwingArm = document.get("throws") as? String ?? "Right"
+//                self.battingStance = document.get("bats") as? String ?? "Right"
+//                self.throwingArm = document.get("throws") as? String ?? "Right"
                 self.cleatPreference = document.get("cleatPreference") as? String ?? "Low"
                 self.emailTextField.text = document.get("Email") as? String
-                self.setupSegmentControllers(cleatPref: self.cleatPreference, batting: self.battingStance, throwing: self.throwingArm)
+                self.setupSegmentControllers(cleatPref: self.cleatPreference)
                 
             } else {
                 print("Document does not exist")
@@ -80,32 +81,32 @@ class PlayerProfileInfoViewController: UIViewController, UIScrollViewDelegate {
         apparelBottomSizeTextField.isUserInteractionEnabled = false
         apparelTopSizeTextField.isUserInteractionEnabled = false
         battingGloveSizeTextField.isUserInteractionEnabled = false
-        batsSegmentController.isUserInteractionEnabled = false
-        throwsSegmentController.isUserInteractionEnabled = false
+        //batsSegmentController.isUserInteractionEnabled = false
+        //throwsSegmentController.isUserInteractionEnabled = false
         updateProfileButton.isUserInteractionEnabled = false
         updateProfileButton.isHidden = true
         
     }
     
-    func setupSegmentControllers(cleatPref: String, batting : String, throwing: String){
+    func setupSegmentControllers(cleatPref: String){
         if cleatPref == "Low" || cleatPref == ""{
             self.cleatPreferenceSegmentController.selectedSegmentIndex = 0
         }
         else{
             self.cleatPreferenceSegmentController.selectedSegmentIndex = 1
         }
-        if batting == "Right" || batting == ""{
-            self.batsSegmentController.selectedSegmentIndex = 0
-        }
-        else{
-            self.batsSegmentController.selectedSegmentIndex = 1
-        }
-        if throwing == "Right" || throwing == ""{
-            self.throwsSegmentController.selectedSegmentIndex = 0
-        }
-        else{
-            self.throwsSegmentController.selectedSegmentIndex = 1
-        }
+//        if batting == "Right" || batting == ""{
+//            self.batsSegmentController.selectedSegmentIndex = 0
+//        }
+//        else{
+//            self.batsSegmentController.selectedSegmentIndex = 1
+//        }
+//        if throwing == "Right" || throwing == ""{
+//            self.throwsSegmentController.selectedSegmentIndex = 0
+//        }
+//        else{
+//            self.throwsSegmentController.selectedSegmentIndex = 1
+//        }
         
     }
     func setupProfilePicture(){
@@ -130,8 +131,8 @@ class PlayerProfileInfoViewController: UIViewController, UIScrollViewDelegate {
         apparelTopSizeTextField.isUserInteractionEnabled = true
         apparelBottomSizeTextField.isUserInteractionEnabled = true
         battingGloveSizeTextField.isUserInteractionEnabled = true
-        batsSegmentController.isUserInteractionEnabled = true
-        throwsSegmentController.isUserInteractionEnabled = true
+        //batsSegmentController.isUserInteractionEnabled = true
+        //throwsSegmentController.isUserInteractionEnabled = true
         updateProfileButton.isHidden = false
         updateProfileButton.isUserInteractionEnabled = true
     }
@@ -148,9 +149,9 @@ class PlayerProfileInfoViewController: UIViewController, UIScrollViewDelegate {
             "apparelTopSize" : apparelTopSizeTextField.text!,
             "apparelBottomSize" : apparelBottomSizeTextField.text!,
             "battingGloveSize" : battingGloveSizeTextField.text!,
-            "cleatPreference" : cleatPreference,
-            "bats" : battingStance,
-            "throws" : throwingArm
+            "cleatPreference" : cleatPreference
+            //"bats" : battingStance,
+            //"throws" : throwingArm
         ] ) { err in
             if let err = err {
                 print("Error updating document: \(err)")
@@ -169,35 +170,33 @@ class PlayerProfileInfoViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+//    @IBAction func batsSegmentChanged(_ sender: UISegmentedControl) {
+//        switch batsSegmentController.selectedSegmentIndex
+//        {
+//        case 0:
+//            print("First Segment Selected")
+//            battingStance = "Right"
+//        case 1:
+//            print("Second Segment Selected")
+//            battingStance = "Left"
+//        default:
+//            break
+//        }
+//    }
     
-    @IBAction func batsSegmentChanged(_ sender: UISegmentedControl) {
-        switch batsSegmentController.selectedSegmentIndex
-        {
-        case 0:
-            print("First Segment Selected")
-            battingStance = "Right"
-        case 1:
-            print("Second Segment Selected")
-            battingStance = "Left"
-        default:
-            break
-        }
-    }
-    
-    
-    @IBAction func throwingSegmentChanged(_ sender: UISegmentedControl) {
-        switch throwsSegmentController.selectedSegmentIndex
-        {
-        case 0:
-            print("First Segment Selected")
-            throwingArm = "Right"
-        case 1:
-            print("Second Segment Selected")
-            throwingArm = "Left"
-        default:
-            break
-        }
-    }
+//    @IBAction func throwingSegmentChanged(_ sender: UISegmentedControl) {
+//        switch throwsSegmentController.selectedSegmentIndex
+//        {
+//        case 0:
+//            print("First Segment Selected")
+//            throwingArm = "Right"
+//        case 1:
+//            print("Second Segment Selected")
+//            throwingArm = "Left"
+//        default:
+//            break
+//        }
+//    }
     
     
     @IBAction func cleatPreferenceChanged(_ sender: UISegmentedControl) {
@@ -214,6 +213,8 @@ class PlayerProfileInfoViewController: UIViewController, UIScrollViewDelegate {
             break
         }
     }
+    
+    
     
     /*
     // MARK: - Navigation

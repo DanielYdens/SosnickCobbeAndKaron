@@ -35,7 +35,10 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
             
             database.document(documentID).collection("messages").addDocument(data: messageDictionary as [String : Any]) { (Error) in
                 if Error != nil{ // check if add doc is what u really want
-                    print(Error!)
+                    //print(Error!)
+                    if let error = Error{
+                        self.handleError(error)
+                    }
                 } else{
                     print("message successfully saved")
                     self.messageTextField.isEnabled = true
@@ -140,7 +143,9 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
             database.document(documentID).collection("messages").order(by: "time").addSnapshotListener { (QuerySnapshot
                 , Error) in
                 if Error != nil{
-                    print(Error!)
+                    if let error = Error{
+                        self.handleError(error)
+                    }
                 } else{
                     var text : String = ""
                     var sender : String = ""
@@ -228,7 +233,9 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         let docRef = userDB.whereField("Email", isEqualTo: email)
         docRef.getDocuments { (QuerySnapshot, Error) in
             if Error !=  nil{
-                print(Error!)
+                if let error = Error{
+                    self.handleError(error)
+                }
                 return
             }
             else{

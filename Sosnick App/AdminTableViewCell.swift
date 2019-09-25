@@ -64,7 +64,7 @@ class AdminTableViewCell : UITableViewCell {
         }
         
         if adminReq?.isProcessed == false{
-            isProcessedImageView.image = UIImage(named: "pending2")
+            isProcessedImageView.image = UIImage(named: "pending")
         }
         dateLabel?.text = adminReq?.date
         categoryLabel?.text =  adminReq?.category

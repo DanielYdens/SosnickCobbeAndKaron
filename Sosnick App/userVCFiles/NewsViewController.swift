@@ -11,16 +11,23 @@ import Firebase
 import FirebaseFirestore
 
 class NewsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-  
+    
+    let imagePostsCache = NSCache<NSString, UIImage>()
+    var cachePostImage : UIImage?
     var posts = [Post]()
    
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
+       
         fetchPosts()
+        
         // Do any additional setup after loading the view.
     }
     
@@ -32,10 +39,24 @@ class NewsViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as! PostCell
         //creating the cell
+        
         cell.captionLabel.numberOfLines = 0
         cell.captionLabel.text = posts[indexPath.row].caption
         
-        cell.postImageView.downloaded(from: posts[indexPath.row].URL)
+        //cell.postImageView.downdownloaded(from: posts[indexPath.row].URL)
+        let url = NSURL(string: posts[indexPath.row].URL)
+        downloadImage(url: url! as URL) { (Image) in
+            if Image != nil{
+                
+                DispatchQueue.main.async {
+                    cell.postImageView.image = Image
+                }
+            
+            }
+            else{
+                return
+            }
+        }
         cell.postImageView.contentMode = .scaleAspectFill
         
         
@@ -49,7 +70,9 @@ class NewsViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         _ = database.collection("posts").order(by: "timeStamp").getDocuments { (snapshot, error) in
             if error != nil{
-                print(error!)
+                if let Error = error{
+                    self.handleError(Error)
+                }
                 return
             }
             else{
@@ -65,7 +88,36 @@ class NewsViewController: UIViewController, UICollectionViewDelegate, UICollecti
             }
         }
     }
-
+    
+    func downloadImage(url: URL, completion: @escaping (UIImage?) -> Void) {
+        
+        if let cachedImage = imagePostsCache.object(forKey: url.absoluteString as NSString){
+            print("in")
+            completion(cachedImage)
+            
+        }
+        else{
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
+                //download hit an error
+                if error != nil{
+                    if let Error = error{
+                        self.handleError(Error)
+                    }
+                    return
+                }
+                if let pictureData =  data{
+                    self.imagePostsCache.setObject(UIImage(data: pictureData)!, forKey: url.absoluteString as NSString)
+                    print("not in")
+                    completion(UIImage(data: pictureData))
+                }
+                
+                
+            }.resume()
+            
+            }
+        }
+    
+    
     
 //    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
 //        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()

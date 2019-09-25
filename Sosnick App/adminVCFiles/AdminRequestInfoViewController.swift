@@ -93,7 +93,7 @@ class AdminRequestInfoViewController: UIViewController, UINavigationBarDelegate 
         descriptionTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         descriptionTextView.layer.borderWidth = 0.5
         descriptionTextView.clipsToBounds = true
-     
+        self.hideKeyboardWhenTappedAround()
         // Do any additional setup after loading the view.
     }
     

@@ -12,8 +12,7 @@ import FirebaseFirestore
 class AdminNewsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIPopoverPresentationControllerDelegate, PopoverViewControllerDelegate, AdminPostCellDelegate{
     
     
-    
- 
+    let imagePostsCache = NSCache<NSString, UIImage>()
     var newsPosts = [Post]()
     var row: Int = 0
 
@@ -21,7 +20,19 @@ class AdminNewsViewController: UIViewController, UICollectionViewDataSource, UIC
     
 
     override func viewDidAppear(_ animated: Bool) {
-        fetchPosts()
+        if self.isConnectedToInternet(){
+            fetchPosts()
+        }
+        else{
+            let alert = UIAlertController(title: "Error", message: "No network connection, please try again", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            
+            alert.addAction(okAction)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+        
     }
     
     
@@ -66,8 +77,18 @@ class AdminNewsViewController: UIViewController, UICollectionViewDataSource, UIC
         //creating the cell
         cell.captionLabel.numberOfLines = 0
         cell.captionLabel.text = newsPosts[indexPath.row].caption
-        
-        cell.postImageView.downloaded(from: newsPosts[indexPath.row].URL)
+        let url = NSURL(string: newsPosts[indexPath.row].URL)
+        downloadImage(url: url! as URL) { (Image) in
+            if Image != nil{
+                DispatchQueue.main.async {
+                    cell.postImageView.image = Image
+                }
+                
+            }
+            else{
+                return
+            }
+        }
         cell.postImageView.contentMode = .scaleAspectFill
         
      
@@ -116,7 +137,9 @@ class AdminNewsViewController: UIViewController, UICollectionViewDataSource, UIC
         
         _ = database.collection("posts").order(by: "timeStamp").getDocuments { (snapshot, error) in
             if error != nil{
-                print(error!)
+                if let Error = error{
+                    self.handleError(Error)
+                }
                 return
             }
             else{
@@ -144,6 +167,34 @@ class AdminNewsViewController: UIViewController, UICollectionViewDataSource, UIC
         fetchPosts()
     }
     
+    
+    func downloadImage(url: URL, completion: @escaping (UIImage?) -> Void) {
+        
+        if let cachedImage = imagePostsCache.object(forKey: url.absoluteString as NSString){
+            print("in")
+            completion(cachedImage)
+            
+        }
+        else{
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
+                //download hit an error
+                if error != nil{
+                    if let Error = error{
+                        self.handleError(Error)
+                    }
+                    return
+                }
+                if let pictureData =  data{
+                    self.imagePostsCache.setObject(UIImage(data: pictureData)!, forKey: url.absoluteString as NSString)
+                    print("not in")
+                    completion(UIImage(data: pictureData))
+                }
+                
+                
+                }.resume()
+            
+        }
+    }
    
    
     /*

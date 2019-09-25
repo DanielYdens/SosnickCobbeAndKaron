@@ -27,5 +27,13 @@ class PlayersTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        //hide or reset anything you want hereafter, for example
+        profilePicImageView.image = nil
+        
+        
+    }
 
 }

@@ -12,4 +12,13 @@ class PostCell: UICollectionViewCell {
     
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var captionLabel: UILabel!
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        //hide or reset anything you want hereafter, for example
+        postImageView.image = nil
+        
+        
+    }
+    
 }

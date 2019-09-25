@@ -27,6 +27,14 @@ class AdminPostCell: UICollectionViewCell {
         //check delegate is not nil with `?`
         delegate?.optionButtonTapped(cell: self)
     }
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        //hide or reset anything you want hereafter, for example
+        postImageView.image = nil
+        
+        
+    }
+    
     
     
 }

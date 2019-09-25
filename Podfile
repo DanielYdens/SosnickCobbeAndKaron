@@ -6,6 +6,8 @@ target 'Sosnick App' do
   use_frameworks!
 
   # Pods for Sosnick App
+pod 'Fabric', '~> 1.10.2'
+pod 'Crashlytics', '~> 3.14.0'
 
 pod 'Firebase'
 pod 'Firebase/Auth'
@@ -17,5 +19,6 @@ pod 'Firebase/Core'
 pod 'Firebase/Messaging'
 pod 'Firebase/Storage'
 pod 'Firebase/Analytics'
+pod 'Alamofire'
 
 end

@@ -21,6 +21,7 @@ class CreateUserViewController: UIViewController {
     
     @IBOutlet weak var firstTextField: UITextField!
     
+    @IBOutlet weak var registerButton: StyleButton!
     
     @IBOutlet weak var lastTextField: UITextField!
     
@@ -47,31 +48,58 @@ class CreateUserViewController: UIViewController {
         }
     }
     @IBAction func registerButtonPressed(_ sender: UIButton) {
-        if let secondaryApp = FirebaseApp.app(name: "CreatingUsersApp") {
-            let secondaryAppAuth = Auth.auth(app: secondaryApp)
-            
-            // Create user in secondary app.
-            secondaryAppAuth.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
-                if error != nil {
-                    print(error!)
-                } else {
-                    //Print created users email.
-                    print(user!.user.email!)
-                    self.uid = user!.user.uid
-                    //Print current logged in users email.
-                    print(Auth.auth().currentUser?.email ?? "default")
-                    
-                    try! secondaryAppAuth.signOut()
-                    self.createUserInformation()
-                    
-                    let refreshAlert = UIAlertController(title: "Success!", message: "A new user has been created!", preferredStyle: UIAlertController.Style.alert)
-                    
-                    refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-                        print("Handle Ok logic here")
-                    
-                    }))
-                    self.present(refreshAlert, animated: true,completion: nil)
-                    self.clearTextFields()
+        var repeated = false
+        database.getDocuments { (snapshot, error) in
+            if error != nil{
+                if let Error = error{
+                    self.handleError(Error)
+                }
+                return
+            }
+            else{
+                for document in snapshot!.documents{
+                    if self.emailTextField.text == document.get("Email") as? String {
+                        let repeatAlert = UIAlertController(title: "You already have this Email registered to an account!", message: "Please enter a different email.", preferredStyle: UIAlertController.Style.alert)
+                        
+                        repeatAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                            print("Handle Ok logic here")
+                            self.clearTextFields()
+                            repeated = true
+                        }))
+                        self.present(repeatAlert, animated: true,completion: nil)
+                        
+                        
+                    }
+                }
+            }
+        }
+        if repeated == false {
+            if let secondaryApp = FirebaseApp.app(name: "CreatingUsersApp") {
+                let secondaryAppAuth = Auth.auth(app: secondaryApp)
+                
+                // Create user in secondary app.
+                secondaryAppAuth.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
+                    if error != nil {
+                        print(error!)
+                    } else {
+                        //Print created users email.
+                        print(user!.user.email!)
+                        self.uid = user!.user.uid
+                        //Print current logged in users email.
+                        print(Auth.auth().currentUser?.email ?? "default")
+                        
+                        try! secondaryAppAuth.signOut()
+                        self.createUserInformation()
+                        
+                        let refreshAlert = UIAlertController(title: "Success!", message: "A new user has been created!", preferredStyle: UIAlertController.Style.alert)
+                        
+                        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                            print("Handle Ok logic here")
+                        
+                        }))
+                        self.present(refreshAlert, animated: true,completion: nil)
+                        self.clearTextFields()
+                    }
                 }
             }
         }
@@ -82,7 +110,7 @@ class CreateUserViewController: UIViewController {
             "First" : firstTextField.text!,
             "last" : lastTextField.text!,
             "profilePictureURL" : "",
-            "Email": emailTextField.text!,
+            "Email": emailTextField.text!.lowercased(),
             "Role" : role,
             "instagramHandle" : "",
             "twitterHandle" : "",
@@ -91,8 +119,6 @@ class CreateUserViewController: UIViewController {
             "apparelTopSize" : "",
             "apparelBottomSize" : "",
             "battingGloveSize" : "",
-            "bats" : "Right",
-            "throws" : "Right",
             "fcmToken" : ""
             
             ])
@@ -114,10 +140,26 @@ class CreateUserViewController: UIViewController {
 //            }
 //        }
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        if self.isConnectedToInternet(){
+            registerButton.isUserInteractionEnabled = true
+        }
+        else{
+            let alert = UIAlertController(title: "Error", message: "No network connection, please try again", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            
+            alert.addAction(okAction)
+            
+            registerButton.isUserInteractionEnabled = false
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Register New Users"
+        
         // Do any additional setup after loading the view.
     }
     

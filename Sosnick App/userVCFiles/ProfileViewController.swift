@@ -33,8 +33,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var apparelTopSizeTextField: UITextField!
     @IBOutlet weak var apparelBottomSizeTextField: UITextField!
     @IBOutlet weak var battingGloveSizeTextField: UITextField!
-    @IBOutlet weak var batsSegmentController: UISegmentedControl!
-    @IBOutlet weak var throwsSegmentController: UISegmentedControl!
+//    @IBOutlet weak var batsSegmentController: UISegmentedControl!
+//    @IBOutlet weak var throwsSegmentController: UISegmentedControl!
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -71,34 +71,34 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
     }
     
-    @IBAction func batsSegmentChanged(_ sender: UISegmentedControl) {
-        switch batsSegmentController.selectedSegmentIndex
-        {
-        case 0:
-            print("First Segment Selected")
-            bats = "Right"
-        case 1:
-            print("Second Segment Selected")
-            bats = "Left"
-        default:
-            break
-        }
-    }
+//    @IBAction func batsSegmentChanged(_ sender: UISegmentedControl) {
+//        switch batsSegmentController.selectedSegmentIndex
+//        {
+//        case 0:
+//            print("First Segment Selected")
+//            bats = "Right"
+//        case 1:
+//            print("Second Segment Selected")
+//            bats = "Left"
+//        default:
+//            break
+//        }
+//    }
     
     
-    @IBAction func throwsSegmentChanged(_ sender: UISegmentedControl) {
-        switch throwsSegmentController.selectedSegmentIndex
-        {
-        case 0:
-            print("First Segment Selected")
-            throwingArm = "Right"
-        case 1:
-            print("Second Segment Selected")
-            throwingArm = "Left"
-        default:
-            break
-        }
-    }
+//    @IBAction func throwsSegmentChanged(_ sender: UISegmentedControl) {
+//        switch throwsSegmentController.selectedSegmentIndex
+//        {
+//        case 0:
+//            print("First Segment Selected")
+//            throwingArm = "Right"
+//        case 1:
+//            print("Second Segment Selected")
+//            throwingArm = "Left"
+//        default:
+//            break
+//        }
+//    }
     
     
     
@@ -112,8 +112,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         apparelTopSizeTextField.isUserInteractionEnabled = true
         apparelBottomSizeTextField.isUserInteractionEnabled = true
         battingGloveSizeTextField.isUserInteractionEnabled = true
-        batsSegmentController.isUserInteractionEnabled = true
-        throwsSegmentController.isUserInteractionEnabled = true
+        //batsSegmentController.isUserInteractionEnabled = true
+        //throwsSegmentController.isUserInteractionEnabled = true
         confirmButton.isUserInteractionEnabled = true
         confirmButton.isHidden = false
     }
@@ -163,6 +163,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         makeImageRound()
         displayProfilePicture()
         setupTextFields()
@@ -188,8 +189,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 self.apparelTopSizeTextField.text = document.get("apparelTopSize") as? String
                 self.apparelBottomSizeTextField.text = document.get("apparelBottomSize") as? String
                 self.battingGloveSizeTextField.text = document.get("battingGloveSize") as? String
-                self.bats = document.get("bats") as? String ?? "Right"
-                self.throwingArm = document.get("throws") as? String ?? "Right"
+                //self.bats = document.get("bats") as? String ?? "Right"
+                //self.throwingArm = document.get("throws") as? String ?? "Right"
                 self.cleatPreference = document.get("cleatPreference") as? String ?? "Low"
                 self.setupSegmentControllers(cleatPref: self.cleatPreference, batting: self.bats, throwing: self.throwingArm)
                 
@@ -206,8 +207,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         apparelBottomSizeTextField.isUserInteractionEnabled = false
         apparelTopSizeTextField.isUserInteractionEnabled = false
         battingGloveSizeTextField.isUserInteractionEnabled = false
-        batsSegmentController.isUserInteractionEnabled = false
-        throwsSegmentController.isUserInteractionEnabled = false
+        //batsSegmentController.isUserInteractionEnabled = false
+        //throwsSegmentController.isUserInteractionEnabled = false
         confirmButton.isUserInteractionEnabled = false
         confirmButton.isHidden = true
     }
@@ -260,7 +261,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         if let uploadData = Image.pngData() {
             storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
                 if error != nil{
-                    print(error!)
+                    if let Error = error{
+                        self.handleError(Error)
+                    }
                     return
                 }
                 print(metadata!)
@@ -292,7 +295,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         let documentRef = db.document(uid)
         documentRef.getDocument { (documentSnap, Error) in
             if Error != nil{
-                print(Error!)
+                if let error = Error{
+                    self.handleError(error)
+                }
                 return
             }
             else{
@@ -303,25 +308,25 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         
     }
     
-    func setupSegmentControllers(cleatPref: String, batting : String, throwing: String){
+    func setupSegmentControllers(cleatPref : String, batting : String, throwing: String){
         if cleatPref == "Low" || cleatPref == ""{
             self.cleatPreferenceSegmentController.selectedSegmentIndex = 0
         }
         else{
             self.cleatPreferenceSegmentController.selectedSegmentIndex = 1
         }
-        if batting == "Right" || batting == ""{
-            self.batsSegmentController.selectedSegmentIndex = 0
-        }
-        else{
-            self.batsSegmentController.selectedSegmentIndex = 1
-        }
-        if throwing == "Right" || throwing == ""{
-            self.throwsSegmentController.selectedSegmentIndex = 0
-        }
-        else{
-            self.throwsSegmentController.selectedSegmentIndex = 1
-        }
+//        if batting == "Right" || batting == ""{
+//            self.batsSegmentController.selectedSegmentIndex = 0
+//        }
+//        else{
+//            self.batsSegmentController.selectedSegmentIndex = 1
+//        }
+//        if throwing == "Right" || throwing == ""{
+//            self.throwsSegmentController.selectedSegmentIndex = 0
+//        }
+//        else{
+//            self.throwsSegmentController.selectedSegmentIndex = 1
+//        }
         
     }
     
@@ -350,10 +355,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         dismiss(animated: true, completion: nil)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-        super.touchesBegan(touches, with: event)
-    }
+   
     
     func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
@@ -370,6 +372,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             }
         }
     }
+    
+
     /*
     // MARK: - Navigation
 

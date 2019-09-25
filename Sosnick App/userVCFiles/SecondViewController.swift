@@ -79,7 +79,31 @@ import FirebaseAuth
                     self.userData.removeAll()
                     for document in querySnapshot!.documents{
                         print("\(document.documentID) => \(document.data())")
-                        self.currentReq = Request(category: document.get("category") as! String, description: document.get("description") as! String, date: document.get("date") as! String, isProcessed: document.get("isProcessed") as! Bool, dateNum: document.get("dateNum") as! Int, docID: document.documentID, user: document.get("user") as! String, message: document.get("message") as! Bool)
+                        self.currentReq = Request()
+                        
+                        if let category = document.get("category") as? String {
+                            self.currentReq.category = category
+                        }
+                        if let description = document.get("description") as? String {
+                            self.currentReq.description = description
+                        }
+                        if let date = document.get("date") as? String {
+                            self.currentReq.date = date
+                        }
+                        if let isProcessed = document.get("isProcessed") as? Bool {
+                            self.currentReq.isProcessed = isProcessed
+                        }
+                        if let dateNum = document.get("dateNum") as? Int {
+                            self.currentReq.dateNum = dateNum
+                        }
+                        self.currentReq.docID = document.documentID
+                        if let user = document.get("user") as? String {
+                            self.currentReq.user = user
+                        }
+                        if let message = document.get("message") as? Bool {
+                            self.currentReq.message = message
+                        }
+                        //self.currentReq = Request(category: document.get("category") as! String, description: document.get("description") as! String, date: document.get("date") as! String, isProcessed: document.get("isProcessed") as! Bool, dateNum: document.get("dateNum") as! Int, docID: document.documentID, user: document.get("user") as! String, message: document.get("message") as! Bool)
                         self.currentReq.haveData = true
                         self.userData.append(self.currentReq)
                         

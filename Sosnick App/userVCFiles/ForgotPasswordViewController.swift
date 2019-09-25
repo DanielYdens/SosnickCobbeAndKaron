@@ -15,18 +15,23 @@ class ForgotPasswordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Forgot Password?"
+        
+        directionsLabel.numberOfLines = 0
         // Do any additional setup after loading the view.
     }
     
 
+
+    @IBOutlet weak var directionsLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     
     @IBAction func sendEmailButtonPressed(_ sender: UIButton) {
         
         _ = Auth.auth().sendPasswordReset(withEmail: emailTextField.text!) { (Error) in
             if Error != nil{
-                print(Error!)
+                if let error = Error{
+                    self.handleError(error)
+                }
                 print("error happend")
             }
             else{

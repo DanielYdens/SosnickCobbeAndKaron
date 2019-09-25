@@ -59,7 +59,9 @@ class UploadToSocialViewController: UIViewController, UIImagePickerControllerDel
         if let uploadData = uploadImageView.image?.pngData(){
             storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
                 if error != nil{
-                    print(error!)
+                    if let Error = error{
+                        self.handleError(Error)
+                    }
                     return
                 }
                 print(metadata!)
