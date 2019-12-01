@@ -69,14 +69,23 @@ class RequestTableViewCell: UITableViewCell {
     
       
         
+        if request?.status == "userSubmitted" { //if status is just submitted do closed envelope
+            statusImageView.image = UIImage(named: "closedEnvelope")
+        }
+        if request?.status == "adminReceived" { //if admin opens it show open envelope
+            statusImageView.image = UIImage(named: "openEnvelope")
+        }
         
-        
-        if request?.isProcessed == false{
+        if request?.status == "adminConfirmed" { //if admin confirms show pending symbol
             statusImageView.image = UIImage(named: "pending2")
         }
-        else{
+        if request?.isProcessed == true{ //if user completes show a check
             statusImageView.image = UIImage(named: "check")
         }
+        
+//        if request?.isProcessed == false{
+//            statusImageView.image = UIImage(named: "pending2")
+//        }
         
         dateLabel?.text = request?.date
         requestTitleLabel?.text =  request?.category

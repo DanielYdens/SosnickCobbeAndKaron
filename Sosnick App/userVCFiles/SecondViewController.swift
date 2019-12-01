@@ -22,14 +22,9 @@ import FirebaseAuth
     var isInitialized = false
     var row = 0
  
-  
-
-   
-    
-
-  
     
     @IBOutlet weak var table: UITableView!
+    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
        
@@ -70,7 +65,7 @@ import FirebaseAuth
         print(uid)
         print("went")
         if currentReq.haveData == false {
-            db.collection("userRequestB").whereField("uid", isEqualTo: uid).whereField("isProcessed", isEqualTo: false).order(by: "dateNum").addSnapshotListener{ (querySnapshot,
+            db.collection("userRequestC").whereField("uid", isEqualTo: uid).whereField("isProcessed", isEqualTo: false).order(by: "dateNum").addSnapshotListener{ (querySnapshot,
                 Error) in
                 if Error != nil{
                     print("error getting docs")
@@ -102,6 +97,9 @@ import FirebaseAuth
                         }
                         if let message = document.get("message") as? Bool {
                             self.currentReq.message = message
+                        }
+                        if let status =  document.get("status") as? String{
+                            self.currentReq.status = status
                         }
                         //self.currentReq = Request(category: document.get("category") as! String, description: document.get("description") as! String, date: document.get("date") as! String, isProcessed: document.get("isProcessed") as! Bool, dateNum: document.get("dateNum") as! Int, docID: document.documentID, user: document.get("user") as! String, message: document.get("message") as! Bool)
                         self.currentReq.haveData = true

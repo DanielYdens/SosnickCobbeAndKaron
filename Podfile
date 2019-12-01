@@ -20,5 +20,6 @@ pod 'Firebase/Messaging'
 pod 'Firebase/Storage'
 pod 'Firebase/Analytics'
 pod 'Alamofire'
+pod 'Protobuf', :inhibit_warnings => true
 
 end

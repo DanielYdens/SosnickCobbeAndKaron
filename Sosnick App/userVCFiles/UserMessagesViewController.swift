@@ -25,39 +25,39 @@ class UserMessagesViewController: UIViewController, UITableViewDelegate, UITable
     
     
     @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true) //if back button pressed click back
     }
     
     
     @IBAction func sendButtonPressed(_ sender: UIButton) {
-        messageTextField.endEditing(true)
+        messageTextField.endEditing(true) //cant edit once button is pressed
         messageTextField.isEnabled = false
         sendButton.isEnabled = false
-        getMessageSentTime()
-        storeMostRecentMessageSentTime()
-        let messageDictionary = ["sender" : Auth.auth().currentUser?.email as Any, "messageBody" : messageTextField.text!, "time" : messageTime as Any]
+        getMessageSentTime() //get current time
+        storeMostRecentMessageSentTime() //store it in database
+        let messageDictionary = ["sender" : Auth.auth().currentUser?.email as Any, "messageBody" : messageTextField.text!, "time" : messageTime as Any] //put message information in dictionary
         
-        if messagesCreatedStatus == false{
+        if messagesCreatedStatus == false{ //if first message has not been sent yet
             
-            messageDB.document(documentID).collection("messages").addDocument(data: messageDictionary as [String : Any]) { (Error) in
-                if Error != nil{ // check if add doc is what u really want
+            messageDB.document(documentID).collection("messages").addDocument(data: messageDictionary as [String : Any]) { (Error) in //go into messages database and add a new conversation document
+                if Error != nil{
                     if let error = Error{
                         self.handleError(error)
                     }
                 } else{
-                    print("message successfully saved")
+                    print("message successfully saved") //success
                     self.messageTextField.isEnabled = true
-                    self.sendButton.isEnabled = true
+                    self.sendButton.isEnabled = true //reenable buttons and text field and clear it
                     self.messageTextField.text = ""
                     self.messagesCreatedStatus = true
                     self.updateMessageStatus()
                     self.retrieveMessages()
                 }
             }
-        } else{
-            messageDB.document(documentID).collection("messages").addDocument(data: messageDictionary as [String : Any])
+        } else{ //if first message has already been created
+            messageDB.document(documentID).collection("messages").addDocument(data: messageDictionary as [String : Any]) //go into the conversation in the DB and add document for text
             print("already had a message in it")
-            self.messageTextField.isEnabled = true
+            self.messageTextField.isEnabled = true //reenable buttons and text field and clear text field
             self.sendButton.isEnabled = true
             self.messageTextField.text = ""
             self.retrieveMessages()
@@ -86,7 +86,7 @@ class UserMessagesViewController: UIViewController, UITableViewDelegate, UITable
         messageTableView.delegate = self
         messageTableView.dataSource = self
         messageTextField.delegate = self
-        messageTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "customMessageCell")
+        messageTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "customMessageCell") //use correct cell
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector (tableViewTapped))
         messageTableView.addGestureRecognizer(tapGesture)
         getProfilePicture()
@@ -99,36 +99,36 @@ class UserMessagesViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messageArray.count
+        return messageArray.count //return # of messages in message array
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = messageTableView.dequeueReusableCell(withIdentifier: "customMessageCell", for: indexPath) as! CustomMessageCell
-        cell.avatarImageView.roundedImage()
-        let blueColor = UIColor(red: 0, green: 0.549, blue: 0.8471, alpha: 1.0)
+        let cell = messageTableView.dequeueReusableCell(withIdentifier: "customMessageCell", for: indexPath) as! CustomMessageCell //use correct cell for table
+        cell.avatarImageView.roundedImage() //round the image
+        let blueColor = UIColor(red: 0, green: 0.549, blue: 0.8471, alpha: 1.0) //different colors for different user messages YOU VS OTHER USER
         let greyColor = UIColor(white: 0.95, alpha: 1)
-        cell.messageBackground.backgroundColor = blueColor
+        cell.messageBackground.backgroundColor = blueColor //automatically blue
         cell.senderUsername.textColor = .white
-        if messageArray.count > 10{
-            messageTableView.transform = CGAffineTransform (scaleX: 1,y: -1);
+        if messageArray.count > 10{ //if messages are greater than 10
+            messageTableView.transform = CGAffineTransform (scaleX: 1,y: -1); //need to flip to show most recent at bottom
             cell.contentView.transform = CGAffineTransform (scaleX: 1,y: -1);
         }
-        if messageArray[indexPath.row].sender == Auth.auth().currentUser?.email{
-            cell.messageBackground.backgroundColor = greyColor
-            cell.senderUsername.textColor = .black
+        if messageArray[indexPath.row].sender == Auth.auth().currentUser?.email{ //if sender of that message is you
+            cell.messageBackground.backgroundColor = greyColor //use grey color
+            cell.senderUsername.textColor = .black //text is black
             cell.messageBody.textColor = .black
-            if profilePicURL == ""{
-                cell.avatarImageView.image = UIImage(named: "addProfilePicture")
+            if profilePicURL == ""{ //if no profile picture
+                cell.avatarImageView.image = UIImage(named: "addProfilePicture") //show generic
                 
                
             } else{
                 
-                cell.avatarImageView.downloaded(from: profilePicURL)
+                cell.avatarImageView.downloaded(from: profilePicURL) //show correct profile pic
                 
             }
         }
         else{
-            cell.avatarImageView.image = UIImage(named: "large-logo")
+            cell.avatarImageView.image = UIImage(named: "large-logo") //if not you then show admin logo
             
         
            
@@ -136,7 +136,7 @@ class UserMessagesViewController: UIViewController, UITableViewDelegate, UITable
        
         
         cell.messageBody.text = messageArray[indexPath.row].messageBody
-        cell.senderUsername.text = messageArray[indexPath.row].sender
+        cell.senderUsername.text = messageArray[indexPath.row].sender //fill correct data
         
         
         return cell
@@ -150,13 +150,13 @@ class UserMessagesViewController: UIViewController, UITableViewDelegate, UITable
     
     func configureTableView(){
         messageTableView.rowHeight = UITableView.automaticDimension
-        messageTableView.estimatedRowHeight = 500.0
+        messageTableView.estimatedRowHeight = 500.0 //table view setup
         
     }
     
     func retrieveMessages(){
-        if messagesCreatedStatus == true {
-            messageDB.document(documentID).collection("messages").order(by: "time").addSnapshotListener { (QuerySnapshot
+        if messagesCreatedStatus == true { //if already a first message sent
+            messageDB.document(documentID).collection("messages").order(by: "time").addSnapshotListener { (QuerySnapshot //go into messages and add a listener
             , Error) in
             if Error != nil{
                 if let error = Error{
@@ -166,7 +166,7 @@ class UserMessagesViewController: UIViewController, UITableViewDelegate, UITable
                 var text : String = ""
                 var sender : String = ""
                 var timeSent : Int = 0
-                self.messageArray.removeAll()
+                self.messageArray.removeAll() //reset array
                 for document in QuerySnapshot!.documents{
                     text = document.get("messageBody") as! String
                    
@@ -176,10 +176,10 @@ class UserMessagesViewController: UIViewController, UITableViewDelegate, UITable
                     message.messageBody = text
                     message.sender = sender
                     message.time = timeSent
-                    self.messageArray.append(message)
+                    self.messageArray.append(message) //fill array with messages
                 }
                 self.configureTableView()
-                self.messageTableView.reloadData()
+                self.messageTableView.reloadData() //reload with new data
                 
             }
         }
@@ -188,17 +188,17 @@ class UserMessagesViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     func updateMessageStatus(){
-        let db = Firestore.firestore().collection("userRequestB")
-        db.document(documentID).updateData(["message" : true])
+        let db = Firestore.firestore().collection("userRequestC")
+        db.document(documentID).updateData(["message" : true]) //update to show that a first message has been sent
     }
     
     func getProfilePicture(){
         let userDB = Firestore.firestore().collection("users")
         let currentUserUID = Auth.auth().currentUser?.uid
-        let docRef = userDB.document(currentUserUID!)
+        let docRef = userDB.document(currentUserUID!) //go into user database and find current user
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
-                self.profilePicURL = document.get("profilePictureURL") as! String
+                self.profilePicURL = document.get("profilePictureURL") as! String //get their profile picture url
                 self.messageTableView.reloadData()
             } else {
                 print("Document does not exist")
@@ -219,14 +219,14 @@ class UserMessagesViewController: UIViewController, UITableViewDelegate, UITable
         
         
         UIView.animate(withDuration: 0.25) {
-            self.heightConstraint.constant = 358
+            self.heightConstraint.constant = 358 //when they click the typing field it moves up to accomodate for keyboard
             self.view.layoutIfNeeded()
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.25) {
-            self.heightConstraint.constant = 50
+            self.heightConstraint.constant = 50 //moves back down
             self.view.layoutIfNeeded()
         }
     }
@@ -239,20 +239,20 @@ class UserMessagesViewController: UIViewController, UITableViewDelegate, UITable
     func additionalSetup(){
         messageTableView.separatorStyle = .none
         messageTextField.layer.borderWidth = 1
-        messageTextField.layer.cornerRadius = 5
+        messageTextField.layer.cornerRadius = 5 //rounded
         
     }
     func getTime(){
         let date = Date()
         let time = date.timeIntervalSince1970
-        timeForUserLastSeen = Int(time)
+        timeForUserLastSeen = Int(time) //get time and update user seen helps will blue dot
     }
     func storeLastSeen(){
         messageDB.document(documentID).updateData(["userLastSeen" : timeForUserLastSeen])
     }
     
     func storeMostRecentMessageSentTime(){
-        messageDB.document(documentID).updateData(["adminMostRecentMessage":messageTime])
+        messageDB.document(documentID).updateData(["adminMostRecentMessage":messageTime]) //update most recent message sent time in database
     }
     
     

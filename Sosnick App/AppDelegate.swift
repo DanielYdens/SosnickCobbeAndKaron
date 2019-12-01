@@ -27,13 +27,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
        
-        FirebaseApp.configure()
+        FirebaseApp.configure() //configure firebase
         Messaging.messaging().delegate = self as? MessagingDelegate
         FirebaseApp.configure(name: "CreatingUsersApp", options: FirebaseApp.app()!.options)
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
     
-        let initialViewController: ViewController = mainStoryboard.instantiateViewController(withIdentifier: "Login") as! ViewController
+        let initialViewController: ViewController = mainStoryboard.instantiateViewController(withIdentifier: "Login") as! ViewController //setting up login screen as initial VC
         let navigationController = UINavigationController(rootViewController: initialViewController)
         self.window?.rootViewController = navigationController
         
@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             UNUserNotificationCenter.current().delegate = self as UNUserNotificationCenterDelegate
             
             let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(
+            UNUserNotificationCenter.current().requestAuthorization( //setting up notifications
                 options: authOptions,
                 completionHandler: {_, _ in })
         } else {
@@ -90,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         
         
-        print("Firebase registration token: \(fcmToken)")
+        print("Firebase registration token: \(fcmToken)") //token for push notifications
         
         let dataDict:[String: String] = ["token": fcmToken]
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)

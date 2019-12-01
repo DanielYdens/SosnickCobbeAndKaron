@@ -34,7 +34,7 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
         do{
-            try Auth.auth().signOut()
+            try Auth.auth().signOut() //if clicked log out signout the user and pop view controller ot root
             navigationController?.popToRootViewController(animated: true)
         }
         catch{
@@ -45,10 +45,10 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.setNavigationBarHidden(true, animated: true) //hide nav bar
         currentReq.haveData = false
         if self.isConnectedToInternet(){
-            accessData()
+            accessData() //if they have internet get data
         }
         else{
             let alert = UIAlertController(title: "Error", message: "No network connection, please try again", preferredStyle: .alert)
@@ -57,7 +57,7 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
             
             alert.addAction(okAction)
             
-            self.present(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil) //no internet present the alert
         }
         
     }
@@ -71,7 +71,7 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         self.adminTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.adminTableView.dataSource = self
-        self.adminTableView.delegate = self
+        self.adminTableView.delegate = self //want this view controller to be the delegate and data source fo the table
         self.searchBar.delegate = self
         
 
@@ -82,19 +82,19 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func accessData(){
         let db = Firestore.firestore()
-        if currentReq.haveData == false{
-            db.collection("userRequestB").whereField("isProcessed", isEqualTo: false).order(by: "dateNum").getDocuments { (QuerySnapshot
+        if currentReq.haveData == false{ //if no data
+            db.collection("userRequestC").whereField("isProcessed", isEqualTo: false).order(by: "dateNum").getDocuments { (QuerySnapshot //get the documents that arent completed
                 , Error) in
                 if Error != nil{
                     print("Error getting docs")
                     self.handleError(Error!)
                 }
                 else{
-                    self.allUserRequests.removeAll()
+                    self.allUserRequests.removeAll() //empty all arrays
                     self.equipmentRequestsOnly.removeAll()
                     self.nonEquipmentRequests.removeAll()
-                    for document in QuerySnapshot!.documents{
-                        print("THE DATA IS: \(document.data())")
+                    for document in QuerySnapshot!.documents{ // for each document
+                        print("THE DATA IS: \(document.data())") //get all request data and put it into currentReq
                         self.currentReq = Request()
                         if let category = document.get("category") as? String {
                             self.currentReq.category = category
@@ -121,13 +121,17 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
                         if let name = document.get("name") as? String {
                             self.currentReq.name = name
                         }
+                        
+                        if let status =  document.get("status") as? String{
+                            self.currentReq.status =  status
+                        }
                         //self.currentReq = Request(category: document.get("category") as? String, description: document.get("description") as? String, date: document.get("date") as? String, isProcessed: document.get("isProcessed") as? Bool, dateNum: document.get("dateNum") as? Int, docID: document.documentID, user: document.get("user") as? String, message: document.get("message") as? Bool, name: document.get("name") as? String)
-                        self.allUserRequests.append(self.currentReq)
+                        self.allUserRequests.append(self.currentReq) //append current req into the all requests array
                         
                     }
-                    self.sortArrayIntoTwo(Array: self.allUserRequests)
-                    self.isInitialized = true
-                    self.getUserRole()
+                    self.sortArrayIntoTwo(Array: self.allUserRequests) //sort the array into two
+                    self.isInitialized = true //is now initialized
+                    self.getUserRole() //get role
                     
                 }
             }
@@ -139,34 +143,34 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     //search bar functions
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if role == "Admin"{
-            searchRequest = nonEquipmentRequests.filter({$0.name.prefix(searchText.count) == searchText})
+        if role == "Admin"{ //if general admin
+            searchRequest = allUserRequests.filter({$0.name.prefix(searchText.count) == searchText})//allow him to see all user requests in search
             
         }
         else{
-            searchRequest = equipmentRequestsOnly.filter({$0.name.prefix(searchText.count) == searchText})
+            searchRequest = equipmentRequestsOnly.filter({$0.name.prefix(searchText.count) == searchText}) //if equipment admin only allow to see equipment requests in search
         }
-        searching = true
-        adminTableView.reloadData()
+        searching = true //is searching
+        adminTableView.reloadData() //reload data for search
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searching = false
-        searchBar.text = ""
-        view.endEditing(true)
-        adminTableView.reloadData()
+        searching = false //not searching anymore
+        searchBar.text = "" //clear search bar
+        view.endEditing(true) //done editting
+        adminTableView.reloadData() //reload table
     }
     
     //table view functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searching {
-            return searchRequest.count
+            return searchRequest.count //if searching return the number of items in search request array
         }
         else{
-            if role == "Admin"{
-                return nonEquipmentRequests.count
+            if role == "Admin"{ //if not searching and general admin
+                return allUserRequests.count
             }
-            else if role == "Equipment Admin"{
+            else if role == "Equipment Admin"{ //if not searching and equipment admin
                 return equipmentRequestsOnly.count
             }
         }
@@ -174,26 +178,26 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        row = indexPath.row
-        adminTableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "adminGoToInfo", sender: self)
+        row = indexPath.row //get row
+        adminTableView.deselectRow(at: indexPath, animated: true) //if selected row
+        performSegue(withIdentifier: "adminGoToInfo", sender: self) //go to info
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.adminTableView.dequeueReusableCell(withIdentifier: "adminRequestCell") as! AdminTableViewCell
+        let cell = self.adminTableView.dequeueReusableCell(withIdentifier: "adminRequestCell") as! AdminTableViewCell //use the right cell in storyboard
         
-        if isInitialized == true{
-            if searching {
-                cell.adminReq = searchRequest[indexPath.row]
+        if isInitialized == true{ //if requests have been grabbed
+            if searching { //if currently searching
+                cell.adminReq = searchRequest[indexPath.row] //use search request results
             }
-            else{
-                if role == "Admin" {
-                    let request = nonEquipmentRequests[indexPath.row]
+            else{ //if not searching
+                if role == "Admin" { //if role is admin
+                    let request = allUserRequests[indexPath.row] // show all requests
                     cell.adminReq = request
                 }
-                else if role == "Equipment Admin"{
-                    let request = equipmentRequestsOnly[indexPath.row]
+                else if role == "Equipment Admin"{ //if role is equipment admin
+                    let request = equipmentRequestsOnly[indexPath.row] //show all equipment requests
                     cell.adminReq = request
                 }
             }
@@ -210,32 +214,35 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "adminGoToInfo"{
+        if segue.identifier == "adminGoToInfo"{ //information of request screen
             let adminInfoScreen = segue.destination as! AdminRequestInfoViewController
-            if searching{
+            if searching{ //if searching pass all data of a specific search request row to next screen
                 adminInfoScreen.adminCategory = searchRequest[row].category
                 adminInfoScreen.adminDate = searchRequest[row].date
                 adminInfoScreen.adminDescription = searchRequest[row].description
                 adminInfoScreen.userEmail = searchRequest[row].user
                 adminInfoScreen.documentID = searchRequest[row].docID
                 adminInfoScreen.messageStatus = searchRequest[row].message
+                adminInfoScreen.requestStatus = searchRequest[row].status
             }
             else{
-                if role == "Admin"{
-                    adminInfoScreen.adminCategory = nonEquipmentRequests[row].category
-                    adminInfoScreen.adminDate = nonEquipmentRequests[row].date
-                    adminInfoScreen.adminDescription = nonEquipmentRequests[row].description
-                    adminInfoScreen.userEmail = nonEquipmentRequests[row].user
-                    adminInfoScreen.documentID = nonEquipmentRequests[row].docID
-                    adminInfoScreen.messageStatus = nonEquipmentRequests[row].message
+                if role == "Admin"{ //if not searching and role is admin pass correct request to next screen through segue
+                    adminInfoScreen.adminCategory = allUserRequests[row].category
+                    adminInfoScreen.adminDate = allUserRequests[row].date
+                    adminInfoScreen.adminDescription = allUserRequests[row].description
+                    adminInfoScreen.userEmail = allUserRequests[row].user
+                    adminInfoScreen.documentID = allUserRequests[row].docID
+                    adminInfoScreen.messageStatus = allUserRequests[row].message
+                    adminInfoScreen.requestStatus = allUserRequests[row].status
                 }
-                else{
+                else{ //if not searching and role is equipment admin pass the correct equipment request info
                     adminInfoScreen.adminCategory = equipmentRequestsOnly[row].category
                     adminInfoScreen.adminDate = equipmentRequestsOnly[row].date
                     adminInfoScreen.adminDescription = equipmentRequestsOnly[row].description
                     adminInfoScreen.userEmail = equipmentRequestsOnly[row].user
                     adminInfoScreen.documentID = equipmentRequestsOnly[row].docID
                     adminInfoScreen.messageStatus = equipmentRequestsOnly[row].message
+                    adminInfoScreen.requestStatus = equipmentRequestsOnly[row].status
                 }
             }
            
@@ -243,6 +250,7 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func sortArrayIntoTwo(Array: [Request]){ //jon wants to handle request that dont involve equipment, other admin will handle equipment req
+        //sorts into different arrays
         for req in Array{
             if req.category == "Equipment"{
                 equipmentRequestsOnly.append(req)
@@ -258,7 +266,7 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
     func getUserRole(){
         let userDatabase = Firestore.firestore()
         if let uid = Auth.auth().currentUser?.uid{
-            let documentRef = userDatabase.collection("users").document(uid)
+            let documentRef = userDatabase.collection("users").document(uid) //goes into user DB
             documentRef.getDocument { (snapshot, Error) in
                 if Error != nil{
                     if let error = Error{
@@ -267,7 +275,7 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
                     return
                 }
                 else{
-                    self.role = snapshot?.get("Role") as! String
+                    self.role = snapshot?.get("Role") as! String //get correct user and get their role
                     self.adminTableView.reloadData()
                    
                     

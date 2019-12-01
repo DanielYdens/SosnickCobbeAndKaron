@@ -15,10 +15,12 @@ import FirebaseStorage
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate {
     
     var database = Firestore.firestore()
+    let imagePlayerPictureCache = NSCache<NSString, UIImage>()
     var uid =  Auth.auth().currentUser!.uid
     var cleatPreference : String = ""
     var bats: String = ""
     var throwingArm : String = ""
+   
 
  
     @IBOutlet weak var profileImageView: UIImageView!
@@ -165,9 +167,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         makeImageRound()
-        displayProfilePicture()
-        setupTextFields()
         profilePictureSetup()
+        getProfilePicture()
+        //displayProfilePicture()
+        setupTextFields()
+        
        
         scrollView.delegate = self
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 500)
@@ -175,6 +179,71 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
 
         // Do any additional setup after loading the view.
     }
+    
+    func getProfilePicture(){
+        let userDB = database.collection("users")
+        userDB.document(uid).getDocument { (DocumentSnapshot
+            , Error) in
+            if Error != nil{
+                if let error = Error{
+                    self.handleError(error)
+                }
+            }
+            else{
+                if let profilePictureURL = DocumentSnapshot?.get("profilePictureURL") as? String{
+                    let url = NSURL(string: profilePictureURL)
+                    self.downloadImage(url: url! as URL) { (image) in
+                        if image != nil{
+                            DispatchQueue.main.async {
+                                self.profileImageView.image = image
+                            }
+                        }
+                        else{
+                            
+                            return
+                        }
+                        
+                    }
+                    
+                }
+            }
+        }
+    }
+    
+//    func displayProfilePicture(){
+//          var pictureURL : String =  ""
+//          let db =  Firestore.firestore().collection("users")
+//          let documentRef = db.document(uid)
+//          documentRef.getDocument { (documentSnap, Error) in
+//              if Error != nil{
+//                  if let error = Error{
+//                      self.handleError(error)
+//                  }
+//                  return
+//              }
+//              else{
+//                  pictureURL = (documentSnap?.get("profilePictureURL") as? String)!
+//                  let url = NSURL(string: pictureURL)
+//                  self.downloadImage(url: url! as URL) { (Image) in
+//                          if Image != nil{
+//                              DispatchQueue.main.async {
+//                                  self.profileImageView.image = Image
+//                              }
+//
+//                          }
+//                          else{
+//                              return
+//                          }
+//                      }
+//
+//                  self.profileImageView.roundedImage()
+//
+//
+//
+//                  }
+//              }
+//      }
+//
     
     func setupTextFields(){
         let docRef = database.collection("users").document(uid)
@@ -214,9 +283,13 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func profilePictureSetup(){
+        
         profileImageView.image = UIImage(named: "addProfilePicture")
-        profileImageView.isUserInteractionEnabled = true
-        profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleProfileImageTapped)))
+        
+        DispatchQueue.main.async{
+            self.profileImageView.isUserInteractionEnabled = true
+            self.profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.handleProfileImageTapped)))
+        }
     }
     
     @objc func handleProfileImageTapped(){
@@ -261,9 +334,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         if let uploadData = Image.pngData() {
             storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
                 if error != nil{
-                    if let Error = error{
-                        self.handleError(Error)
-                    }
+                    print(error!)
                     return
                 }
                 print(metadata!)
@@ -288,25 +359,41 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         database.document(uid).updateData(["profilePictureURL" : URL])
     }
     
-    func displayProfilePicture(){
+  
         
-        var pictureURL : String =  ""
-        let db = Firestore.firestore().collection("users")
-        let documentRef = db.document(uid)
-        documentRef.getDocument { (documentSnap, Error) in
-            if Error != nil{
-                if let error = Error{
-                    self.handleError(error)
-                }
-                return
-            }
-            else{
-                pictureURL = documentSnap?.get("profilePictureURL") as! String
-                self.profileImageView.downloaded(from: pictureURL)
-            }
-        }
         
-    }
+        
+        
+        //
+//        var pictureURL : String =  ""
+//        let db = Firestore.firestore().collection("users")
+//        let documentRef = db.document(uid)
+//        documentRef.getDocument { (documentSnap, Error) in
+//            if Error != nil{
+//                if let error = Error{
+//                    self.handleError(error)
+//                }
+//                return
+//            }
+//            else{
+//                pictureURL = documentSnap?.get("profilePictureURL") as! String
+//                let url = NSURL(string: pictureURL)
+//                self.downloadImage(url: url! as URL) { (Image) in
+//                    if Image != nil{
+//                        DispatchQueue.main.async {
+//                            self.profileImageView.image = Image
+//                        }
+//
+//                    }
+//                    else{
+//                        return
+//                    }
+//                }
+//                //self.profileImageView.downloaded(from: pictureURL)
+//            }
+//        }
+//
+    
     
     func setupSegmentControllers(cleatPref : String, batting : String, throwing: String){
         if cleatPref == "Low" || cleatPref == ""{
@@ -356,23 +443,54 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
    
+//
+//    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+//        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+//    }
+//
+//    func downloadImage(from url: URL, imageView : UIImageView) {
+//        print("Download Started")
+//        getData(from: url) { data, response, error in
+//            guard let data = data, error == nil else { return }
+//            print(response?.suggestedFilename ?? url.lastPathComponent)
+//            print("Download Finished")
+//            DispatchQueue.main.async() {
+//                imageView.image = UIImage(data: data)
+//            }
+//        }
+//    }
     
-    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
-    }
     
-    func downloadImage(from url: URL, imageView : UIImageView) {
-        print("Download Started")
-        getData(from: url) { data, response, error in
-            guard let data = data, error == nil else { return }
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Download Finished")
-            DispatchQueue.main.async() {
-                imageView.image = UIImage(data: data)
-            }
-        }
-    }
-    
+    func downloadImage(url: URL, completion: @escaping (UIImage?) -> Void) {
+         
+         if let cachedImage = imagePlayerPictureCache.object(forKey: url.absoluteString as NSString){
+             print("in")
+             completion(cachedImage)
+             
+         }
+         else{
+             URLSession.shared.dataTask(with: url) { (data, response, error) in
+                 //download hit an error
+                 if error != nil{
+                     if let Error = error{
+                        DispatchQueue.main.async {
+                            self.handleError(Error)
+                        }
+                         
+                     }
+                     return
+                 }
+                 if let pictureData =  data{
+                     self.imagePlayerPictureCache.setObject(UIImage(data: pictureData)!, forKey: url.absoluteString as NSString)
+                     print("not in")
+                     completion(UIImage(data: pictureData))
+                 }
+                 
+                 
+                 }.resume()
+             
+         }
+     }
 
     /*
     // MARK: - Navigation

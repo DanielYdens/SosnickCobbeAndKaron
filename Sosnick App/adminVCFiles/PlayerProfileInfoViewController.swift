@@ -32,6 +32,7 @@ class PlayerProfileInfoViewController: UIViewController, UIScrollViewDelegate {
         _ = navigationController?.popViewController(animated: true)
     }
     
+    let imagePlayerPictureCache = NSCache<NSString, UIImage>()
     var db = Firestore.firestore()
     var uid : String = ""
     var battingStance : String = ""
@@ -41,19 +42,19 @@ class PlayerProfileInfoViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround()
+        self.hideKeyboardWhenTappedAround() //if tapped anywhere around the screen hide keyboard
         self.scrollView.delegate = self
-        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 500)
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 250) //scroll view setup
         setupTextFields()
         setupProfilePicture()
         // Do any additional setup after loading the view.
     }
     
     func setupTextFields(){
-        let docRef = db.collection("users").document(uid)
+        let docRef = db.collection("users").document(uid) //user database
         
         docRef.getDocument { (document, error) in
-            if let document = document, document.exists {
+            if let document = document, document.exists { //if document exists, fill in all of the text fields with the correct information
                 self.firstNameTextField.text = document.get("First") as? String
                 self.lastNameTextField.text = document.get("last") as? String
                 self.dateOfBirthTextField.text = document.get("dateOfBirth") as? String
@@ -72,7 +73,7 @@ class PlayerProfileInfoViewController: UIViewController, UIScrollViewDelegate {
                 print("Document does not exist")
             }
         }
-        firstNameTextField.isUserInteractionEnabled = false
+        firstNameTextField.isUserInteractionEnabled = false //cannot edit any of the profile info
         lastNameTextField.isUserInteractionEnabled = false
         dateOfBirthTextField.isUserInteractionEnabled = false
         twitterHandleTextField.isUserInteractionEnabled = false
@@ -89,10 +90,10 @@ class PlayerProfileInfoViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func setupSegmentControllers(cleatPref: String){
-        if cleatPref == "Low" || cleatPref == ""{
+        if cleatPref == "Low" || cleatPref == ""{ //show low if cleat pref is low or nil
             self.cleatPreferenceSegmentController.selectedSegmentIndex = 0
         }
-        else{
+        else{ //else show mid
             self.cleatPreferenceSegmentController.selectedSegmentIndex = 1
         }
 //        if batting == "Right" || batting == ""{
@@ -110,19 +111,31 @@ class PlayerProfileInfoViewController: UIViewController, UIScrollViewDelegate {
         
     }
     func setupProfilePicture(){
-        if profilePicURL == ""{
-            profilePicture.image =  UIImage(named: "addProfilePicture")
-            profilePicture.roundedImage()
-        } else{
-            profilePicture.downloaded(from: profilePicURL)
-            profilePicture.roundedImage()
+        if profilePicURL == ""{ //if no profile pic
+            profilePicture.image =  UIImage(named: "addProfilePicture") //show generic
+            
+        } else{ //if there is one
+            //profilePicture.downloaded(from: profilePicURL)
+            let url = NSURL(string: profilePicURL)
+            downloadImage(url: url! as URL) { (Image) in
+                if Image != nil{
+                    DispatchQueue.main.async {
+                        self.profilePicture.image = Image //download it and display
+                    }
+                    
+                }
+                else{
+                    return
+                }
+            }
+            profilePicture.roundedImage() //round it
             
         }
     }
     
     
     @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
-        firstNameTextField.isUserInteractionEnabled = true
+        firstNameTextField.isUserInteractionEnabled = true //if they click the edit  change all info to edittable
         lastNameTextField.isUserInteractionEnabled = true
         dateOfBirthTextField.isUserInteractionEnabled = true
         twitterHandleTextField.isUserInteractionEnabled = true
@@ -139,7 +152,7 @@ class PlayerProfileInfoViewController: UIViewController, UIScrollViewDelegate {
     
     
     @IBAction func updateButtonPressed(_ sender: UIButton) {
-        let documentReference = db.collection("users").document(uid)
+        let documentReference = db.collection("users").document(uid) //when they click update go into user db and update all data
         documentReference.updateData([
             "First" : firstNameTextField.text!,
             "last" : lastNameTextField.text!,
@@ -162,7 +175,7 @@ class PlayerProfileInfoViewController: UIViewController, UIScrollViewDelegate {
                     
                     
                 }))
-                self.present(refreshAlert, animated: true, completion: nil)
+                self.present(refreshAlert, animated: true, completion: nil) //present success alert
                 self.updateProfileButton.isHidden = true
                 self.updateProfileButton.isUserInteractionEnabled = false
                 self.setupTextFields()
@@ -201,16 +214,44 @@ class PlayerProfileInfoViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func cleatPreferenceChanged(_ sender: UISegmentedControl) {
         
-        switch cleatPreferenceSegmentController.selectedSegmentIndex
+        switch cleatPreferenceSegmentController.selectedSegmentIndex //if they selected a segment
         {
         case 0:
             print("First Segment Selected")
-            cleatPreference = "Low"
+            cleatPreference = "Low" //change pref to low
         case 1:
             print("Second Segment Selected")
-            cleatPreference = "Mid"
+            cleatPreference = "Mid" //change pref to high
         default:
             break
+        }
+    }
+    
+    func downloadImage(url: URL, completion: @escaping (UIImage?) -> Void) {
+        
+        if let cachedImage = imagePlayerPictureCache.object(forKey: url.absoluteString as NSString){
+            print("in")
+            completion(cachedImage) //if the image is already in cache
+            
+        }
+        else{ //if not already cached
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
+                //download hit an error
+                if error != nil{
+                    if let Error = error{
+                        self.handleError(Error) //handle any errors
+                    }
+                    return
+                }
+                if let pictureData =  data{ //get data and cache image
+                    self.imagePlayerPictureCache.setObject(UIImage(data: pictureData)!, forKey: url.absoluteString as NSString)
+                    print("not in")
+                    completion(UIImage(data: pictureData))
+                }
+                
+                
+                }.resume()
+            
         }
     }
     

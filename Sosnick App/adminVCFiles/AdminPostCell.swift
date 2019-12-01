@@ -14,7 +14,7 @@ protocol AdminPostCellDelegate: AnyObject {
 }
 class AdminPostCell: UICollectionViewCell {
     
-
+// NOT CURRENTLY BEING USED IN APP
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var captionLabel: UILabel!
         

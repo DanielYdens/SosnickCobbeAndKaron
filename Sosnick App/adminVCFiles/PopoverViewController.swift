@@ -11,7 +11,7 @@ import FirebaseFirestore
 import FirebaseStorage
 
 class PopoverViewController: UIViewController {
-
+    // NOT CURRENTLY BEING USED IN APP
     @IBOutlet weak var deleteButton: UIButton!
     
     var postID : String = ""

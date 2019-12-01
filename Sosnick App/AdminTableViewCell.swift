@@ -63,9 +63,18 @@ class AdminTableViewCell : UITableViewCell {
             }
         }
         
-        if adminReq?.isProcessed == false{
+        
+        if adminReq?.status == "userSubmitted" { //if status is just submitted do closed envelope
+            isProcessedImageView.image = UIImage(named: "closedEnvelope")
+        }
+        if adminReq?.status == "adminReceived" { //if admin opens it show open envelope
+            isProcessedImageView.image = UIImage(named: "openEnvelope")
+        }
+               
+        if adminReq?.status == "adminConfirmed" { //if admin confirms show pending symbol
             isProcessedImageView.image = UIImage(named: "pending")
         }
+       
         dateLabel?.text = adminReq?.date
         categoryLabel?.text =  adminReq?.category
         descriptionTextLabel?.text = adminReq?.description

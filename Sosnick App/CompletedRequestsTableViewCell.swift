@@ -67,13 +67,16 @@ class CompletedRequestsTableViewCell: UITableViewCell {
         }
         
         
-        
-        if request?.isProcessed == false{
-            statusImage.image = UIImage(named: "pending2")
-        }
-        else{
+     
+        if request?.isProcessed == true{ //if user completes show a check
             statusImage.image = UIImage(named: "check")
         }
+//        if request?.isProcessed == false{
+//            statusImage.image = UIImage(named: "pending2")
+//        }
+//        else{
+//            statusImage.image = UIImage(named: "check")
+//        }
         dateLabel?.text = request?.date
         categoryLabel?.text =  request?.category
         requestDescriptionLabel?.text = request?.description

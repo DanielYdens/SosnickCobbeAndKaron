@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
+   uuid = "B09ACAEB-E38F-4396-B334-78F2EF483551"
    type = "0"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "2D28C68A-38B8-4B74-B73A-C6594D26D3B5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -22,6 +24,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "8A675C28-1735-4C8B-895A-13872655FF2A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -38,6 +41,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "22CCF506-DBC5-49FF-8801-BF9DB089C0B3"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -51,6 +55,7 @@
             landmarkType = "7">
             <Locations>
                <Location
+                  uuid = "22CCF506-DBC5-49FF-8801-BF9DB089C0B3 - 37bc8984bdf751c7"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -58,14 +63,14 @@
                   moduleName = "SCK Sports"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/danielydens/Documents/iosapp/Sosnick%20App/Sosnick%20App/userVCFiles/NewsViewController.swift"
-                  timestampString = "590908281.5465209"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "115"
                   endingLineNumber = "115"
-                  offsetFromSymbolStart = "1167">
+                  offsetFromSymbolStart = "1199">
                </Location>
                <Location
+                  uuid = "22CCF506-DBC5-49FF-8801-BF9DB089C0B3 - 60128106d713dd31"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -73,12 +78,11 @@
                   moduleName = "SCK Sports"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/danielydens/Documents/iosapp/Sosnick%20App/Sosnick%20App/userVCFiles/NewsViewController.swift"
-                  timestampString = "590908281.551293"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "115"
                   endingLineNumber = "115"
-                  offsetFromSymbolStart = "1377">
+                  offsetFromSymbolStart = "1394">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -86,17 +90,132 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "79C10F66-BFBA-4C5A-AC38-996F5FFBC62F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Sosnick App/userVCFiles/RequestViewController.swift"
-            timestampString = "590627992.6986541"
+            filePath = "Sosnick App/adminVCFiles/PlayerProfileInfoViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "submitButtonPressed(_:)"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "setupProfilePicture()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C57A2A03-8390-4F8B-AF07-9D7F5F319761"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sosnick App/adminVCFiles/PlayerProfileInfoViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "setupProfilePicture()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            uuid = "6E4C34FF-B8FA-45B9-9AFA-C2CC022ED6DD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            condition = "!(BOOL)[NSThread isMainThread]"
+            continueAfterRunningActions = "No"
+            symbolName = "-[UIView setNeedsLayout]"
+            moduleName = "">
+            <Actions>
+               <BreakpointActionProxy
+                  ActionExtensionID = "Xcode.BreakpointAction.Log">
+                  <ActionContent
+                     message = ""
+                     conveyanceType = "0">
+                  </ActionContent>
+               </BreakpointActionProxy>
+            </Actions>
+            <Locations>
+               <Location
+                  uuid = "6E4C34FF-B8FA-45B9-9AFA-C2CC022ED6DD - fc0b4b4427962c02"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[UIView(Hierarchy) setNeedsLayout]"
+                  moduleName = "UIKitCore"
+                  usesParentBreakpointCondition = "Yes"
+                  offsetFromSymbolStart = "0">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            uuid = "FEA99710-410C-4184-9C73-BAD774F8BA98"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            condition = "!(BOOL)[NSThread isMainThread]"
+            continueAfterRunningActions = "No"
+            symbolName = "-[UIView layoutIfNeeded]"
+            moduleName = "">
+            <Actions>
+               <BreakpointActionProxy
+                  ActionExtensionID = "Xcode.BreakpointAction.Log">
+                  <ActionContent
+                     message = "Issue"
+                     conveyanceType = "0">
+                  </ActionContent>
+               </BreakpointActionProxy>
+            </Actions>
+            <Locations>
+               <Location
+                  uuid = "FEA99710-410C-4184-9C73-BAD774F8BA98 - 54ae54a3e9c292a3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[UIView(Hierarchy) layoutIfNeeded]"
+                  moduleName = "UIKitCore"
+                  usesParentBreakpointCondition = "Yes"
+                  offsetFromSymbolStart = "0">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            uuid = "DDA75FCD-AF6F-450C-A125-A2F0683B9A3C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            condition = "!(BOOL)[NSThread isMainThread]"
+            continueAfterRunningActions = "No"
+            symbolName = "-[UIView updateConstraintsIfNeeded]"
+            moduleName = "">
+            <Actions>
+               <BreakpointActionProxy
+                  ActionExtensionID = "Xcode.BreakpointAction.Log">
+                  <ActionContent
+                     message = ""
+                     conveyanceType = "0">
+                  </ActionContent>
+               </BreakpointActionProxy>
+            </Actions>
+            <Locations>
+               <Location
+                  uuid = "DDA75FCD-AF6F-450C-A125-A2F0683B9A3C - e96689f0ba0f3e16"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[UIView(AdditionalLayoutSupport) updateConstraintsIfNeeded]"
+                  moduleName = "UIKitCore"
+                  usesParentBreakpointCondition = "Yes"
+                  offsetFromSymbolStart = "0">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

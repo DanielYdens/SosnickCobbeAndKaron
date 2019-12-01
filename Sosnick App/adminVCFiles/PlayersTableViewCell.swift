@@ -31,7 +31,7 @@ class PlayersTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         //hide or reset anything you want hereafter, for example
-        profilePicImageView.image = nil
+        profilePicImageView.image = nil //when scrolling down resets the image so it doesnt show the wrong image when scrolling fast
         
         
     }

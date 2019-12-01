@@ -11,7 +11,7 @@ import FirebaseFirestore
 
 class AdminNewsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIPopoverPresentationControllerDelegate, PopoverViewControllerDelegate, AdminPostCellDelegate{
     
-    
+    // NOT CURRENTLY BEING USED IN APP
     let imagePostsCache = NSCache<NSString, UIImage>()
     var newsPosts = [Post]()
     var row: Int = 0

@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     
     @IBAction func forgotPasswordPressed(_ sender: UIButton) {
         
-        let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ForgotPasswordViewController") as! ForgotPasswordViewController
+        let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ForgotPasswordViewController") as! ForgotPasswordViewController //if user pressed forgot password button then they are taken to the forgotpassword flow
         self.navigationController?.pushViewController(loginVC, animated: true)
     }
     
@@ -37,7 +37,7 @@ class ViewController: UIViewController {
         Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
             
             if error != nil {
-                print(error!)
+                print(error!) //signing in the user
                 self.handleError(error!)
                 
             }
@@ -56,17 +56,17 @@ class ViewController: UIViewController {
 //        do{
 //            try Auth.auth().signOut()
 //            self.navigationController?.popToRootViewController(animated: true)
-//            
+//
 //        }
 //        catch{
 //            print("error: couldnt log out")
-//            
+//
 //        }
         
         checkIfLoggedIn()
         // Do any additional setup after loading the view.
         // 4- this will add it with the default imageName and edited contextMode
-        view.addBackground(imageName: "matt-moore", contentMode: .scaleAspectFill)
+        view.addBackground(imageName: "matt-moore", contentMode: .scaleAspectFill) //filling background image
         
         sosnickImage.layer.borderWidth = 1.0
         sosnickImage.layer.masksToBounds = false
@@ -79,17 +79,17 @@ class ViewController: UIViewController {
     func checkIfLoggedIn(){
         _ = Auth.auth().addStateDidChangeListener { (auth, user) in
             // ...
-            if user != nil{
+            if user != nil{ //if there is a user logged in already
                 self.getUserRole(completion: { (isSuccess, role) in
                     if isSuccess != true{
-                        print("we failed")
+                        print("we failed") //fail
                     }
                     else{
-                        self.storeFCMToken(uid: user!.uid)
-                        if role == "Admin"  || role == "Equipment Admin"{
-                            let adminVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AdminTabBarController") as! UITabBarController
+                        self.storeFCMToken(uid: user!.uid) //else store token
+                        if role == "Admin"  || role == "Equipment Admin"{ //check role
+                            let adminVC = UIStoryboard(name: "Main", bundle:  nil).instantiateViewController(withIdentifier: "AdminTabBarController") as! UITabBarController
                             self.navigationController?.pushViewController(adminVC, animated: true)
-                        }
+                        } //take to specific flow based off of their role
                         else if role == "Player" {
                             
                             let userVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
@@ -97,14 +97,14 @@ class ViewController: UIViewController {
                             //self.performSegue(withIdentifier: "goToUser", sender: self)
                         }
                         else{
-                            print("no role yet")
+                            print("no role yet") //in the case of no role
                         }
                     }
                 })
                 
             }
             else{
-                print("not logged in")
+                print("not logged in") //  no user logged in
         }
     }
     }
@@ -112,7 +112,7 @@ class ViewController: UIViewController {
     func getUserRole(completion: @escaping (Bool,String)-> Void){
         
         let isSuccess = true
-        if let uid = Auth.auth().currentUser?.uid{
+        if let uid = Auth.auth().currentUser?.uid{ //uid is now the logged in users uid
             let documentRef = userDatabase.collection("users").document(uid)
             documentRef.getDocument { (snapshot, Error) in
                 if Error != nil{
@@ -120,8 +120,8 @@ class ViewController: UIViewController {
                     return
                 }
                 else{
-                    self.role = snapshot?.get("Role") as! String
-                    completion(isSuccess,self.role)
+                    self.role = snapshot?.get("Role") as! String //getting role
+                    completion(isSuccess,self.role) //completion handler so you can now finish the check if logged in function
                     
                 }
             }
@@ -132,14 +132,14 @@ class ViewController: UIViewController {
     }
     
     func storeFCMToken(uid: String){
-        userDatabase.collection("users").document(uid).updateData(["fcmToken" : AppDelegate.MyVariables.fcmToken])
+        userDatabase.collection("users").document(uid).updateData(["fcmToken" : AppDelegate.MyVariables.fcmToken]) //storing the users fcmtoken for push notifications
     }
     
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
-        super.touchesBegan(touches, with: event)
+        super.touchesBegan(touches, with: event) //if anywhere is touched the keyboard goes away
     }
     
     

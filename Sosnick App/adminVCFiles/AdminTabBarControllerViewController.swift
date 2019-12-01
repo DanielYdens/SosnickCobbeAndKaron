@@ -16,7 +16,7 @@ class AdminTabBarControllerViewController: UITabBarController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true //hides navigation bar
         
         // Do any additional setup after loading the view.
     }

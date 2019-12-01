@@ -14,7 +14,7 @@ import UserNotifications
 
 class UploadToSocialViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    
+    // NOT CURRENTLY BEING USED IN APP
     @IBOutlet weak var uploadImageView: UIImageView!
     @IBOutlet weak var selectButton: UIButton!
     @IBOutlet weak var postButton: StyleButton!
@@ -56,10 +56,13 @@ class UploadToSocialViewController: UIViewController, UIImagePickerControllerDel
         let storage = Storage.storage()
         let imageName = UUID().uuidString
         let storageRef = storage.reference().child("NewsPosts").child("\(imageName).png")
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/png"
+
         if let uploadData = uploadImageView.image?.pngData(){
-            storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
+           storageRef.putData(uploadData, metadata: metadata) { (metadata, error) in
                 if error != nil{
-                    if let Error = error{
+                    if let Error = error {
                         self.handleError(Error)
                     }
                     return

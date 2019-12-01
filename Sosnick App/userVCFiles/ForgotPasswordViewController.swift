@@ -16,7 +16,7 @@ class ForgotPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        directionsLabel.numberOfLines = 0
+        directionsLabel.numberOfLines = 0 //text wrap
         // Do any additional setup after loading the view.
     }
     
@@ -28,7 +28,7 @@ class ForgotPasswordViewController: UIViewController {
     @IBAction func sendEmailButtonPressed(_ sender: UIButton) {
         
         _ = Auth.auth().sendPasswordReset(withEmail: emailTextField.text!) { (Error) in
-            if Error != nil{
+            if Error != nil{ //send password reset email to certain email
                 if let error = Error{
                     self.handleError(error)
                 }
@@ -41,7 +41,7 @@ class ForgotPasswordViewController: UIViewController {
                 refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
                     print("yay")
                 }))
-                self.present(refreshAlert, animated: true, completion: nil)
+                self.present(refreshAlert, animated: true, completion: nil) //show an alert telling them that the email has been sent
                 
                     
             }

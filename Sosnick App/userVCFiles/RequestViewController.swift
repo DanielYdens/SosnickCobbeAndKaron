@@ -21,8 +21,8 @@ class RequestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         submitButton.isEnabled = false
         
         var ref: DocumentReference? = nil
-        if let userName = name{
-            ref = db.collection("userRequestB").addDocument(data: [
+        if let userName = name {
+            ref = db.collection("userRequestC").addDocument(data: [
                 "category": pickerTextField.text!,
                 "description": descriptionTextField.text!,
                 "isProcessed" : false,
@@ -31,7 +31,8 @@ class RequestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
                 "dateNum" : 999999999999 - requestDateNum,
                 "user" : Auth.auth().currentUser?.email ?? "",
                 "message" : false,
-                "name" : userName
+                "name" : userName,
+                "status" : "userSubmitted"
             ]) { err in
                 if let err = err {
                     print("Error adding document: \(err)")
@@ -60,7 +61,7 @@ class RequestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     var name : String? = ""
     let leftView = UIImageView(image: #imageLiteral(resourceName: "greenCheck"))
     var userUID : String = ""
-    let categories = ["","Equipment","Airfare","Concert/Event Tickets","Hotel", "Other"]
+    let categories = ["","Equipment", "Concierge"]
     let db = Firestore.firestore()
     var requestDate : String = ""
     var requestDateNum : Int = 0 // FIXME dont have so many globals

@@ -3,11 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1FEE37546557BDE578F6A071 /* Pods_Sosnick_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79DC31F875FF55F7DFB2F73 /* Pods_Sosnick_App.framework */; };
+		960E19D9235E2BC200E29D05 /* SCKNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E19D8235E2BC200E29D05 /* SCKNewsViewController.swift */; };
+		960E19DB235E2C0D00E29D05 /* MassCommunicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E19DA235E2C0D00E29D05 /* MassCommunicationViewController.swift */; };
+		960E19DD23668F0300E29D05 /* SCKNewsFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E19DC23668F0300E29D05 /* SCKNewsFeedCell.swift */; };
 		960E2BAE22FC853E00D934D1 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E2BAD22FC853E00D934D1 /* ForgotPasswordViewController.swift */; };
 		962FC84122BA149300C57190 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962FC84022BA149300C57190 /* SecondViewController.swift */; };
 		962FC84922BC9F3D00C57190 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 962FC84822BC9F3D00C57190 /* GoogleService-Info.plist */; };
@@ -56,6 +59,9 @@
 /* Begin PBXFileReference section */
 		47D840DE32F25F91AB41D029 /* Pods-Sosnick App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sosnick App.debug.xcconfig"; path = "Target Support Files/Pods-Sosnick App/Pods-Sosnick App.debug.xcconfig"; sourceTree = "<group>"; };
 		8A940AC81FBA6FFF33DB7319 /* Pods-Sosnick App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sosnick App.release.xcconfig"; path = "Target Support Files/Pods-Sosnick App/Pods-Sosnick App.release.xcconfig"; sourceTree = "<group>"; };
+		960E19D8235E2BC200E29D05 /* SCKNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCKNewsViewController.swift; sourceTree = "<group>"; };
+		960E19DA235E2C0D00E29D05 /* MassCommunicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MassCommunicationViewController.swift; sourceTree = "<group>"; };
+		960E19DC23668F0300E29D05 /* SCKNewsFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCKNewsFeedCell.swift; sourceTree = "<group>"; };
 		960E2BAD22FC853E00D934D1 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		962FC84022BA149300C57190 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		962FC84822BC9F3D00C57190 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -152,6 +158,9 @@
 				9659FCDF23167203000D6C3A /* AdminPlayersViewController.swift */,
 				9659FCDD231670F6000D6C3A /* PlayersTableViewCell.swift */,
 				9659FCE3231765F4000D6C3A /* PlayerProfileInfoViewController.swift */,
+				960E19D8235E2BC200E29D05 /* SCKNewsViewController.swift */,
+				960E19DC23668F0300E29D05 /* SCKNewsFeedCell.swift */,
+				960E19DA235E2C0D00E29D05 /* MassCommunicationViewController.swift */,
 			);
 			path = adminVCFiles;
 			sourceTree = "<group>";
@@ -319,38 +328,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Sosnick App/Pods-Sosnick App-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
-				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Sosnick App/Pods-Sosnick App-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Sosnick App/Pods-Sosnick App-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -407,11 +389,13 @@
 				96C3630F22DB8AA2007762B4 /* AdminViewController.swift in Sources */,
 				962FC84122BA149300C57190 /* SecondViewController.swift in Sources */,
 				9659FCE4231765F4000D6C3A /* PlayerProfileInfoViewController.swift in Sources */,
+				960E19D9235E2BC200E29D05 /* SCKNewsViewController.swift in Sources */,
 				964B6EC522C49A4D003C9A31 /* Request.swift in Sources */,
 				969CCAB2230BD66000DEBD75 /* CompletedRequestsTableViewCell.swift in Sources */,
 				969CCAB4230D15FB00DEBD75 /* imageViewCircle.swift in Sources */,
 				9659FCD42311CFF6000D6C3A /* PostCell.swift in Sources */,
 				965F3FCC22E6F8DC006A6A26 /* Message.swift in Sources */,
+				960E19DB235E2C0D00E29D05 /* MassCommunicationViewController.swift in Sources */,
 				964B6ECD22CBD0E1003C9A31 /* RequestViewController.swift in Sources */,
 				9659FCDE231670F6000D6C3A /* PlayersTableViewCell.swift in Sources */,
 				96E9820522BA070900FA5D93 /* ViewController.swift in Sources */,
@@ -432,6 +416,7 @@
 				96C3631922DED537007762B4 /* AdminRequestInfoViewController.swift in Sources */,
 				965F3FC322E569FD006A6A26 /* CreateUserViewController.swift in Sources */,
 				960E2BAE22FC853E00D934D1 /* ForgotPasswordViewController.swift in Sources */,
+				960E19DD23668F0300E29D05 /* SCKNewsFeedCell.swift in Sources */,
 				9660875E232ACA9800C440C4 /* ErrorExtension.swift in Sources */,
 				96F67C3B231EE6D2007D088A /* PopoverViewController.swift in Sources */,
 				9630BA2F231DB1E4003D9C58 /* AdminNewsViewController.swift in Sources */,
@@ -525,6 +510,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -579,6 +565,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

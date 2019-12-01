@@ -33,7 +33,7 @@ class CreateUserViewController: UIViewController {
     
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         switch roleSegmentedControl.selectedSegmentIndex
-        {
+        { //set role to whatever segment the admin selects
         case 0:
             print("First Segment Selected")
             role = "Player"
@@ -49,7 +49,7 @@ class CreateUserViewController: UIViewController {
     }
     @IBAction func registerButtonPressed(_ sender: UIButton) {
         var repeated = false
-        database.getDocuments { (snapshot, error) in
+        database.getDocuments { (snapshot, error) in // go into the user database
             if error != nil{
                 if let Error = error{
                     self.handleError(Error)
@@ -57,28 +57,28 @@ class CreateUserViewController: UIViewController {
                 return
             }
             else{
-                for document in snapshot!.documents{
+                for document in snapshot!.documents{ //if there is already an user email for that user then show an alert
                     if self.emailTextField.text == document.get("Email") as? String {
                         let repeatAlert = UIAlertController(title: "You already have this Email registered to an account!", message: "Please enter a different email.", preferredStyle: UIAlertController.Style.alert)
                         
                         repeatAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
                             print("Handle Ok logic here")
-                            self.clearTextFields()
-                            repeated = true
+                            self.clearTextFields() // clear text fields
+                            repeated = true // admin added a repeat user
                         }))
-                        self.present(repeatAlert, animated: true,completion: nil)
+                        self.present(repeatAlert, animated: true,completion: nil) //present the alert
                         
                         
                     }
                 }
             }
         }
-        if repeated == false {
+        if repeated == false { //if not a repeat
             if let secondaryApp = FirebaseApp.app(name: "CreatingUsersApp") {
                 let secondaryAppAuth = Auth.auth(app: secondaryApp)
                 
                 // Create user in secondary app.
-                secondaryAppAuth.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
+                secondaryAppAuth.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in //creating the user without having them sign in
                     if error != nil {
                         print(error!)
                     } else {
@@ -88,7 +88,7 @@ class CreateUserViewController: UIViewController {
                         //Print current logged in users email.
                         print(Auth.auth().currentUser?.email ?? "default")
                         
-                        try! secondaryAppAuth.signOut()
+                        try! secondaryAppAuth.signOut() //sign them out autimatically
                         self.createUserInformation()
                         
                         let refreshAlert = UIAlertController(title: "Success!", message: "A new user has been created!", preferredStyle: UIAlertController.Style.alert)
@@ -98,7 +98,7 @@ class CreateUserViewController: UIViewController {
                         
                         }))
                         self.present(refreshAlert, animated: true,completion: nil)
-                        self.clearTextFields()
+                        self.clearTextFields() //show alert telling them that it succeeded and clear the fields
                     }
                 }
             }
@@ -106,7 +106,7 @@ class CreateUserViewController: UIViewController {
     }
     
     func createUserInformation(){
-        database.document(uid).setData([
+        database.document(uid).setData([//create all the initial user informationa and update it in the user DB
             "First" : firstTextField.text!,
             "last" : lastTextField.text!,
             "profilePictureURL" : "",
@@ -142,10 +142,10 @@ class CreateUserViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         if self.isConnectedToInternet(){
-            registerButton.isUserInteractionEnabled = true
+            registerButton.isUserInteractionEnabled = true //make sure user is connected to internet
         }
         else{
-            let alert = UIAlertController(title: "Error", message: "No network connection, please try again", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Error", message: "No network connection, please try again", preferredStyle: .alert) //if no network
             
             let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
             
@@ -166,7 +166,7 @@ class CreateUserViewController: UIViewController {
     func clearTextFields(){
         firstTextField.text = ""
         lastTextField.text = ""
-        emailTextField.text = ""
+        emailTextField.text = "" //sets all text fields to blank
         passwordTextField.text = ""
     }
     /*

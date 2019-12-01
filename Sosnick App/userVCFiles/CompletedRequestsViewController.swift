@@ -75,7 +75,7 @@ class CompletedRequestsViewController: UIViewController, UITableViewDataSource, 
     func checkDatabase(){
         
         if currentRequest.haveData == false {
-            database.collection("userRequestB").whereField("uid", isEqualTo: uid).whereField("isProcessed", isEqualTo: true).order(by: "dateNum").addSnapshotListener{ (querySnapshot,
+            database.collection("userRequestC").whereField("uid", isEqualTo: uid).whereField("isProcessed", isEqualTo: true).order(by: "dateNum").addSnapshotListener{ (querySnapshot,
                 Error) in
                 if Error != nil{
                     print("error getting docs")

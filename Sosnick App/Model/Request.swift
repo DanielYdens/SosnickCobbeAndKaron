@@ -20,6 +20,7 @@ class Request {
     var user : String
     var message : Bool
     var name : String
+    var status : String
     
     
     init(){
@@ -33,6 +34,7 @@ class Request {
         self.user = ""
         self.message = false
         self.name = ""
+        self.status = ""
     }
     
     init(category: Any?, description: Any?, date: Any?, isProcessed: Any?, dateNum: Any?, docID: Any?, user: Any?, message: Any?){
@@ -46,6 +48,7 @@ class Request {
         self.user = user as! String
         self.message = message as! Bool
         self.name = ""
+        self.status = ""
     }
     
     init(category: Any?, description: Any?, date: Any?, isProcessed: Any?, dateNum: Any?, docID: Any?, user: Any?, message: Any?, name: Any?){
@@ -59,7 +62,7 @@ class Request {
         self.user = user as! String
         self.message = message as! Bool
         self.name = name as! String
-        
+        self.status = ""
     }
     
     

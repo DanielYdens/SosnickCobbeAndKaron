@@ -15,25 +15,24 @@ class InfoViewController: UIViewController {
     
 
     @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true) //if back button pressed pop
     }
     
     @IBAction func chatButtonPressed(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "goToUserMessages", sender: self)
+        performSegue(withIdentifier: "goToUserMessages", sender: self) //if chat button pressed go to chat
     }
     
-    @IBAction func editButtonPressed(_ sender: UIBarButtonItem) { //allow for edits of text fields
-        categoryTextField.isUserInteractionEnabled = true
-        descriptionTextView.isUserInteractionEnabled = true
-        submitButton.isHidden = false
-        submitButton.isUserInteractionEnabled = true
-        
-    }
+//    @IBAction func editButtonPressed(_ sender: UIBarButtonItem) { //allow for edits of text fields
+//        categoryTextField.isUserInteractionEnabled = true
+//        descriptionTextView.isUserInteractionEnabled = true
+//        submitButton.isHidden = false
+//        submitButton.isUserInteractionEnabled = true
+//
+//    }
     
 
     @IBOutlet weak var descriptionTextView: UITextView!
     
-    @IBOutlet weak var colorView: UIView!
     
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var categoryTextField: UITextField!
@@ -63,8 +62,8 @@ class InfoViewController: UIViewController {
     
     func fillDataAndInitialize(){ //fills in different text views with request data and set
         self.navigationController?.navigationBar.isHidden=false
-        submitButton.isHidden = true
-        submitButton.isUserInteractionEnabled = false
+        //submitButton.isHidden = true
+        //submitButton.isUserInteractionEnabled = false
         categoryTextField.text = reqCategory
         categoryTextField.isUserInteractionEnabled = false
         descriptionTextView.text = reqDescription
@@ -72,18 +71,17 @@ class InfoViewController: UIViewController {
         dateTextField.text = reqDate
         dateTextField.isUserInteractionEnabled = false
     }
-    @IBAction func resubmitPressed(_ sender: Any) {
-        let documentRef = db.collection("userRequestB").document(docID)
+    @IBAction func  completePressed(_ sender: UIButton) {
+        let documentRef = db.collection("userRequestC").document(docID)
         
-        // Set the "capital" field of the city 'DC'
+        
         documentRef.updateData([
-            "category": categoryTextField.text!,
-            "description": descriptionTextView.text!
+            "isProcessed" : true
         ]) { err in
             if let err = err {
                 print("Error updating document: \(err)")
             } else {
-                print("Document successfully updated")
+                print("Document successfully updated") //success
                 let banner = GrowingNotificationBanner(title: "Success!", subtitle: "Your request has been updated and will be processed as soon as possible.", leftView: self.leftView, style: .success)
                 banner.show()
                 _ = self.navigationController?.popViewController(animated: true)
@@ -94,33 +92,33 @@ class InfoViewController: UIViewController {
 
     }
     
-    @IBAction func CancelButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction func CancelButtonPressed(_ sender: UIBarButtonItem) { //cancel button pressed
         let cancelAlert = UIAlertController(title: "Are You sure?", message: "This will permanently delete this request.", preferredStyle: UIAlertController.Style.alert)
         
         cancelAlert.addAction(UIAlertAction(title: "Yes, I'm sure", style: .default, handler: { (action: UIAlertAction!) in
-            print("Handle Ok logic here")
+            print("Handle Ok logic here") //alert asking if the user is sure, if yes delete
 //            self.addToDeleted()
             self.deleteItems()
             
         }))
         
         cancelAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
-            print("Handle Cancel Logic here")
+            print("Handle Cancel Logic here") //do nothing if cancel
         }))
         
-        present(cancelAlert, animated: true, completion: nil)
+        present(cancelAlert, animated: true, completion: nil) //present cancel alert
         
         
         
     }
     
-    func deleteItems(){
-        db.collection("userRequestB").document(docID).delete { (Error) in
+    func deleteItems(){ //go into request database and delete correct document
+        db.collection("userRequestC").document(docID).delete { (Error) in
             if let Error = Error{
                 print("Error removing document: \(Error)")
             }
             else{
-                print("document was removed")
+                print("document was removed") //success and pop
                 self.navigationController?.popViewController(animated: true)
             }
         }
@@ -166,7 +164,7 @@ class InfoViewController: UIViewController {
 //    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToUserMessages"{
+        if segue.identifier == "goToUserMessages"{ //segue for messages, pass doc ID and message status as data
             let messagesVC = segue.destination as! UserMessagesViewController
             messagesVC.documentID = docID
             messagesVC.messagesCreatedStatus = isMessagesCreated

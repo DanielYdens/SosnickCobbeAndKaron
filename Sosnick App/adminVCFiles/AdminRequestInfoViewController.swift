@@ -15,24 +15,24 @@ class AdminRequestInfoViewController: UIViewController, UINavigationBarDelegate 
 
     
     @IBAction func completeButtonPressed(_ sender: UIBarButtonItem) {
-        let refreshAlert = UIAlertController(title: "Are You sure?", message: "This will mark this request as complete", preferredStyle: UIAlertController.Style.alert)
+        let refreshAlert = UIAlertController(title: "Are You sure?", message: "This will mark this request as pending", preferredStyle: UIAlertController.Style.alert) //presents a popup asking if they want to admin complete the request
         
-        refreshAlert.addAction(UIAlertAction(title: "Yes, I'm sure", style: .default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: "Yes, I'm sure", style: .default, handler: { (action: UIAlertAction!) in //if they click yes im sure
             print("Handle Ok logic here")
-            let documentRef = self.database.collection("userRequestB").document(self.documentID)
-            
+            let documentRef = self.database.collection("userRequestC").document(self.documentID)
+            //go into user request database
             
             documentRef.updateData([
-                "isProcessed" : true
+                "status" : "adminConfirmed" //update the status to admin confirmed
             ]) { err in
-                if let err = err {
+                if let err = err { //if there is an error print it
                     print("Error updating document: \(err)")
                 } else {
                     print("Document successfully updated")
-                    let banner = GrowingNotificationBanner(title: "Success!", subtitle: "The status of the request has been changed to completed", leftView: self.leftView, style: .success)
+                    let banner = GrowingNotificationBanner(title: "Success!", subtitle: "The status of the request has been changed to pending", leftView: self.leftView, style: .success) //show a success notification
                     banner.show()
                     
-                    _ = self.navigationController?.popViewController(animated: true)
+                    _ = self.navigationController?.popViewController(animated: true)//pop the view controller
                     
                 }
                 
@@ -40,27 +40,27 @@ class AdminRequestInfoViewController: UIViewController, UINavigationBarDelegate 
         }))
         
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
-            print("Handle Cancel Logic here")
+            print("Handle Cancel Logic here") //if they click cancel do nothing
         }))
         
-        present(refreshAlert, animated: true, completion: nil)
+        present(refreshAlert, animated: true, completion: nil) //show popup
         
         
       
     }
     
     @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true) //if they click back pop view controller
     }
     
     @IBAction func goToMessagesClicked(_ sender: UIBarButtonItem) {
-        self.performSegue(withIdentifier: "goToMessages", sender: self)
+        self.performSegue(withIdentifier: "goToMessages", sender: self) //if they click chat go to messages VC
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToMessages"{
             let nextVC = segue.destination as! MessagesViewController
-            nextVC.userEmailAddress = userEmail
+            nextVC.userEmailAddress = userEmail //passing data to the messages view controller
             nextVC.isFirstMessageSent = messageStatus
             nextVC.documentID = documentID
             
@@ -82,33 +82,39 @@ class AdminRequestInfoViewController: UIViewController, UINavigationBarDelegate 
     let database = Firestore.firestore()
     let leftView = UIImageView(image: #imageLiteral(resourceName: "greenCheck"))
     var messageStatus : Bool = false
+    var requestStatus : String  = ""
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        fillInformation()
-        setUnedittable()
+        updateStatusIfNeeded() //if admin hasnt viewed request yet update status
+        fillInformation() //fill information of request into correct spot
+        setUnedittable() //make the fields unedditable
         descriptionTextView.layer.cornerRadius = 5
         descriptionTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
-        descriptionTextView.layer.borderWidth = 0.5
+        descriptionTextView.layer.borderWidth = 0.5 //ascetic adjustments
         descriptionTextView.clipsToBounds = true
-        self.hideKeyboardWhenTappedAround()
-        // Do any additional setup after loading the view.
+        self.hideKeyboardWhenTappedAround() //hide key board if taps anywhere
     }
     
     func fillInformation(){
         userLabel.text = userEmail
-        categoryLabel.text = adminCategory
+        categoryLabel.text = adminCategory //filling all the information of the request into the correct position on screen
         dateLabel.text = adminDate
         descriptionTextView.text = adminDescription
     }
     
     func setUnedittable(){
         userLabel.isUserInteractionEnabled = false
-        categoryLabel.isUserInteractionEnabled = false
+        categoryLabel.isUserInteractionEnabled = false // all of it cannot be editted
         dateLabel.isUserInteractionEnabled = false
         descriptionTextView.isUserInteractionEnabled = false
+    }
+    
+    func updateStatusIfNeeded(){
+        if requestStatus == "userSubmitted"{ //if the admin hasnt opened the request yet
+            database.collection("userRequestC").document(documentID).updateData(["status" : "adminReceived"]) //update the status to show that admin has viewed it
+        }
     }
     /*
     // MARK: - Navigation
