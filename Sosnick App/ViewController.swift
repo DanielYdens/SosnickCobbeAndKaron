@@ -66,7 +66,7 @@ class ViewController: UIViewController {
         checkIfLoggedIn()
         // Do any additional setup after loading the view.
         // 4- this will add it with the default imageName and edited contextMode
-        view.addBackground(imageName: "matt-moore", contentMode: .scaleAspectFill) //filling background image
+        //view.addBackground(imageName: "matt-moore", contentMode: .scaleAspectFill) //filling background image
         
         sosnickImage.layer.borderWidth = 1.0
         sosnickImage.layer.masksToBounds = false

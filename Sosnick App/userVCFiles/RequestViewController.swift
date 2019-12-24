@@ -17,7 +17,7 @@ import QuartzCore
 class RequestViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
 
-    @IBAction func submitButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction func submitButtonPressed(_ sender: UIButton) {
         submitButton.isEnabled = false
         
         var ref: DocumentReference? = nil
@@ -56,7 +56,7 @@ class RequestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var descriptionTextField: UITextView!
     
 
-    @IBOutlet weak var submitButton: UIBarButtonItem!
+    @IBOutlet weak var submitButton: UIButton!
     
     var name : String? = ""
     let leftView = UIImageView(image: #imageLiteral(resourceName: "greenCheck"))

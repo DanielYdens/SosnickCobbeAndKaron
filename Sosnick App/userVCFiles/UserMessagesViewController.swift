@@ -128,7 +128,7 @@ class UserMessagesViewController: UIViewController, UITableViewDelegate, UITable
             }
         }
         else{
-            cell.avatarImageView.image = UIImage(named: "large-logo") //if not you then show admin logo
+            cell.avatarImageView.image = UIImage(named: "apex") //if not you then show admin logo
             
         
            

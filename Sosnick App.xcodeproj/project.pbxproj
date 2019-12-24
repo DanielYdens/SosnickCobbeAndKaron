@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1FEE37546557BDE578F6A071 /* Pods_Sosnick_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79DC31F875FF55F7DFB2F73 /* Pods_Sosnick_App.framework */; };
+		96021C9923B1E01B0061AB15 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96021C9823B1E01B0061AB15 /* MessageCell.xib */; };
 		960E19D9235E2BC200E29D05 /* SCKNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E19D8235E2BC200E29D05 /* SCKNewsViewController.swift */; };
 		960E19DB235E2C0D00E29D05 /* MassCommunicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E19DA235E2C0D00E29D05 /* MassCommunicationViewController.swift */; };
 		960E19DD23668F0300E29D05 /* SCKNewsFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E19DC23668F0300E29D05 /* SCKNewsFeedCell.swift */; };
@@ -30,7 +31,6 @@
 		965F3FCA22E6DFD8006A6A26 /* StyleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F3FC922E6DFD8006A6A26 /* StyleButton.swift */; };
 		965F3FCC22E6F8DC006A6A26 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F3FCB22E6F8DC006A6A26 /* Message.swift */; };
 		965F3FD122E95DA7006A6A26 /* CustomMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F3FCF22E95DA7006A6A26 /* CustomMessageCell.swift */; };
-		965F3FD222E95DA7006A6A26 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 965F3FD022E95DA7006A6A26 /* MessageCell.xib */; };
 		9660875C232982C100C440C4 /* viewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9660875B232982C100C440C4 /* viewExtension.swift */; };
 		9660875E232ACA9800C440C4 /* ErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9660875D232ACA9800C440C4 /* ErrorExtension.swift */; };
 		969CCAA823061E7D00DEBD75 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969CCAA723061E7D00DEBD75 /* NewsViewController.swift */; };
@@ -59,6 +59,7 @@
 /* Begin PBXFileReference section */
 		47D840DE32F25F91AB41D029 /* Pods-Sosnick App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sosnick App.debug.xcconfig"; path = "Target Support Files/Pods-Sosnick App/Pods-Sosnick App.debug.xcconfig"; sourceTree = "<group>"; };
 		8A940AC81FBA6FFF33DB7319 /* Pods-Sosnick App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sosnick App.release.xcconfig"; path = "Target Support Files/Pods-Sosnick App/Pods-Sosnick App.release.xcconfig"; sourceTree = "<group>"; };
+		96021C9823B1E01B0061AB15 /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MessageCell.xib; path = ../../../../Desktop/MessageCell.xib; sourceTree = "<group>"; };
 		960E19D8235E2BC200E29D05 /* SCKNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCKNewsViewController.swift; sourceTree = "<group>"; };
 		960E19DA235E2C0D00E29D05 /* MassCommunicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MassCommunicationViewController.swift; sourceTree = "<group>"; };
 		960E19DC23668F0300E29D05 /* SCKNewsFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCKNewsFeedCell.swift; sourceTree = "<group>"; };
@@ -81,7 +82,6 @@
 		965F3FC922E6DFD8006A6A26 /* StyleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleButton.swift; sourceTree = "<group>"; };
 		965F3FCB22E6F8DC006A6A26 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		965F3FCF22E95DA7006A6A26 /* CustomMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMessageCell.swift; sourceTree = "<group>"; };
-		965F3FD022E95DA7006A6A26 /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MessageCell.xib; path = "../../../../Downloads/Flash-Chat-iOS12/Flash Chat/MessageCell.xib"; sourceTree = "<group>"; };
 		965F3FD322F00052006A6A26 /* Sosnick App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Sosnick App.entitlements"; sourceTree = "<group>"; };
 		9660875B232982C100C440C4 /* viewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewExtension.swift; sourceTree = "<group>"; };
 		9660875D232ACA9800C440C4 /* ErrorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ErrorExtension.swift; path = adminVCFiles/ErrorExtension.swift; sourceTree = "<group>"; };
@@ -221,7 +221,7 @@
 				96E9820622BA070900FA5D93 /* Main.storyboard */,
 				9660875D232ACA9800C440C4 /* ErrorExtension.swift */,
 				965F3FCF22E95DA7006A6A26 /* CustomMessageCell.swift */,
-				965F3FD022E95DA7006A6A26 /* MessageCell.xib */,
+				96021C9823B1E01B0061AB15 /* MessageCell.xib */,
 				9660875B232982C100C440C4 /* viewExtension.swift */,
 				96C3630822D563E5007762B4 /* backgroundExtension.swift */,
 				969CCAB3230D15FA00DEBD75 /* imageViewCircle.swift */,
@@ -311,7 +311,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				965F3FD222E95DA7006A6A26 /* MessageCell.xib in Resources */,
+				96021C9923B1E01B0061AB15 /* MessageCell.xib in Resources */,
 				96E9820D22BA070B00FA5D93 /* LaunchScreen.storyboard in Resources */,
 				962FC84922BC9F3D00C57190 /* GoogleService-Info.plist in Resources */,
 				96E9820A22BA070B00FA5D93 /* Assets.xcassets in Resources */,

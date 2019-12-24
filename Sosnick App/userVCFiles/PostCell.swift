@@ -11,7 +11,7 @@ import UIKit
 class PostCell: UICollectionViewCell {
     
     @IBOutlet weak var postImageView: UIImageView!
-    @IBOutlet weak var captionLabel: UILabel!
+    //  @IBOutlet weak var captionLabel: UILabel!
     
     override func prepareForReuse() {
         super.prepareForReuse()

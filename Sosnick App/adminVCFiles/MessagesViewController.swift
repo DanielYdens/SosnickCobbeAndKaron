@@ -110,7 +110,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         }
         if messageArray[indexPath.row].sender == Auth.auth().currentUser?.email{ //if it is the current logged in users message aka ADMIN
             
-            cell.avatarImageView.image = UIImage(named: "large-logo") //use admin profile picture
+            cell.avatarImageView.image = UIImage(named: "apex") //use admin profile picture
             cell.messageBackground.backgroundColor = UIColor(white: 0.95, alpha: 1) // light grey
             cell.messageBody.textColor = .black //text of message to black
         }

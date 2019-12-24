@@ -40,8 +40,8 @@ class NewsViewController: UIViewController, UICollectionViewDelegate, UICollecti
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as! PostCell
         //creating the cell
         
-        cell.captionLabel.numberOfLines = 0
-        cell.captionLabel.text = posts[indexPath.row].caption
+       // cell.captionLabel.numberOfLines = 0
+        //cell.captionLabel.text = posts[indexPath.row].caption
         
         //cell.postImageView.downdownloaded(from: posts[indexPath.row].URL)
         let url = NSURL(string: posts[indexPath.row].URL)
