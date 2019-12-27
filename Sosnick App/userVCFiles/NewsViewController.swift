@@ -19,13 +19,12 @@ class NewsViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var posts = [Post]()
     var userID = ""
     var token = ""
-    var images = [String]()
+
+    var urlArray = [String]()
     
-    let params : [String : String] = [ "app_id" : "603532347144383", "app_secret" : "209394f22ff416eff13446598a0df753", "grant_type" : "authorization_code", "redirect_uri": "https://acrobat.adobe.com/us/en", "code" : "AQDXLaJz7jsrRyVFxs1oAtCAg0FqGJtL32pY9vuxQt64G3jP6yeQKkP14MMQUXwrzwn6fh--WoY08QPJgA7a0VnqYVRvm2U6jdWIJuCBU_1_ouluuJnfVHPjtA5kGCVfsPUBNTXo3TbjuCJpt8p7x9LDvrhYqF_OSR4-8u_sgFYxPtSU44TsrA4ODUOH4COyPfzf-KfPfF-7lzN2UcPVFZqfKHEp03KMOWpje4jufjQL4g"
-    ]
+  
     
-    let codeParams : [String : String] = ["app_id" : "603532347144383", "redirect_uri" : "https://acrobat.adobe.com/us/en", "scope" : "user_profile,user_media", "response_type" : "code"]
-        //= Parameters(app_id : "603532347144383", app_secret : "209394f22ff416eff13446598a0df753", grant_type: "authorization_code", redirect_uri: "https://acrobat.adobe.com/us/en", code: "AQC16WoSZFi1_str_9Zpf60gj1Cu9sJj25VeAlH2qdPSNLRoYvY3deWasC9M3QeBOPPcE7obHTwsWKXJhQolaVshXdEF_fp5u6RORh2h-aqoy9X0P9Il1auE96tEaMdlJWeY3A4ytIV7Uwi_ulVDff8rUBMaxeyuGsGX6LsODNkewc9cVsp5bLojJN--6jQ6SfWMEaSFHlC8ns7tgJWyLaWcxWt0LA-8hvGvksZFublrHg")
+   
    
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -37,72 +36,42 @@ class NewsViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
        
-        fetchPosts()
+        //fetchPosts()
         //getInstagramAccessToken()
+        getImageURLSFromStorage()
         
         
         
         // Do any additional setup after loading the view.
     }
-    func getImage(id: String){
-        let localParams : [String : String] = ["fields" : "id,media_type,media_url", "access_token" : token]
-        Alamofire.request("https://graph.instagram.com/\(id)", method: .get, parameters: localParams).validate().responseJSON { (response) in
-            switch response.result {
-                case .success(let value):
-                    let json = JSON(value)
-                    print("JSON: \(json)")
-                    let url = json["media_url"].stringValue
-                    self.images.append(url)
-                    self.collectionView.reloadData()
-                    print("reloaded")
-                case .failure(let error):
-                    print(error)
+    
+    func getImageURLSFromStorage(){
+        let db = Firestore.firestore()
+        db.collection("posts").getDocuments { (snapshot, Error) in
+            if Error != nil{
+                if let error = Error {
+                    self.handleError(error)
+                }
+            }
+            else{
+                self.urlArray.removeAll()
+                for document in snapshot!.documents {
+                    if let url = document.get("url") as? String{
+                        self.urlArray.append(url)
+                    }
+                }
+                self.collectionView.reloadData()
             }
         }
         
     }
-    func getMediaList(){
-        //getInstagramCode()
-      
-        let localParams : [String : String] = ["fields" : "id,caption", "access_token" : token]
-        Alamofire.request("https://graph.instagram.com/me/media", method: .get, parameters: localParams).validate().responseJSON { (response) in
-                   switch response.result {
-                       case .success(let value):
-                           let json = JSON(value)
-                           print("JSON: \(json)")
-                           for (key,subJson):(String, JSON) in json["data"] {
-                              // Do something you want
-                            //print("ID IS: ", subJson["id"])
-                            self.getImage(id: subJson["id"].stringValue)
-                           }
-                       case .failure(let error):
-                           print(error)
-                   }
-               }
-        
-    }
+   
+    
 //    func getInstagramCode()->String{
 //        var code = ""
 //    }
     
-    func getInstagramAccessToken(){
-        
-        
-        Alamofire.request("http://api.instagram.com/oauth/access_token", method: .post, parameters: params).validate().responseJSON { (response) in
-            switch response.result {
-                case .success(let value):
-                    let json = JSON(value)
-                    print("JSON: \(json)")
-                    self.token = json["access_token"].stringValue
-                    self.userID = json["user_id"].stringValue
-                    //self.getUserNode(userID: userID, accessToken: token)
-                    self.getMediaList()
-                    print(self.token)
-                case .failure(let error):
-                    print(error)
-            }
-        }
-    }
+
     
     
     
@@ -126,7 +95,7 @@ class NewsViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.images.count
+        return self.urlArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -138,7 +107,7 @@ class NewsViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         //cell.postImageView.downdownloaded(from: posts[indexPath.row].URL)
         //let url = NSURL(string: posts[indexPath.row].URL)
-        let url = NSURL(string: images[indexPath.row])
+        let url = NSURL(string: urlArray[indexPath.row])
         downloadImage(url: url! as URL) { (Image) in
             if Image != nil{
                 

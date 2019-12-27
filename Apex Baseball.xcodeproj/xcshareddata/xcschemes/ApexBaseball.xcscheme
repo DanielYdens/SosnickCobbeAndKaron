@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "96E981FE22BA070900FA5D93"
                BuildableName = "SCK Sports.app"
-               BlueprintName = "Sosnick App"
-               ReferencedContainer = "container:Sosnick App.xcodeproj">
+               BlueprintName = "Apex Baseball"
+               ReferencedContainer = "container:Apex Baseball.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,8 +32,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "96E981FE22BA070900FA5D93"
             BuildableName = "SCK Sports.app"
-            BlueprintName = "Sosnick App"
-            ReferencedContainer = "container:Sosnick App.xcodeproj">
+            BlueprintName = "Apex Baseball"
+            ReferencedContainer = "container:Apex Baseball.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -55,8 +55,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "96E981FE22BA070900FA5D93"
             BuildableName = "SCK Sports.app"
-            BlueprintName = "Sosnick App"
-            ReferencedContainer = "container:Sosnick App.xcodeproj">
+            BlueprintName = "Apex Baseball"
+            ReferencedContainer = "container:Apex Baseball.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,8 +72,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "96E981FE22BA070900FA5D93"
             BuildableName = "SCK Sports.app"
-            BlueprintName = "Sosnick App"
-            ReferencedContainer = "container:Sosnick App.xcodeproj">
+            BlueprintName = "Apex Baseball"
+            ReferencedContainer = "container:Apex Baseball.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

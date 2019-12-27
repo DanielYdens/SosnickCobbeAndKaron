@@ -11,6 +11,8 @@ import FirebaseFirestore
 import FirebaseStorage
 import Alamofire
 import SwiftyJSON
+import OAuth2
+
 
 class AdminNewsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, AdminPostCellDelegate{
     
@@ -23,31 +25,122 @@ class AdminNewsViewController: UIViewController, UICollectionViewDataSource, UIC
     var token = ""
     //var images = [String]()
     var db = Firestore.firestore()
+    
+    let oauth2 = OAuth2CodeGrantNoTokenType(settings: [
+    "client_id": "603532347144383",
+    "client_secret": "209394f22ff416eff13446598a0df753",
+    "app_id": "603532347144383",
+    "app_secret": "209394f22ff416eff13446598a0df753",
+    "scope" : "user_profile,user_media",
+    "authorize_uri": "https://api.instagram.com/oauth/authorize",
+    "token_uri": "https://api.instagram.com/oauth/access_token",
+    "response_type": "code",
+    "redirect_uris": ["apexbaseball://oauth/callback"],
+    "keychain": false,
+    "title": "InstagramViewer",
+    "secret_in_body" : true
+    ] as OAuth2JSON)
+    
+    //"apexbaseball://oauth/callback"
        
-    let params : [String : String] = [ "app_id" : "603532347144383", "app_secret" : "209394f22ff416eff13446598a0df753", "grant_type" : "authorization_code", "redirect_uri": "https://acrobat.adobe.com/us/en", "code" : "AQByhVoZU4F680DG02dWic1611LHPhenG3fBnIP_7IyRrDZ5nAnJ7YCyEukkBtl4QTm0cW7s1Rw4_2iO5089uH1QyUgvLKaiPGe_Q2er7j63vMKkxQy0rSkaHLMUMWT1uiUbE5JHwhOqi6Y6VX-FaeLSdGDiVcsgr0ktFOHtXIuYNlWsJsb2ME9yI_rT6DXY8oNXYapVqgUbghschynon5Y_1w1cTESbEc9IM_uhK5Vg5A"
+    let params : [String : String] = [ "app_id" : "603532347144383", "app_secret" : "209394f22ff416eff13446598a0df753", "grant_type" : "authorization_code", "redirect_uri": "https://acrobat.adobe.com/us/en", "code" : "AQBc4VbcOCy4fTrvo0_epuL4jRrG555VthSAJ6Y1HB_4KaT0hNKhrx4p8m4WIkPwQGiND3gmJrf9xFkyYRTLizubH-Wk7nVNd8Jq9K_UeJHbvORj7ql_J6UT15fgqgidkWf3TcXI4dpoR2dLzMVvmJDeBI00bxVmeyuB8vG8PFdptLQ672C5QkOFGWFsUY-zIO3r9XSO86r9M50_acwAxWva-bKDZrN0j8JDehMGB3M8YQ"
        ]
 
     @IBOutlet weak var newsCollectionView: UICollectionView!
     
 
     @IBAction func syncButtonPressed(_ sender: UIButton) {
-        let metadata = StorageMetadata()
-        metadata.contentType = "image/jpeg"
-        let storage = Storage.storage()
-        for post in newsPosts {
-            let storageRef = storage.reference().child("NewsPosts").child("\(post.postID!).jpeg")
-            let Image = imagePostsCache.object(forKey: post.postID as NSString)
-            if let uploadData = Image?.jpegData(compressionQuality: 0.75){
-                    storageRef.putData(uploadData, metadata: metadata) { (metadata, error) in
-                        if error != nil{
-                            if let Error = error {
-                                self.handleError(Error)
-                            }
-                            return
-                        }
-                        print("success")
-                    }
-                                     
+        oauth2.logger = OAuth2DebugLogger(.trace)
+        oauth2.authConfig.authorizeEmbedded = true
+        oauth2.authConfig.authorizeContext = AdminNewsViewController.self
+        
+        oauth2.authorize() { authParameters, error in
+            if let params = authParameters {
+                print("Authorized! Access token is in `oauth2.accessToken`")
+                print("Authorized! Additional parameters: \(params)")
+            }
+            else {
+                print("Authorization was canceled or went wrong: \(error)")   // error will not be nil
+            }
+        }
+//        self.oauth2.authorizeEmbedded(from: self) { (oauthJSON, oauthError) in
+//            if oauthError != nil{
+//                print(oauthError)
+//            }
+//            else{
+//                print(oauthJSON)
+//            }
+//
+//        }
+        
+        
+//        let base = URL(string: "https://api.instagram.com")!
+//        let url = base.appendingPathComponent("apexbaseball")
+//
+//        let req = oauth2.request(forURL: url)
+//
+//        //req.setValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")
+//
+//        let loader = OAuth2DataLoader(oauth2: oauth2)
+//        loader.perform(request: req) { response in
+//            do {
+//                //let dict = try response.responseJSON()
+//
+//               // try self.oauth2.doAuthorize(params: nil)
+//                DispatchQueue.main.async {
+//
+//                }
+//            }
+//            catch let error {
+//                DispatchQueue.main.async {
+//                    // an error occurred
+//                    print(error)
+//                }
+//            }
+//        }
+  
+        
+        
+        
+//        let metadata = StorageMetadata()
+//        metadata.contentType = "image/jpeg"
+//        let storage = Storage.storage()
+//        for post in newsPosts {
+//            let storageRef = storage.reference().child("NewsPosts").child("\(post.postID!).jpeg")
+//            let Image = imagePostsCache.object(forKey: post.postID as NSString)
+//            if let uploadData = Image?.jpegData(compressionQuality: 0.75){
+//                    storageRef.putData(uploadData, metadata: metadata) { (metadata, error) in
+//                        if error != nil{
+//                            if let Error = error {
+//                                self.handleError(Error)
+//                            }
+//                            return
+//                        }
+//                        _ = storageRef.downloadURL(completion: { (URL, Error) in
+//                                if Error != nil {
+//                                    print("error getting url")
+//                                }
+//                                else{
+//                                    self.storeInPostDB(URL: URL!.absoluteString)
+//                                }
+//                        })
+//                        print("success")
+//                    }
+//
+//            }
+//        }
+    }
+    
+    func storeInPostDB(URL: String){
+        let database = Firestore.firestore().collection("posts")
+        database.addDocument(data: ["url" : URL]) { (Error) in
+            if Error != nil{
+                if let error = Error {
+                    self.handleError(error)
+                }
+            }
+            else{
+                print("success! url stored")
             }
         }
     }
@@ -74,6 +167,8 @@ class AdminNewsViewController: UIViewController, UICollectionViewDataSource, UIC
         self.newsCollectionView.delegate = self
         self.newsCollectionView.dataSource = self
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
+        
+       
        
         // Do any additional setup after loading the view.
     }

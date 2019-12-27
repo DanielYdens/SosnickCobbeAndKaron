@@ -3,12 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1FEE37546557BDE578F6A071 /* Pods_Sosnick_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79DC31F875FF55F7DFB2F73 /* Pods_Sosnick_App.framework */; };
 		96021C9923B1E01B0061AB15 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96021C9823B1E01B0061AB15 /* MessageCell.xib */; };
+		960BBCA523B5C262008A5B24 /* OAuth2 in Frameworks */ = {isa = PBXBuildFile; productRef = 960BBCA423B5C262008A5B24 /* OAuth2 */; };
 		960E19D9235E2BC200E29D05 /* SCKNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E19D8235E2BC200E29D05 /* SCKNewsViewController.swift */; };
 		960E19DB235E2C0D00E29D05 /* MassCommunicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E19DA235E2C0D00E29D05 /* MassCommunicationViewController.swift */; };
 		960E19DD23668F0300E29D05 /* SCKNewsFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E19DC23668F0300E29D05 /* SCKNewsFeedCell.swift */; };
@@ -99,7 +100,7 @@
 		96C3631822DED537007762B4 /* AdminRequestInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminRequestInfoViewController.swift; sourceTree = "<group>"; };
 		96C3631A22DFCAA6007762B4 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		96C3631C22E038A7007762B4 /* UserMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMessagesViewController.swift; sourceTree = "<group>"; };
-		96E981FF22BA070900FA5D93 /* SCK Sports.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SCK Sports.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		96E981FF22BA070900FA5D93 /* Apex Baseball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Apex Baseball.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96E9820222BA070900FA5D93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96E9820422BA070900FA5D93 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		96E9820722BA070900FA5D93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -117,6 +118,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FEE37546557BDE578F6A071 /* Pods_Sosnick_App.framework in Frameworks */,
+				960BBCA523B5C262008A5B24 /* OAuth2 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,7 +205,7 @@
 		96E9820022BA070900FA5D93 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				96E981FF22BA070900FA5D93 /* SCK Sports.app */,
+				96E981FF22BA070900FA5D93 /* Apex Baseball.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -248,9 +250,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		96E981FE22BA070900FA5D93 /* Sosnick App */ = {
+		96E981FE22BA070900FA5D93 /* Apex Baseball */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 96E9821122BA070B00FA5D93 /* Build configuration list for PBXNativeTarget "Sosnick App" */;
+			buildConfigurationList = 96E9821122BA070B00FA5D93 /* Build configuration list for PBXNativeTarget "Apex Baseball" */;
 			buildPhases = (
 				5B13B15F2213A77129FFA25E /* [CP] Check Pods Manifest.lock */,
 				96E981FB22BA070900FA5D93 /* Sources */,
@@ -263,9 +265,12 @@
 			);
 			dependencies = (
 			);
-			name = "Sosnick App";
+			name = "Apex Baseball";
+			packageProductDependencies = (
+				960BBCA423B5C262008A5B24 /* OAuth2 */,
+			);
 			productName = "Sosnick App";
-			productReference = 96E981FF22BA070900FA5D93 /* SCK Sports.app */;
+			productReference = 96E981FF22BA070900FA5D93 /* Apex Baseball.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -288,7 +293,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 96E981FA22BA070900FA5D93 /* Build configuration list for PBXProject "Sosnick App" */;
+			buildConfigurationList = 96E981FA22BA070900FA5D93 /* Build configuration list for PBXProject "Apex Baseball" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -297,11 +302,14 @@
 				Base,
 			);
 			mainGroup = 96E981F622BA070900FA5D93;
+			packageReferences = (
+				960BBCA323B5C262008A5B24 /* XCRemoteSwiftPackageReference "OAuth2" */,
+			);
 			productRefGroup = 96E9820022BA070900FA5D93 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				96E981FE22BA070900FA5D93 /* Sosnick App */,
+				96E981FE22BA070900FA5D93 /* Apex Baseball */,
 			);
 		};
 /* End PBXProject section */
@@ -584,7 +592,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.danielydens.Sosnick-App";
-				PRODUCT_NAME = "SCK Sports";
+				PRODUCT_NAME = "Apex Baseball";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -604,7 +612,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.danielydens.Sosnick-App";
-				PRODUCT_NAME = "SCK Sports";
+				PRODUCT_NAME = "Apex Baseball";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -613,7 +621,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		96E981FA22BA070900FA5D93 /* Build configuration list for PBXProject "Sosnick App" */ = {
+		96E981FA22BA070900FA5D93 /* Build configuration list for PBXProject "Apex Baseball" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				96E9820F22BA070B00FA5D93 /* Debug */,
@@ -622,7 +630,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		96E9821122BA070B00FA5D93 /* Build configuration list for PBXNativeTarget "Sosnick App" */ = {
+		96E9821122BA070B00FA5D93 /* Build configuration list for PBXNativeTarget "Apex Baseball" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				96E9821222BA070B00FA5D93 /* Debug */,
@@ -632,6 +640,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		960BBCA323B5C262008A5B24 /* XCRemoteSwiftPackageReference "OAuth2" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/p2/OAuth2.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		960BBCA423B5C262008A5B24 /* OAuth2 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 960BBCA323B5C262008A5B24 /* XCRemoteSwiftPackageReference "OAuth2" */;
+			productName = OAuth2;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 96E981F722BA070900FA5D93 /* Project object */;
 }

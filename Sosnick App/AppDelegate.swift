@@ -12,6 +12,7 @@ import FirebaseFirestore
 import UserNotifications
 import FirebaseInstanceID
 import FirebaseMessaging
+import OAuth2
 
 
 
@@ -19,6 +20,32 @@ import FirebaseMessaging
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
+    
+ let oauth2 = OAuth2CodeGrantNoTokenType(settings: [
+    "client_id": "603532347144383",
+    "client_secret": "209394f22ff416eff13446598a0df753",
+    "app_id": "603532347144383",
+    "app_secret": "209394f22ff416eff13446598a0df753",
+    "scope" : "user_profile,user_media",
+    "authorize_uri": "https://api.instagram.com/oauth/authorize",
+    "token_uri": "https://api.instagram.com/oauth/access_token",
+    "response_type": "code",
+    "redirect_uris": ["apexbaseball://oauth/callback"],
+    "keychain": false,
+    "title": "InstagramViewer",
+    "secret_in_body" : true
+    ] as OAuth2JSON)
+    
+    func application(_ app: UIApplication,
+                     open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+           // you should probably first check if this is the callback being opened
+           if (true) {
+               // if your oauth2 instance lives somewhere else, adapt accordingly
+               oauth2.handleRedirectURL(url)
+           }
+        return true
+       }
     
     struct MyVariables {
         static var fcmToken = ""
@@ -56,6 +83,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         return true
     }
+    
+   
     
     
    
@@ -110,6 +139,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
     }
+    
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
         print("Received data message: \(remoteMessage.appData)")
     }

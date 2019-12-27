@@ -190,19 +190,22 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 }
             }
             else{
+                
                 if let profilePictureURL = DocumentSnapshot?.get("profilePictureURL") as? String{
                     let url = NSURL(string: profilePictureURL)
-                    self.downloadImage(url: url! as URL) { (image) in
-                        if image != nil{
-                            DispatchQueue.main.async {
-                                self.profileImageView.image = image
+                    if (url!.absoluteString != ""){
+                        self.downloadImage(url: url! as URL) { (image) in
+                            if image != nil{
+                                DispatchQueue.main.async {
+                                    self.profileImageView.image = image
+                                }
                             }
-                        }
-                        else{
+                            else{
+                                
+                                return
+                            }
                             
-                            return
                         }
-                        
                     }
                     
                 }
