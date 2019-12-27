@@ -42,6 +42,9 @@ class AdminPlayersViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         self.playersTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell") //register correct cell
+        let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
+
+        textFieldInsideSearchBar?.backgroundColor = .white
         searchBar.delegate = self //setup
         playersTable.delegate = self
         playersTable.dataSource = self

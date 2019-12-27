@@ -68,7 +68,9 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         //accessData()
-        
+        let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
+
+        textFieldInsideSearchBar?.backgroundColor = .white
         self.adminTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.adminTableView.dataSource = self
         self.adminTableView.delegate = self //want this view controller to be the delegate and data source fo the table

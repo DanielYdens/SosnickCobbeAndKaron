@@ -8,6 +8,7 @@ target 'Sosnick App' do
   # Pods for Sosnick App
 pod 'Fabric', '~> 1.10.2'
 pod 'Crashlytics', '~> 3.14.0'
+pod 'SwiftyJSON', '~> 4.0'
 
 pod 'Firebase'
 pod 'Firebase/Auth'

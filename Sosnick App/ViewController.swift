@@ -53,6 +53,7 @@ class ViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+      
 //        do{
 //            try Auth.auth().signOut()
 //            self.navigationController?.popToRootViewController(animated: true)

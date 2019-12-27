@@ -104,7 +104,7 @@ class UserMessagesViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = messageTableView.dequeueReusableCell(withIdentifier: "customMessageCell", for: indexPath) as! CustomMessageCell //use correct cell for table
-        cell.avatarImageView.roundedImage() //round the image
+        cell.avatarImageView.roundedImage2() //round the image
         let blueColor = UIColor(red: 0, green: 0.549, blue: 0.8471, alpha: 1.0) //different colors for different user messages YOU VS OTHER USER
         let greyColor = UIColor(white: 0.95, alpha: 1)
         cell.messageBackground.backgroundColor = blueColor //automatically blue

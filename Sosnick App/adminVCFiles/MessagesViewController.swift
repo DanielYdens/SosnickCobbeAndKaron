@@ -101,7 +101,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = messageTableView.dequeueReusableCell(withIdentifier: "customMessageCell", for: indexPath) as! CustomMessageCell //using custom message cell nib
-        cell.avatarImageView.roundedImage() //round the profile picture
+        cell.avatarImageView.roundedImage2() //round the profile picture
         let blueColor = UIColor(red: 0, green: 0.549, blue: 0.8471, alpha: 1.0)
         cell.messageBackground.backgroundColor = blueColor //setting background to blue
         if messageArray.count > 10{ //if more than ten messages it needs to start with the most recent message on the bottom
