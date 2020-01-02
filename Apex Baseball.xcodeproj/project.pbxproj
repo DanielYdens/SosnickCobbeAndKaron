@@ -10,6 +10,7 @@
 		1FEE37546557BDE578F6A071 /* Pods_Sosnick_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C79DC31F875FF55F7DFB2F73 /* Pods_Sosnick_App.framework */; };
 		96021C9923B1E01B0061AB15 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96021C9823B1E01B0061AB15 /* MessageCell.xib */; };
 		960BBCA523B5C262008A5B24 /* OAuth2 in Frameworks */ = {isa = PBXBuildFile; productRef = 960BBCA423B5C262008A5B24 /* OAuth2 */; };
+		960BBCEB23B6E93A008A5B24 /* TestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960BBCEA23B6E939008A5B24 /* TestingViewController.swift */; };
 		960E19D9235E2BC200E29D05 /* SCKNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E19D8235E2BC200E29D05 /* SCKNewsViewController.swift */; };
 		960E19DB235E2C0D00E29D05 /* MassCommunicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E19DA235E2C0D00E29D05 /* MassCommunicationViewController.swift */; };
 		960E19DD23668F0300E29D05 /* SCKNewsFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E19DC23668F0300E29D05 /* SCKNewsFeedCell.swift */; };
@@ -61,6 +62,7 @@
 		47D840DE32F25F91AB41D029 /* Pods-Sosnick App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sosnick App.debug.xcconfig"; path = "Target Support Files/Pods-Sosnick App/Pods-Sosnick App.debug.xcconfig"; sourceTree = "<group>"; };
 		8A940AC81FBA6FFF33DB7319 /* Pods-Sosnick App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sosnick App.release.xcconfig"; path = "Target Support Files/Pods-Sosnick App/Pods-Sosnick App.release.xcconfig"; sourceTree = "<group>"; };
 		96021C9823B1E01B0061AB15 /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MessageCell.xib; path = ../../../../Desktop/MessageCell.xib; sourceTree = "<group>"; };
+		960BBCEA23B6E939008A5B24 /* TestingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestingViewController.swift; sourceTree = "<group>"; };
 		960E19D8235E2BC200E29D05 /* SCKNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCKNewsViewController.swift; sourceTree = "<group>"; };
 		960E19DA235E2C0D00E29D05 /* MassCommunicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MassCommunicationViewController.swift; sourceTree = "<group>"; };
 		960E19DC23668F0300E29D05 /* SCKNewsFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCKNewsFeedCell.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				960E19D8235E2BC200E29D05 /* SCKNewsViewController.swift */,
 				960E19DC23668F0300E29D05 /* SCKNewsFeedCell.swift */,
 				960E19DA235E2C0D00E29D05 /* MassCommunicationViewController.swift */,
+				960BBCEA23B6E939008A5B24 /* TestingViewController.swift */,
 			);
 			path = adminVCFiles;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				969CCAA823061E7D00DEBD75 /* NewsViewController.swift in Sources */,
 				96C3631D22E038A7007762B4 /* UserMessagesViewController.swift in Sources */,
 				96C3631B22DFCAA6007762B4 /* MessagesViewController.swift in Sources */,
+				960BBCEB23B6E93A008A5B24 /* TestingViewController.swift in Sources */,
 				965F3FCA22E6DFD8006A6A26 /* StyleButton.swift in Sources */,
 				96C3630922D563E5007762B4 /* backgroundExtension.swift in Sources */,
 				965F3FD122E95DA7006A6A26 /* CustomMessageCell.swift in Sources */,

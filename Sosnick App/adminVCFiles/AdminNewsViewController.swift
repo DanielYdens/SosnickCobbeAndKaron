@@ -14,7 +14,10 @@ import SwiftyJSON
 import OAuth2
 
 
+
+
 class AdminNewsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, AdminPostCellDelegate{
+    
     
     
     // NOT CURRENTLY BEING USED IN APP
@@ -35,7 +38,7 @@ class AdminNewsViewController: UIViewController, UICollectionViewDataSource, UIC
     "authorize_uri": "https://api.instagram.com/oauth/authorize",
     "token_uri": "https://api.instagram.com/oauth/access_token",
     "response_type": "code",
-    "redirect_uris": ["apexbaseball://oauth/callback"],
+    "redirect_uris": ["https://acrobat.adobe.com/us/en"],
     "keychain": false,
     "title": "InstagramViewer",
     "secret_in_body" : true
@@ -52,17 +55,27 @@ class AdminNewsViewController: UIViewController, UICollectionViewDataSource, UIC
     @IBAction func syncButtonPressed(_ sender: UIButton) {
         oauth2.logger = OAuth2DebugLogger(.trace)
         oauth2.authConfig.authorizeEmbedded = true
-        oauth2.authConfig.authorizeContext = AdminNewsViewController.self
+        oauth2.authConfig.authorizeContext = self
         
-        oauth2.authorize() { authParameters, error in
-            if let params = authParameters {
-                print("Authorized! Access token is in `oauth2.accessToken`")
-                print("Authorized! Additional parameters: \(params)")
+        oauth2.authorize(params: ["app_id" : "603532347144383"]) { (json, error) in
+            if let JSON = json{
+                print("worked!")
+                print(JSON)
             }
-            else {
-                print("Authorization was canceled or went wrong: \(error)")   // error will not be nil
+            else{
+                print("error! \(error)")
             }
         }
+//        oauth2.authorize(p) { authParameters, erro
+       // r in
+//            if let params = authParameters {
+//                print("Authorized! Access token is in `oauth2.accessToken`")
+//                print("Authorized! Additional parameters: \(params)")
+//            }
+//            else {
+//                print("Authorization was canceled or went wrong: \(error)")   // error will not be nil
+//            }
+//        }
 //        self.oauth2.authorizeEmbedded(from: self) { (oauthJSON, oauthError) in
 //            if oauthError != nil{
 //                print(oauthError)
@@ -72,7 +85,7 @@ class AdminNewsViewController: UIViewController, UICollectionViewDataSource, UIC
 //            }
 //
 //        }
-        
+//
         
 //        let base = URL(string: "https://api.instagram.com")!
 //        let url = base.appendingPathComponent("apexbaseball")
@@ -148,6 +161,7 @@ class AdminNewsViewController: UIViewController, UICollectionViewDataSource, UIC
         if self.isConnectedToInternet(){
             //fetchPosts()
             getInstagramAccessToken()
+            
         }
         else{
             let alert = UIAlertController(title: "Error", message: "No network connection, please try again", preferredStyle: .alert)
@@ -164,6 +178,9 @@ class AdminNewsViewController: UIViewController, UICollectionViewDataSource, UIC
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        //checkIfThereIsAnyReminders()
+        
         self.newsCollectionView.delegate = self
         self.newsCollectionView.dataSource = self
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
@@ -305,7 +322,7 @@ class AdminNewsViewController: UIViewController, UICollectionViewDataSource, UIC
  
     
     @IBAction func addPostButtonPressed(_ sender: UIButton) {
-        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "uploadPosts") as? UploadToSocialViewController
+        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "massComm") as? MassCommunicationViewController
         self.navigationController?.pushViewController(vc!, animated: true)
     }
 

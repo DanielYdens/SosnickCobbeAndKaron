@@ -18,9 +18,11 @@ class MassCommunicationViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     
     var database = Firestore.firestore()
+    var messageDate : Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getCurrentDate()
         self.hideKeyboardWhenTappedAround() //if they tap anywhere around screen hide keyboard
         // Do any additional setup after loading the view.
     }
@@ -37,7 +39,7 @@ class MassCommunicationViewController: UIViewController {
         refreshAlert.addAction(UIAlertAction(title: "Yes, I'm sure", style: .default, handler: { (action: UIAlertAction!) in
             print("Handle Ok logic here")
             if let messageText = self.messageTextView.text {
-                if let titleText = self.titleTextField.text { self.database.collection("massCommunication").addDocument(data: ["message" : messageText, "title" : titleText]) // when yes im sure button pressed create a document within mass communication  that has the data of the message and title
+                if let titleText = self.titleTextField.text { self.database.collection("massCommunication").addDocument(data: ["message" : messageText, "title" : titleText, "timeStamp" : self.messageDate]) // when yes im sure button pressed create a document within mass communication  that has the data of the message and title
                 }
            }
             
@@ -51,6 +53,13 @@ class MassCommunicationViewController: UIViewController {
         
         present(refreshAlert, animated: true, completion: nil) //present alert
         
+    }
+    
+    func getCurrentDate(){
+        let date =  Date()
+       // requestDate = "\(month)/\(day)/\(year)"
+        let timeInterval = date.timeIntervalSince1970
+        messageDate = Int(timeInterval)
     }
     /*
     // MARK: - Navigation

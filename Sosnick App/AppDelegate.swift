@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     "authorize_uri": "https://api.instagram.com/oauth/authorize",
     "token_uri": "https://api.instagram.com/oauth/access_token",
     "response_type": "code",
-    "redirect_uris": ["apexbaseball://oauth/callback"],
+    "redirect_uris": ["https://acrobat.adobe.com/us/en"],
     "keychain": false,
     "title": "InstagramViewer",
     "secret_in_body" : true

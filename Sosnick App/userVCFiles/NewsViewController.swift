@@ -33,6 +33,7 @@ class NewsViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //checkIfThereIsAnyReminders()
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
        

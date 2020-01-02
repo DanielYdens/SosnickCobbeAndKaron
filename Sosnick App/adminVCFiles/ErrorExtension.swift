@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseFirestore
 import Alamofire
 
 
@@ -36,6 +37,9 @@ extension AuthErrorCode {
 
 
 extension UIViewController{
+    
+   
+    
     func handleError(_ error: Error) {
         if let errorCode = AuthErrorCode(rawValue: error._code) {
             print(errorCode.errorMessage)
@@ -53,5 +57,7 @@ extension UIViewController{
     func isConnectedToInternet() -> Bool{
         return NetworkReachabilityManager()!.isReachable
     }
+    
+    
 
 }

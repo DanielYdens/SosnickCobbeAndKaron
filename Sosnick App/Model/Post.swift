@@ -12,3 +12,10 @@ class Post: NSObject {
     var caption : String!
     var postID : String!
 }
+
+class massMessage: NSObject {
+    var title : String!
+    var message : String!
+    var docID : String!
+}
+
