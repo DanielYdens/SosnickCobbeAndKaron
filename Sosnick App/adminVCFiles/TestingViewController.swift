@@ -91,19 +91,21 @@ class TestingViewController: UIViewController, WKNavigationDelegate {
         }
     
     func presentAlert(){
-        let refreshAlert = UIAlertController(title: messages[current].title, message: messages[current].message, preferredStyle: UIAlertController.Style.alert) //presents a popup asking if they want to admin complete the request
-        let okayAction = UIAlertAction(title: "OK", style: .default) { (action) in
-            Firestore.firestore().collection("users").document(self.uid).updateData(["lastViewedMC":self.messages[self.current].docID!])
-            
-        self.current+=1
-            
-        if(self.current < self.messages.count){
-                self.presentAlert()
+        if (messages.count > 0){
+            let refreshAlert = UIAlertController(title: messages[current].title, message: messages[current].message, preferredStyle: UIAlertController.Style.alert) //presents a popup asking if they want to admin complete the request
+            let okayAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                Firestore.firestore().collection("users").document(self.uid).updateData(["lastViewedMC":self.messages[self.current].docID!])
+                
+            self.current+=1
+                
+            if(self.current < self.messages.count){
+                    self.presentAlert()
+                }
             }
+            
+            refreshAlert.addAction(okayAction)
+            self.present(refreshAlert, animated: true, completion: nil)
         }
-        
-        refreshAlert.addAction(okayAction)
-        self.present(refreshAlert, animated: true, completion: nil)
         
     }
     

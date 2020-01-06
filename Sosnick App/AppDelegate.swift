@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-       
+        //window!.overrideUserInterfaceStyle = .light
         FirebaseApp.configure() //configure firebase
         Messaging.messaging().delegate = self as? MessagingDelegate
         FirebaseApp.configure(name: "CreatingUsersApp", options: FirebaseApp.app()!.options)

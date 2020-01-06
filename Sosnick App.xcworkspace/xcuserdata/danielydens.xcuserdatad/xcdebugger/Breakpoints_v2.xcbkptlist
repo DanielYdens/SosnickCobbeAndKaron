@@ -24,23 +24,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8A675C28-1735-4C8B-895A-13872655FF2A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Sosnick App/userVCFiles/UserMessagesViewController.swift"
-            timestampString = "590463316.9647731"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
-            landmarkName = "retrieveMessages()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "79C10F66-BFBA-4C5A-AC38-996F5FFBC62F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -246,22 +229,6 @@
             startingLineNumber = "62"
             endingLineNumber = "62"
             landmarkName = "checkIfThereIsAnyReminders()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "67685784-D2F0-464D-BB4B-82ABE1108EC9"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Sosnick App/adminVCFiles/TestingViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "presentAlert()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -16,20 +16,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3FM-vO-Zq6">
-                                <rect key="frame" x="36" y="396" width="343" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="xTN-oW-HA5"/>
-                                </constraints>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3FM-vO-Zq6">
+                                <rect key="frame" x="30" y="417" width="354" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bt7-fT-X6A" customClass="StyleButton" customModule="Apex_Baseball" customModuleProvider="target">
-                                <rect key="frame" x="36" y="451" width="343" height="51"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bt7-fT-X6A" customClass="StyleButton" customModule="Apex_Baseball" customModuleProvider="target">
+                                <rect key="frame" x="30" y="481" width="354" height="52"/>
                                 <color key="backgroundColor" red="0.27021247148513794" green="0.82079344987869263" blue="0.070123918354511261" alpha="0.73881635273972601" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="51" id="Hwb-Qb-W4j"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                 <state key="normal" title="Log In">
                                     <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -38,23 +32,20 @@
                                     <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="diN-Jk-aBR"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="ZWR-0G-LEo">
-                                <rect key="frame" x="36" y="347" width="343" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="hOs-dN-TnV"/>
-                                </constraints>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="ZWR-0G-LEo">
+                                <rect key="frame" x="30" y="363" width="354" height="34"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apex" translatesAutoresizingMaskIntoConstraints="NO" id="hQ7-fb-loR">
-                                <rect key="frame" x="51" y="128" width="312" height="192"/>
+                                <rect key="frame" x="50" y="133" width="314" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="ZuW-sG-lWK"/>
+                                </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hp-G4-TBo">
-                                <rect key="frame" x="100" y="537" width="214" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="RGT-bF-xbH"/>
-                                </constraints>
+                                <rect key="frame" x="30" y="563" width="354" height="30"/>
                                 <state key="normal" title="Forgot Password?"/>
                                 <connections>
                                     <action selector="forgotPasswordPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ui8-tN-TpL"/>
@@ -63,22 +54,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ZWR-0G-LEo" firstAttribute="leading" secondItem="3FM-vO-Zq6" secondAttribute="leading" id="1gS-gf-9FN"/>
-                            <constraint firstItem="hQ7-fb-loR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="51" id="4cg-RH-ePM"/>
-                            <constraint firstItem="ZWR-0G-LEo" firstAttribute="top" secondItem="hQ7-fb-loR" secondAttribute="bottom" constant="27" id="GoC-Jm-Lyy"/>
-                            <constraint firstItem="bt7-fT-X6A" firstAttribute="top" secondItem="3FM-vO-Zq6" secondAttribute="bottom" constant="25" id="HTX-W9-e36"/>
-                            <constraint firstItem="hQ7-fb-loR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="K9K-vE-VEy"/>
-                            <constraint firstItem="0hp-G4-TBo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="Q0J-3l-1zJ"/>
-                            <constraint firstItem="3FM-vO-Zq6" firstAttribute="trailing" secondItem="bt7-fT-X6A" secondAttribute="trailing" id="XPH-dH-SZ8"/>
-                            <constraint firstItem="hQ7-fb-loR" firstAttribute="centerX" secondItem="ZWR-0G-LEo" secondAttribute="centerX" id="YHy-7d-D6R"/>
-                            <constraint firstItem="3FM-vO-Zq6" firstAttribute="leading" secondItem="bt7-fT-X6A" secondAttribute="leading" id="bei-c9-Z31"/>
-                            <constraint firstItem="ZWR-0G-LEo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="36" id="rOW-e1-zSC"/>
-                            <constraint firstItem="hQ7-fb-loR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="tdX-8E-Tiv"/>
-                            <constraint firstItem="3FM-vO-Zq6" firstAttribute="top" secondItem="ZWR-0G-LEo" secondAttribute="bottom" constant="19" id="tlw-P1-uTv"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0hp-G4-TBo" secondAttribute="bottom" constant="295" id="ueL-V6-PZE"/>
-                            <constraint firstItem="bt7-fT-X6A" firstAttribute="centerX" secondItem="0hp-G4-TBo" secondAttribute="centerX" id="wxw-yB-4QY"/>
-                            <constraint firstItem="ZWR-0G-LEo" firstAttribute="trailing" secondItem="3FM-vO-Zq6" secondAttribute="trailing" id="y01-4p-wlQ"/>
-                            <constraint firstItem="0hp-G4-TBo" firstAttribute="top" secondItem="bt7-fT-X6A" secondAttribute="bottom" constant="35" id="yOx-LY-7u9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bt7-fT-X6A" secondAttribute="trailing" constant="30" id="77A-Ll-LP2"/>
+                            <constraint firstItem="bt7-fT-X6A" firstAttribute="top" secondItem="3FM-vO-Zq6" secondAttribute="bottom" constant="30" id="7nJ-bf-6Ag"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0hp-G4-TBo" secondAttribute="trailing" constant="30" id="DMw-aN-xWJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3FM-vO-Zq6" secondAttribute="trailing" constant="30" id="Jxg-g3-3OL"/>
+                            <constraint firstItem="0hp-G4-TBo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="Kxu-MI-N21"/>
+                            <constraint firstItem="3FM-vO-Zq6" firstAttribute="top" secondItem="ZWR-0G-LEo" secondAttribute="bottom" constant="20" id="OKR-rN-g1j"/>
+                            <constraint firstItem="hQ7-fb-loR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="45" id="TAN-vC-vOD"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZWR-0G-LEo" secondAttribute="trailing" constant="30" id="bu3-Xr-3eb"/>
+                            <constraint firstItem="hQ7-fb-loR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="f9U-DH-QLc"/>
+                            <constraint firstItem="3FM-vO-Zq6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="gLQ-Bh-PWh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hQ7-fb-loR" secondAttribute="trailing" constant="50" id="mNz-RZ-aIA"/>
+                            <constraint firstItem="bt7-fT-X6A" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="rEu-Cq-baY"/>
+                            <constraint firstItem="ZWR-0G-LEo" firstAttribute="top" secondItem="hQ7-fb-loR" secondAttribute="bottom" constant="30" id="uww-sL-Nbq"/>
+                            <constraint firstItem="ZWR-0G-LEo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="vpP-1e-8SR"/>
+                            <constraint firstItem="0hp-G4-TBo" firstAttribute="top" secondItem="bt7-fT-X6A" secondAttribute="bottom" constant="30" id="xwv-Zs-pZI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -1825,13 +1815,15 @@
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LAl-Pa-UKY">
                                         <rect key="frame" x="30" y="81" width="354" height="38"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N5K-uf-qj2">
                                         <rect key="frame" x="30" y="194" width="354" height="362"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="25"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>

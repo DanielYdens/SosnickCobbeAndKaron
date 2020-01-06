@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>177131500362-u6626sbinqc4919ali3l6vbe2epj45ge.apps.googleusercontent.com</string>
+	<string>177131500362-beegnm5b7jnurb76duhc6vld0k3enbs1.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.177131500362-u6626sbinqc4919ali3l6vbe2epj45ge</string>
+	<string>com.googleusercontent.apps.177131500362-beegnm5b7jnurb76duhc6vld0k3enbs1</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCVUK9JBJHoM4bLx73Hx2AbWdTDf3h08cg</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.danielydens.Sosnick-App</string>
+	<string>com.danielydens.ApexBaseball</string>
 	<key>PROJECT_ID</key>
 	<string>sosnick-app</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:177131500362:ios:7ab1369056de9a81</string>
+	<string>1:177131500362:ios:aa2d84ee55cf578e6a07b3</string>
 	<key>DATABASE_URL</key>
 	<string>https://sosnick-app.firebaseio.com</string>
 </dict>

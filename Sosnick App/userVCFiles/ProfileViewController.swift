@@ -333,9 +333,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         let imageName = UUID().uuidString
         // Create a storage reference from our storage service
         let storageRef = storage.reference().child("\(imageName).png")
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/png"
         
         if let uploadData = Image.pngData() {
-            storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
+            storageRef.putData(uploadData, metadata: metadata) { (metadata, error) in
                 if error != nil{
                     print(error!)
                     return
@@ -354,7 +356,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
        
     }
     func makeImageRound(){
-        profileImageView.roundedImage()
+        profileImageView.roundedImage3()
         
     }
     func storeInUserDB(URL: String){
