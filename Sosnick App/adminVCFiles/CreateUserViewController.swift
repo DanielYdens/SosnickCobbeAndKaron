@@ -159,6 +159,7 @@ class CreateUserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Register New Users"
+        self.hideKeyboardWhenTappedAround()
         
         // Do any additional setup after loading the view.
     }

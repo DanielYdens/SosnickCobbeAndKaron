@@ -127,6 +127,7 @@ class AdminPlayersViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let playerCell = self.playersTable.dequeueReusableCell(withIdentifier: "PlayerCell") as! PlayersTableViewCell
+        playerCell.profilePicImageView.roundedImage()
         if searching { //if searching use the searching array
             playerCell.name.text = searchName[indexPath.row].name
             if searchName[indexPath.row].profilePicURL != ""{ //if profile picture url exists
@@ -143,7 +144,7 @@ class AdminPlayersViewController: UIViewController, UITableViewDelegate, UITable
                         return
                     }
                 }
-                playerCell.profilePicImageView.roundedImage()
+                
             }
             else{
                 playerCell.profilePicImageView.image = UIImage(named: "addProfilePicture")
