@@ -20,6 +20,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     var cleatPreference : String = ""
     var bats: String = ""
     var throwingArm : String = ""
+    var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
    
 
  
@@ -38,6 +39,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
 //    @IBOutlet weak var batsSegmentController: UISegmentedControl!
 //    @IBOutlet weak var throwsSegmentController: UISegmentedControl!
     
+    @IBOutlet weak var logoutBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var editBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var contentView: UIView!
@@ -165,6 +168,19 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.subviews.forEach { $0.isHidden = true }
+        editBarButtonItem.setTitleTextAttributes([ NSAttributedString.Key.font: UIFont(name: "ErasITC-Medium", size: 15)!], for: UIControl.State.normal)
+        logoutBarButtonItem.setTitleTextAttributes([ NSAttributedString.Key.font: UIFont(name: "ErasITC-Medium", size: 15)!], for: UIControl.State.normal)
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        if #available(iOS 13.0, *) {
+            activityIndicator.style = UIActivityIndicatorView.Style.white
+        } else {
+            // Fallback on earlier versions
+        }
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         self.hideKeyboardWhenTappedAround()
         makeImageRound()
         profilePictureSetup()
@@ -192,25 +208,40 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             else{
                 
                 if let profilePictureURL = DocumentSnapshot?.get("profilePictureURL") as? String{
-                    let url = NSURL(string: profilePictureURL)
-                    if (url!.absoluteString != ""){
-                        self.downloadImage(url: url! as URL) { (image) in
-                            if image != nil{
-                                DispatchQueue.main.async {
-                                    self.profileImageView.image = image
+                    if profilePictureURL != "" {
+                        let url = NSURL(string: profilePictureURL)
+                        if (url!.absoluteString != ""){
+                            self.downloadImage(url: url! as URL) { (image) in
+                                if image != nil{
+                                    DispatchQueue.main.async {
+                                        self.profileImageView.image = image
+                                        self.stopActivityIndicator()
+                                    }
                                 }
-                            }
-                            else{
+                                else{
+                                    
+                                    return
+                                }
                                 
-                                return
                             }
-                            
                         }
                     }
+                    else{
+                        self.stopActivityIndicator()
+                    }
+                    
                     
                 }
+
             }
         }
+    }
+    
+    func stopActivityIndicator() {
+      self.view.subviews.forEach { $0.isHidden = false }
+      self.activityIndicator.stopAnimating()
+      self.view.isUserInteractionEnabled = true
+        
     }
     
 //    func displayProfilePicture(){
@@ -287,7 +318,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func profilePictureSetup(){
         
-        profileImageView.image = UIImage(named: "addProfilePicture")
+        profileImageView.image = UIImage(named: "profile-1")
         
         DispatchQueue.main.async{
             self.profileImageView.isUserInteractionEnabled = true
@@ -332,11 +363,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         let imageName = UUID().uuidString
         // Create a storage reference from our storage service
-        let storageRef = storage.reference().child("\(imageName).png")
+        let storageRef = storage.reference().child("\(imageName).jpeg")
         let metadata = StorageMetadata()
-        metadata.contentType = "image/png"
+        metadata.contentType = "image/jpeg"
         
-        if let uploadData = Image.pngData() {
+        if let uploadData = Image.jpegData(compressionQuality: 0.2) {
             storageRef.putData(uploadData, metadata: metadata) { (metadata, error) in
                 if error != nil{
                     print(error!)

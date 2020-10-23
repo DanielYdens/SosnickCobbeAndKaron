@@ -31,6 +31,13 @@
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>ERASBD.TTF</string>
+		<string>ERASDEMI.TTF</string>
+		<string>ERASLIGHT.TTF</string>
+		<string>ERASMD.TTF</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

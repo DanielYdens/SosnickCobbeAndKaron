@@ -10,7 +10,7 @@ import UIKit
 import FirebaseFirestore
 import Firebase
 import FirebaseAuth
-
+import NotificationCenter
 class MessagesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
   
     
@@ -40,7 +40,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
                         self.handleError(error)
                     }
                 } else{
-                    print("message successfully saved")
+                 //   print("message successfully saved")
                     self.messageTextField.isEnabled = true
                     self.sendButton.isEnabled = true
                     self.messageTextField.text = "" //reenable buttons and text field
@@ -51,7 +51,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
             }
         } else{
             database.document(documentID).collection("messages").addDocument(data: messageDictionary as [String : Any]) //if already had messages in the conversation
-            print("already had a message in it")
+           // print("already had a message in it")
             self.messageTextField.isEnabled = true //reenable the fields
             self.sendButton.isEnabled = true
             self.messageTextField.text = ""
@@ -68,7 +68,6 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     
     var documentID : String = ""
     var messageArray : [Message] = [Message]()
-    var userEmailAddress : String = ""
     let database = Firestore.firestore().collection("userMessageA")
     var isFirstMessageSent : Bool = false
     var sentTime : Int = 0
@@ -78,6 +77,12 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
         messageTableView.delegate = self
         messageTableView.dataSource = self //want this file to fill the table view with all information and data
         messageTextField.delegate = self
@@ -95,37 +100,37 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         // Do any additional setup after loading the view.
     }
     
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+
+            UIView.animate(withDuration: 0.25) {
+                self.heightConstraint.constant = 358 //when they click the typing field it moves up to accomodate for keyboard
+                self.view.layoutIfNeeded()
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messageArray.count //return the number of messages in the message array
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = messageTableView.dequeueReusableCell(withIdentifier: "customMessageCell", for: indexPath) as! CustomMessageCell //using custom message cell nib
-        cell.avatarImageView.roundedImage2() //round the profile picture
-        let blueColor = UIColor(red: 0, green: 0.549, blue: 0.8471, alpha: 1.0)
-        cell.messageBackground.backgroundColor = blueColor //setting background to blue
+        cell.messageBackground.backgroundColor = UIColor(white: 0.95, alpha: 1) // light grey
+        cell.messageBody.textColor = .black //text of message to black
+        
         if messageArray.count > 10{ //if more than ten messages it needs to start with the most recent message on the bottom
             messageTableView.transform = CGAffineTransform (scaleX: 1,y: -1);
             cell.contentView.transform = CGAffineTransform (scaleX: 1,y: -1);
         }
         if messageArray[indexPath.row].sender == Auth.auth().currentUser?.email{ //if it is the current logged in users message aka ADMIN
             
-            cell.avatarImageView.image = UIImage(named: "apex") //use admin profile picture
-            cell.messageBackground.backgroundColor = UIColor(white: 0.95, alpha: 1) // light grey
-            cell.messageBody.textColor = .black //text of message to black
+            let blueColor = UIColor(red: 0, green: 0.549, blue: 0.8471, alpha: 1.0)
+            cell.messageBackground.backgroundColor = blueColor //setting background to blue
+            
         }
-        else{
-            if profilePictureURL == ""{ // if no profile picture use the generic one
-                cell.avatarImageView.image = UIImage(named: "addProfilePicture")
-                
-                
-            } else{
-                
-                cell.avatarImageView.downloaded(from: profilePictureURL) // download it if there is one
-                
-            }
-        }
-        
         cell.messageBody.text = messageArray[indexPath.row].messageBody //fill text field with message
         cell.senderUsername.text = messageArray[indexPath.row].sender //fill sender text field with sender email
         
@@ -181,14 +186,7 @@ class MessagesViewController: UIViewController, UITableViewDelegate, UITableView
         sentTime = Int(timeSent) //update sent time
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-        
-        UIView.animate(withDuration: 0.25) {
-            self.heightConstraint.constant = 358 //when user clicks the message field to type their message then the field moves up for the keyboard
-            self.view.layoutIfNeeded()
-        }
-    }
+
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.25) {

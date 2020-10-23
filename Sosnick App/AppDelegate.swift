@@ -54,7 +54,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         //window!.overrideUserInterfaceStyle = .light
+        
+        guard let customFont = UIFont(name: "ErasITC-Medium", size: UIFont.labelFontSize) else {
+            fatalError("""
+                Failed to load the "CustomFont-Light" font.
+                Make sure the font file is included in the project and the font name is spelled correctly.
+                """
+            )
+        }
+        let attr = NSDictionary(object: customFont, forKey: NSAttributedString.Key.font as NSCopying)
+        UISegmentedControl.appearance().setTitleTextAttributes(attr as? [NSAttributedString.Key : Any] , for: .normal)
         FirebaseApp.configure() //configure firebase
+        
         Messaging.messaging().delegate = self as? MessagingDelegate
         FirebaseApp.configure(name: "CreatingUsersApp", options: FirebaseApp.app()!.options)
         self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -119,7 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         
         
-        print("Firebase registration token: \(fcmToken)") //token for push notifications
+        //print("Firebase registration token: \(fcmToken)") //token for push notifications
         
         let dataDict:[String: String] = ["token": fcmToken]
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
@@ -129,9 +140,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         InstanceID.instanceID().instanceID { (result, error) in
             if let error = error {
-                print("Error fetching remote instance ID: \(error)")
+               // print("Error fetching remote instance ID: \(error)")
             } else if let result = result {
-                print("Remote instance ID token: \(result.token)")
+               // print("Remote instance ID token: \(result.token)")
                 MyVariables.fcmToken = result.token
                 
                 
@@ -141,7 +152,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-        print("Received data message: \(remoteMessage.appData)")
+       // print("Received data message: \(remoteMessage.appData)")
     }
     
 

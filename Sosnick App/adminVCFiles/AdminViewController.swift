@@ -38,7 +38,7 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
             navigationController?.popToRootViewController(animated: true)
         }
         catch{
-            print("error: couldnt log out")
+            //print("error: couldnt log out")
         }
     }
     
@@ -67,6 +67,9 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIBarButtonItem.appearance(whenContainedInInstancesOf:[UISearchBar.self]).tintColor = UIColor.white
+        adminTableView.separatorStyle = .none
+        self.hideKeyboardWhenTappedAround()
         //accessData()
         let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
 
@@ -88,7 +91,7 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
             db.collection("userRequestC").whereField("isProcessed", isEqualTo: false).order(by: "dateNum").getDocuments { (QuerySnapshot //get the documents that arent completed
                 , Error) in
                 if Error != nil{
-                    print("Error getting docs")
+                   // print("Error getting docs")
                     self.handleError(Error!)
                 }
                 else{
@@ -96,7 +99,7 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
                     self.equipmentRequestsOnly.removeAll()
                     self.nonEquipmentRequests.removeAll()
                     for document in QuerySnapshot!.documents{ // for each document
-                        print("THE DATA IS: \(document.data())") //get all request data and put it into currentReq
+                       // print("THE DATA IS: \(document.data())") //get all request data and put it into currentReq
                         self.currentReq = Request()
                         if let category = document.get("category") as? String {
                             self.currentReq.category = category
@@ -188,7 +191,12 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.adminTableView.dequeueReusableCell(withIdentifier: "adminRequestCell") as! AdminTableViewCell //use the right cell in storyboard
-        
+        cell.backView.layer.cornerRadius = 12
+        cell.backView.layer.shadowColor = UIColor(red: 10/255, green: 90/255, blue: 98/255, alpha: 1).cgColor
+        cell.backView.layer.shadowOpacity = 0.75
+        cell.backView.layer.shadowOffset = .zero
+        cell.backView.layer.shadowRadius = 3
+        cell.backView.layer.masksToBounds = false
         if isInitialized == true{ //if requests have been grabbed
             if searching { //if currently searching
                 cell.adminReq = searchRequest[indexPath.row] //use search request results
@@ -219,6 +227,7 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
         if segue.identifier == "adminGoToInfo"{ //information of request screen
             let adminInfoScreen = segue.destination as! AdminRequestInfoViewController
             if searching{ //if searching pass all data of a specific search request row to next screen
+                adminInfoScreen.currentRequestState = searchRequest[row].status
                 adminInfoScreen.adminCategory = searchRequest[row].category
                 adminInfoScreen.adminDate = searchRequest[row].date
                 adminInfoScreen.adminDescription = searchRequest[row].description
@@ -229,6 +238,7 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
             }
             else{
                 if role == "Admin"{ //if not searching and role is admin pass correct request to next screen through segue
+                    adminInfoScreen.currentRequestState = allUserRequests[row].status
                     adminInfoScreen.adminCategory = allUserRequests[row].category
                     adminInfoScreen.adminDate = allUserRequests[row].date
                     adminInfoScreen.adminDescription = allUserRequests[row].description
@@ -238,6 +248,7 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
                     adminInfoScreen.requestStatus = allUserRequests[row].status
                 }
                 else{ //if not searching and role is equipment admin pass the correct equipment request info
+                    adminInfoScreen.currentRequestState = equipmentRequestsOnly[row].status
                     adminInfoScreen.adminCategory = equipmentRequestsOnly[row].category
                     adminInfoScreen.adminDate = equipmentRequestsOnly[row].date
                     adminInfoScreen.adminDescription = equipmentRequestsOnly[row].description
@@ -290,6 +301,8 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     
+    
+   
     
 
     /*

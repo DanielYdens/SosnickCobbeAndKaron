@@ -20,15 +20,17 @@ class TestingViewController: UIViewController, WKNavigationDelegate {
     let uid =  Auth.auth().currentUser!.uid
     
     override func viewDidAppear(_ animated: Bool) {
-        
-        let url = URL(string: "https://instagram.com/apexbaseball")!
-        webVIew.load(URLRequest(url: url))
-        webVIew.allowsBackForwardNavigationGestures = true
+//
+//        let url = URL(string: "https://instagram.com/apexbaseball")!
+//        webVIew.load(URLRequest(url: url))
+//        webVIew.allowsBackForwardNavigationGestures = true
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        let url = URL(string: "https://www.apexbaseball.com/apex-blog")!
+        webVIew.load(URLRequest(url: url))
         checkIfThereIsAnyReminders()
-        webVIew.navigationDelegate = self as WKNavigationDelegate
+        //webVIew.navigationDelegate = self as WKNavigationDelegate
         // Do any additional setup after loading the view.
     }
     

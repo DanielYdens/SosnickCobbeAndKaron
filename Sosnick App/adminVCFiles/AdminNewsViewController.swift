@@ -59,11 +59,11 @@ class AdminNewsViewController: UIViewController, UICollectionViewDataSource, UIC
         
         oauth2.authorize(params: ["app_id" : "603532347144383"]) { (json, error) in
             if let JSON = json{
-                print("worked!")
-                print(JSON)
+               // print("worked!")
+               // print(JSON)
             }
             else{
-                print("error! \(error)")
+               // print("error! \(error)")
             }
         }
 //        oauth2.authorize(p) { authParameters, erro
@@ -153,7 +153,7 @@ class AdminNewsViewController: UIViewController, UICollectionViewDataSource, UIC
                 }
             }
             else{
-                print("success! url stored")
+              //  print("success! url stored")
             }
         }
     }
@@ -198,7 +198,7 @@ class AdminNewsViewController: UIViewController, UICollectionViewDataSource, UIC
                 switch response.result {
                     case .success(let value):
                         let json = JSON(value)
-                        print("JSON: \(json)")
+                       // print("JSON: \(json)")
                         let instagramPost = Post()
                         let url = json["media_url"].stringValue
                         instagramPost.URL = url
@@ -206,7 +206,7 @@ class AdminNewsViewController: UIViewController, UICollectionViewDataSource, UIC
                         instagramPost.postID = imageID
                         self.newsPosts.append(instagramPost)
                         self.newsCollectionView.reloadData()
-                        print("reloaded")
+                       // print("reloaded")
                     case .failure(let error):
                         print(error)
                 }

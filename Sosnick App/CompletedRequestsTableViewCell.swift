@@ -10,13 +10,16 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 
-class CompletedRequestsTableViewCell: UITableViewCell {
+class CompletedRequestsTableViewCell : UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    @IBOutlet weak var statusLabel: UILabel!
+    
+    @IBOutlet weak var backView: UIView!
+    
     @IBOutlet weak var requestDescriptionLabel: UILabel!
     
     @IBOutlet weak var dateLabel: UILabel!
@@ -70,6 +73,7 @@ class CompletedRequestsTableViewCell: UITableViewCell {
      
         if request?.isProcessed == true{ //if user completes show a check
             statusImage.image = UIImage(named: "check")
+            statusLabel.text = "Status: Completed"
         }
 //        if request?.isProcessed == false{
 //            statusImage.image = UIImage(named: "pending2")

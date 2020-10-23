@@ -15,11 +15,21 @@
 		960E19DB235E2C0D00E29D05 /* MassCommunicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E19DA235E2C0D00E29D05 /* MassCommunicationViewController.swift */; };
 		960E19DD23668F0300E29D05 /* SCKNewsFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E19DC23668F0300E29D05 /* SCKNewsFeedCell.swift */; };
 		960E2BAE22FC853E00D934D1 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E2BAD22FC853E00D934D1 /* ForgotPasswordViewController.swift */; };
+		9616103B252EB4A2001D8FC5 /* MassMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9616103A252EB4A2001D8FC5 /* MassMessageViewController.swift */; };
+		9616103E252EB8AF001D8FC5 /* MassMessagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9616103C252EB8AF001D8FC5 /* MassMessagesTableViewCell.swift */; };
+		9616103F252EB8AF001D8FC5 /* MassMessagesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9616103D252EB8AF001D8FC5 /* MassMessagesTableViewCell.xib */; };
+		96161043252EBAB9001D8FC5 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96161042252EBAB9001D8FC5 /* Reminder.swift */; };
 		962FC84122BA149300C57190 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962FC84022BA149300C57190 /* SecondViewController.swift */; };
 		9630BA2F231DB1E4003D9C58 /* AdminNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9630BA2E231DB1E4003D9C58 /* AdminNewsViewController.swift */; };
 		964B6EC522C49A4D003C9A31 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964B6EC422C49A4D003C9A31 /* Request.swift */; };
 		964B6ECD22CBD0E1003C9A31 /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964B6ECC22CBD0E1003C9A31 /* RequestViewController.swift */; };
 		964B6ECF22CD5A8E003C9A31 /* RequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964B6ECE22CD5A8D003C9A31 /* RequestTableViewCell.swift */; };
+		96540AC4250873D10086FCBA /* ApexBlogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96540AC3250873D10086FCBA /* ApexBlogViewController.swift */; };
+		96540AC82509BB980086FCBA /* AppTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96540AC72509BB980086FCBA /* AppTabBar.swift */; };
+		96540ACF250C7B280086FCBA /* ERASLGHT.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 96540ACB250C7B280086FCBA /* ERASLGHT.TTF */; };
+		96540AD0250C7B280086FCBA /* ERASMD.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 96540ACC250C7B280086FCBA /* ERASMD.TTF */; };
+		96540AD1250C7B280086FCBA /* ERASDEMI.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 96540ACD250C7B280086FCBA /* ERASDEMI.TTF */; };
+		96540AD2250C7B280086FCBA /* ERASBD.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 96540ACE250C7B280086FCBA /* ERASBD.TTF */; };
 		9659FCD223105DF2000D6C3A /* UploadToSocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9659FCD123105DF2000D6C3A /* UploadToSocialViewController.swift */; };
 		9659FCD42311CFF6000D6C3A /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9659FCD32311CFF6000D6C3A /* PostCell.swift */; };
 		9659FCD82311D11D000D6C3A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9659FCD72311D11D000D6C3A /* Post.swift */; };
@@ -28,6 +38,8 @@
 		9659FCE023167203000D6C3A /* AdminPlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9659FCDF23167203000D6C3A /* AdminPlayersViewController.swift */; };
 		9659FCE223167876000D6C3A /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9659FCE123167876000D6C3A /* Player.swift */; };
 		9659FCE4231765F4000D6C3A /* PlayerProfileInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9659FCE3231765F4000D6C3A /* PlayerProfileInfoViewController.swift */; };
+		965A7A5425212EE900D49A0C /* ScreenshotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965A7A5225212EE900D49A0C /* ScreenshotTableViewCell.swift */; };
+		965A7A5525212EE900D49A0C /* ScreenshotTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 965A7A5325212EE900D49A0C /* ScreenshotTableViewCell.xib */; };
 		965F3FC322E569FD006A6A26 /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F3FC222E569FD006A6A26 /* CreateUserViewController.swift */; };
 		965F3FCA22E6DFD8006A6A26 /* StyleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F3FC922E6DFD8006A6A26 /* StyleButton.swift */; };
 		965F3FCC22E6F8DC006A6A26 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F3FCB22E6F8DC006A6A26 /* Message.swift */; };
@@ -54,6 +66,7 @@
 		96E9820822BA070900FA5D93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96E9820622BA070900FA5D93 /* Main.storyboard */; };
 		96E9820A22BA070B00FA5D93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96E9820922BA070B00FA5D93 /* Assets.xcassets */; };
 		96E9820D22BA070B00FA5D93 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96E9820B22BA070B00FA5D93 /* LaunchScreen.storyboard */; };
+		96F6470125253CDC00DA2A58 /* MiscExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F6470025253CDC00DA2A58 /* MiscExtensions.swift */; };
 		96F67C37231E2121007D088A /* AdminPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F67C36231E2121007D088A /* AdminPostCell.swift */; };
 		96F67C3B231EE6D2007D088A /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F67C3A231EE6D2007D088A /* PopoverViewController.swift */; };
 /* End PBXBuildFile section */
@@ -67,11 +80,21 @@
 		960E19DA235E2C0D00E29D05 /* MassCommunicationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MassCommunicationViewController.swift; sourceTree = "<group>"; };
 		960E19DC23668F0300E29D05 /* SCKNewsFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCKNewsFeedCell.swift; sourceTree = "<group>"; };
 		960E2BAD22FC853E00D934D1 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		9616103A252EB4A2001D8FC5 /* MassMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MassMessageViewController.swift; path = "Sosnick App/MassMessageViewController.swift"; sourceTree = SOURCE_ROOT; };
+		9616103C252EB8AF001D8FC5 /* MassMessagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MassMessagesTableViewCell.swift; path = userVCFiles/MassMessagesTableViewCell.swift; sourceTree = "<group>"; };
+		9616103D252EB8AF001D8FC5 /* MassMessagesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MassMessagesTableViewCell.xib; path = userVCFiles/MassMessagesTableViewCell.xib; sourceTree = "<group>"; };
+		96161042252EBAB9001D8FC5 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = SOURCE_ROOT; };
 		962FC84022BA149300C57190 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		9630BA2E231DB1E4003D9C58 /* AdminNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminNewsViewController.swift; sourceTree = "<group>"; };
 		964B6EC422C49A4D003C9A31 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		964B6ECC22CBD0E1003C9A31 /* RequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		964B6ECE22CD5A8D003C9A31 /* RequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTableViewCell.swift; sourceTree = "<group>"; };
+		96540AC3250873D10086FCBA /* ApexBlogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ApexBlogViewController.swift; path = "Sosnick App/ApexBlogViewController.swift"; sourceTree = SOURCE_ROOT; };
+		96540AC72509BB980086FCBA /* AppTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppTabBar.swift; path = "Sosnick App/AppTabBar.swift"; sourceTree = SOURCE_ROOT; };
+		96540ACB250C7B280086FCBA /* ERASLGHT.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = ERASLGHT.TTF; sourceTree = "<group>"; };
+		96540ACC250C7B280086FCBA /* ERASMD.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = ERASMD.TTF; sourceTree = "<group>"; };
+		96540ACD250C7B280086FCBA /* ERASDEMI.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = ERASDEMI.TTF; sourceTree = "<group>"; };
+		96540ACE250C7B280086FCBA /* ERASBD.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = ERASBD.TTF; sourceTree = "<group>"; };
 		9659FCD123105DF2000D6C3A /* UploadToSocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadToSocialViewController.swift; sourceTree = "<group>"; };
 		9659FCD32311CFF6000D6C3A /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		9659FCD72311D11D000D6C3A /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -80,6 +103,8 @@
 		9659FCDF23167203000D6C3A /* AdminPlayersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminPlayersViewController.swift; sourceTree = "<group>"; };
 		9659FCE123167876000D6C3A /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		9659FCE3231765F4000D6C3A /* PlayerProfileInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerProfileInfoViewController.swift; sourceTree = "<group>"; };
+		965A7A5225212EE900D49A0C /* ScreenshotTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotTableViewCell.swift; sourceTree = "<group>"; };
+		965A7A5325212EE900D49A0C /* ScreenshotTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenshotTableViewCell.xib; sourceTree = "<group>"; };
 		965F3FC222E569FD006A6A26 /* CreateUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserViewController.swift; sourceTree = "<group>"; };
 		965F3FC922E6DFD8006A6A26 /* StyleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleButton.swift; sourceTree = "<group>"; };
 		965F3FCB22E6F8DC006A6A26 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -109,6 +134,7 @@
 		96E9820922BA070B00FA5D93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96E9820C22BA070B00FA5D93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		96E9820E22BA070B00FA5D93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96F6470025253CDC00DA2A58 /* MiscExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscExtensions.swift; sourceTree = "<group>"; };
 		96F67C36231E2121007D088A /* AdminPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminPostCell.swift; sourceTree = "<group>"; };
 		96F67C3A231EE6D2007D088A /* PopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
 		C79DC31F875FF55F7DFB2F73 /* Pods_Sosnick_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sosnick_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,12 +165,25 @@
 		964B6EC322C49A07003C9A31 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				96161042252EBAB9001D8FC5 /* Reminder.swift */,
+				96540AC72509BB980086FCBA /* AppTabBar.swift */,
 				964B6EC422C49A4D003C9A31 /* Request.swift */,
 				965F3FCB22E6F8DC006A6A26 /* Message.swift */,
 				9659FCD72311D11D000D6C3A /* Post.swift */,
 				9659FCE123167876000D6C3A /* Player.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		96540ACA250C7B070086FCBA /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				96540ACE250C7B280086FCBA /* ERASBD.TTF */,
+				96540ACD250C7B280086FCBA /* ERASDEMI.TTF */,
+				96540ACB250C7B280086FCBA /* ERASLGHT.TTF */,
+				96540ACC250C7B280086FCBA /* ERASMD.TTF */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		965F3FC522E56B9F006A6A26 /* adminVCFiles */ = {
@@ -161,11 +200,11 @@
 				96F67C36231E2121007D088A /* AdminPostCell.swift */,
 				9659FCDF23167203000D6C3A /* AdminPlayersViewController.swift */,
 				9659FCDD231670F6000D6C3A /* PlayersTableViewCell.swift */,
-				9659FCE3231765F4000D6C3A /* PlayerProfileInfoViewController.swift */,
 				960E19D8235E2BC200E29D05 /* SCKNewsViewController.swift */,
 				960E19DC23668F0300E29D05 /* SCKNewsFeedCell.swift */,
-				960E19DA235E2C0D00E29D05 /* MassCommunicationViewController.swift */,
 				960BBCEA23B6E939008A5B24 /* TestingViewController.swift */,
+				9659FCE3231765F4000D6C3A /* PlayerProfileInfoViewController.swift */,
+				960E19DA235E2C0D00E29D05 /* MassCommunicationViewController.swift */,
 			);
 			path = adminVCFiles;
 			sourceTree = "<group>";
@@ -173,7 +212,8 @@
 		965F3FC622E56BD7006A6A26 /* userVCFiles */ = {
 			isa = PBXGroup;
 			children = (
-				960E2BAD22FC853E00D934D1 /* ForgotPasswordViewController.swift */,
+				9616103A252EB4A2001D8FC5 /* MassMessageViewController.swift */,
+				96540AC3250873D10086FCBA /* ApexBlogViewController.swift */,
 				96C3631C22E038A7007762B4 /* UserMessagesViewController.swift */,
 				96C3630A22D7F130007762B4 /* InfoViewController.swift */,
 				964B6ECC22CBD0E1003C9A31 /* RequestViewController.swift */,
@@ -220,17 +260,24 @@
 				965F3FC822E6DF7E006A6A26 /* CustomViews */,
 				96E9820222BA070900FA5D93 /* AppDelegate.swift */,
 				96E9820422BA070900FA5D93 /* ViewController.swift */,
+				960E2BAD22FC853E00D934D1 /* ForgotPasswordViewController.swift */,
 				965F3FC522E56B9F006A6A26 /* adminVCFiles */,
 				965F3FC622E56BD7006A6A26 /* userVCFiles */,
 				964B6EC322C49A07003C9A31 /* Model */,
+				96540ACA250C7B070086FCBA /* Fonts */,
 				96E9820622BA070900FA5D93 /* Main.storyboard */,
+				9616103C252EB8AF001D8FC5 /* MassMessagesTableViewCell.swift */,
+				9616103D252EB8AF001D8FC5 /* MassMessagesTableViewCell.xib */,
 				9660875D232ACA9800C440C4 /* ErrorExtension.swift */,
 				965F3FCF22E95DA7006A6A26 /* CustomMessageCell.swift */,
+				965A7A5225212EE900D49A0C /* ScreenshotTableViewCell.swift */,
+				965A7A5325212EE900D49A0C /* ScreenshotTableViewCell.xib */,
 				96021C9823B1E01B0061AB15 /* MessageCell.xib */,
 				9660875B232982C100C440C4 /* viewExtension.swift */,
 				96C3630822D563E5007762B4 /* backgroundExtension.swift */,
 				969CCAB3230D15FA00DEBD75 /* imageViewCircle.swift */,
 				9659FCDB2311E0B7000D6C3A /* ImageViewExtension.swift */,
+				96F6470025253CDC00DA2A58 /* MiscExtensions.swift */,
 				964B6ECE22CD5A8D003C9A31 /* RequestTableViewCell.swift */,
 				969CCAB1230BD66000DEBD75 /* CompletedRequestsTableViewCell.swift */,
 				96C3631422DD6F82007762B4 /* AdminTableViewCell.swift */,
@@ -322,10 +369,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96540ACF250C7B280086FCBA /* ERASLGHT.TTF in Resources */,
 				96021C9923B1E01B0061AB15 /* MessageCell.xib in Resources */,
+				96540AD1250C7B280086FCBA /* ERASDEMI.TTF in Resources */,
 				96E9820D22BA070B00FA5D93 /* LaunchScreen.storyboard in Resources */,
+				9616103F252EB8AF001D8FC5 /* MassMessagesTableViewCell.xib in Resources */,
 				96CB509323BE657500B7387B /* GoogleService-Info.plist in Resources */,
+				965A7A5525212EE900D49A0C /* ScreenshotTableViewCell.xib in Resources */,
 				96E9820A22BA070B00FA5D93 /* Assets.xcassets in Resources */,
+				96540AD2250C7B280086FCBA /* ERASBD.TTF in Resources */,
+				96540AD0250C7B280086FCBA /* ERASMD.TTF in Resources */,
 				96E9820822BA070900FA5D93 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,13 +451,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				96C3630F22DB8AA2007762B4 /* AdminViewController.swift in Sources */,
+				96161043252EBAB9001D8FC5 /* Reminder.swift in Sources */,
 				962FC84122BA149300C57190 /* SecondViewController.swift in Sources */,
+				9616103B252EB4A2001D8FC5 /* MassMessageViewController.swift in Sources */,
 				9659FCE4231765F4000D6C3A /* PlayerProfileInfoViewController.swift in Sources */,
 				960E19D9235E2BC200E29D05 /* SCKNewsViewController.swift in Sources */,
 				964B6EC522C49A4D003C9A31 /* Request.swift in Sources */,
 				969CCAB2230BD66000DEBD75 /* CompletedRequestsTableViewCell.swift in Sources */,
 				969CCAB4230D15FB00DEBD75 /* imageViewCircle.swift in Sources */,
 				9659FCD42311CFF6000D6C3A /* PostCell.swift in Sources */,
+				9616103E252EB8AF001D8FC5 /* MassMessagesTableViewCell.swift in Sources */,
 				965F3FCC22E6F8DC006A6A26 /* Message.swift in Sources */,
 				960E19DB235E2C0D00E29D05 /* MassCommunicationViewController.swift in Sources */,
 				964B6ECD22CBD0E1003C9A31 /* RequestViewController.swift in Sources */,
@@ -419,6 +475,9 @@
 				96C3631D22E038A7007762B4 /* UserMessagesViewController.swift in Sources */,
 				96C3631B22DFCAA6007762B4 /* MessagesViewController.swift in Sources */,
 				960BBCEB23B6E93A008A5B24 /* TestingViewController.swift in Sources */,
+				965A7A5425212EE900D49A0C /* ScreenshotTableViewCell.swift in Sources */,
+				96540AC4250873D10086FCBA /* ApexBlogViewController.swift in Sources */,
+				96540AC82509BB980086FCBA /* AppTabBar.swift in Sources */,
 				965F3FCA22E6DFD8006A6A26 /* StyleButton.swift in Sources */,
 				96C3630922D563E5007762B4 /* backgroundExtension.swift in Sources */,
 				965F3FD122E95DA7006A6A26 /* CustomMessageCell.swift in Sources */,
@@ -429,6 +488,7 @@
 				965F3FC322E569FD006A6A26 /* CreateUserViewController.swift in Sources */,
 				960E2BAE22FC853E00D934D1 /* ForgotPasswordViewController.swift in Sources */,
 				960E19DD23668F0300E29D05 /* SCKNewsFeedCell.swift in Sources */,
+				96F6470125253CDC00DA2A58 /* MiscExtensions.swift in Sources */,
 				9660875E232ACA9800C440C4 /* ErrorExtension.swift in Sources */,
 				96F67C3B231EE6D2007D088A /* PopoverViewController.swift in Sources */,
 				9630BA2F231DB1E4003D9C58 /* AdminNewsViewController.swift in Sources */,
@@ -589,7 +649,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Sosnick App/Sosnick App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 27;
 				DEVELOPMENT_TEAM = 8GR7S64MFK;
 				INFOPLIST_FILE = "Sosnick App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -610,7 +670,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Sosnick App/Sosnick App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 27;
 				DEVELOPMENT_TEAM = 8GR7S64MFK;
 				INFOPLIST_FILE = "Sosnick App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

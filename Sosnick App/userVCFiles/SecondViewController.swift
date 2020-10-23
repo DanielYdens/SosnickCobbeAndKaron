@@ -21,6 +21,7 @@ import FirebaseAuth
     var currentReq = Request()
     var isInitialized = false
     var row = 0
+    var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
  
     
     @IBOutlet weak var table: UITableView!
@@ -32,7 +33,18 @@ import FirebaseAuth
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.table.separatorStyle = .none
+        self.view.subviews.forEach { $0.isHidden = true }
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        if #available(iOS 13.0, *) {
+            activityIndicator.style = UIActivityIndicatorView.Style.white
+        } else {
+            // Fallback on earlier versions
+        }
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         checkUser()
         //checkDatabase()
        
@@ -73,7 +85,7 @@ import FirebaseAuth
                 else{
                     self.userData.removeAll()
                     for document in querySnapshot!.documents{
-                        print("\(document.documentID) => \(document.data())")
+                        //print("\(document.documentID) => \(document.data())")
                         self.currentReq = Request()
                         
                         if let category = document.get("category") as? String {
@@ -107,9 +119,9 @@ import FirebaseAuth
                         
                         }
                     }
+                    self.stopActivityIndicator()
                     self.isInitialized = true
                     self.table.reloadData()
-                    self.printAllInArray(Array: self.userData)
                 
                 }
             
@@ -125,18 +137,32 @@ import FirebaseAuth
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if userData.count == 0 {
+            self.table.setEmptyMessage("You currently have no active requests! Click the plus button below to submit a new request!")
+        } else {
+            self.table.restore()
+        }
+
         return userData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.table.dequeueReusableCell(withIdentifier: "RequestCell") as! RequestTableViewCell
+        let cell = self.table.dequeueReusableCell(withIdentifier: "RequestTableViewCell") as! RequestTableViewCell
         if isInitialized == true{
+            
+            cell.contentView.backgroundColor = UIColor.white// make it go edge to edge
+            cell.backView.layer.cornerRadius = 12
+            cell.backView.layer.shadowColor = UIColor(red: 10/255, green: 90/255, blue: 98/255, alpha: 1).cgColor
+            cell.backView.layer.shadowOpacity = 0.75
+            cell.backView.layer.shadowOffset = .zero
+            cell.backView.layer.shadowRadius = 3
+            cell.backView.layer.masksToBounds = false
             
             //var test: String = userData[0].category as! String
     //        print("displaying table")
     //        print(currentReq.date)
             let request =  userData[indexPath.row]
-            printAllInArray(Array: userData)
             cell.request = request //filling in table view with request data
            
             return cell
@@ -144,17 +170,12 @@ import FirebaseAuth
         return cell
     }
     
-    func printAllInArray(Array: [Request]){
-        for reqs in Array{
-            printRequest(Request: reqs)
-        }
-    }
-   
-    func printRequest(Request : Request){
-        print(Request.category)
-        print(Request.date)
-        print(Request.description)
-        print(Request.isProcessed)
+
+    func stopActivityIndicator() {
+      self.view.subviews.forEach { $0.isHidden = false }
+      self.activityIndicator.stopAnimating()
+      self.view.isUserInteractionEnabled = true
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

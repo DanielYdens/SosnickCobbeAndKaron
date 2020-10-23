@@ -41,6 +41,7 @@ class AdminPlayersViewController: UIViewController, UITableViewDelegate, UITable
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         self.playersTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell") //register correct cell
         let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
 
@@ -147,7 +148,7 @@ class AdminPlayersViewController: UIViewController, UITableViewDelegate, UITable
                 
             }
             else{
-                playerCell.profilePicImageView.image = UIImage(named: "addProfilePicture")
+                playerCell.profilePicImageView.image = UIImage(named: "profile-1")
             }
         }
         else{ //similar to above but not searching so you use the players array
@@ -170,7 +171,7 @@ class AdminPlayersViewController: UIViewController, UITableViewDelegate, UITable
                 playerCell.profilePicImageView.roundedImage()
             }
             else{
-                playerCell.profilePicImageView.image = UIImage(named: "addProfilePicture")
+                playerCell.profilePicImageView.image = UIImage(named: "profile-1")
             }
         }
         return playerCell

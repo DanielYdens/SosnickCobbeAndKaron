@@ -19,6 +19,7 @@ class AdminTableViewCell : UITableViewCell {
     var userDB = Firestore.firestore().collection("users")
     var name : String = ""
     
+    @IBOutlet weak var backView: UIView!
     @IBOutlet weak var descriptionTextLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
@@ -72,7 +73,8 @@ class AdminTableViewCell : UITableViewCell {
         }
                
         if adminReq?.status == "adminConfirmed" { //if admin confirms show pending symbol
-            isProcessedImageView.image = UIImage(named: "shipped")
+            isProcessedImageView.image = UIImage(named: "processing")
+            isProcessedImageView.contentMode = .scaleAspectFill
         }
        
         dateLabel?.text = adminReq?.date

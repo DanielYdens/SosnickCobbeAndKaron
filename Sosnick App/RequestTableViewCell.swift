@@ -16,7 +16,9 @@ class RequestTableViewCell: UITableViewCell {
     var lastMessageTime : Int = 0
     
    
+    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet var statusImageView: UIImageView!
+    @IBOutlet weak var backView: UIView!
     
     @IBOutlet weak var requestTitleLabel: UILabel!
     @IBOutlet weak var requestDescriptionLabel: UILabel!
@@ -71,16 +73,21 @@ class RequestTableViewCell: UITableViewCell {
         
         if request?.status == "userSubmitted" { //if status is just submitted do closed envelope
             statusImageView.image = UIImage(named: "closedEnvelope")
+            statusLabel.text = "Status: Unread"
         }
         if request?.status == "adminReceived" { //if admin opens it show open envelope
             statusImageView.image = UIImage(named: "openEnvelope")
+            statusLabel.text = "Status: Received"
         }
         
         if request?.status == "adminConfirmed" { //if admin confirms show pending symbol
-            statusImageView.image = UIImage(named: "shipped")
+            statusImageView.image = UIImage(named: "processing")
+            statusImageView.contentMode = .scaleAspectFill
+            statusLabel.text = "Status: In Processing"
         }
         if request?.isProcessed == true{ //if user completes show a check
             statusImageView.image = UIImage(named: "check")
+            statusLabel.text = "Status: Completed"
         }
         
 //        if request?.isProcessed == false{

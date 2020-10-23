@@ -15,10 +15,18 @@ class ForgotPasswordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.hideKeyboardWhenTappedAround()
+        textFieldSetup()
         directionsLabel.numberOfLines = 0 //text wrap
+        //self.navigationController?.isNavigationBarHidden = false;
         // Do any additional setup after loading the view.
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
+    
+    
     
 
 
@@ -49,6 +57,32 @@ class ForgotPasswordViewController: UIViewController {
         
         
     }
+    
+    func textFieldSetup(){
+        emailTextField.textColor = .white
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        emailTextField.backgroundColor = .darkGray
+        emailTextField.addLine(position: .LINE_POSITION_BOTTOM, color: .white, width: 0.75)
+    }
+    
+    deinit { //stop listening to hide/show events
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    
+    @objc func keyboardWillChange(notification: Notification){
+        if notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification {
+            view.frame.origin.y = -100
+
+        }
+        else{
+            view.frame.origin.y = 0
+            
+        }
+        
+       }
     
     
     

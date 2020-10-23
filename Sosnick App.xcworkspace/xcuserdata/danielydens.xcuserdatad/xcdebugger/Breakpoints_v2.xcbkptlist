@@ -15,8 +15,8 @@
             timestampString = "590463316.95684"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "retrieveMessages()"
             landmarkType = "7">
          </BreakpointContent>
@@ -31,8 +31,8 @@
             filePath = "Sosnick App/adminVCFiles/PlayerProfileInfoViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "setupProfilePicture()"
             landmarkType = "7">
          </BreakpointContent>
@@ -47,8 +47,8 @@
             filePath = "Sosnick App/adminVCFiles/PlayerProfileInfoViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
             landmarkName = "setupProfilePicture()"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,8 +58,8 @@
          <BreakpointContent
             uuid = "6E4C34FF-B8FA-45B9-9AFA-C2CC022ED6DD"
             shouldBeEnabled = "Yes"
-            ignoreCount = "0"
             condition = "!(BOOL)[NSThread isMainThread]"
+            ignoreCount = "0"
             continueAfterRunningActions = "No"
             symbolName = "-[UIView setNeedsLayout]"
             moduleName = "">
@@ -91,8 +91,8 @@
          <BreakpointContent
             uuid = "FEA99710-410C-4184-9C73-BAD774F8BA98"
             shouldBeEnabled = "Yes"
-            ignoreCount = "0"
             condition = "!(BOOL)[NSThread isMainThread]"
+            ignoreCount = "0"
             continueAfterRunningActions = "No"
             symbolName = "-[UIView layoutIfNeeded]"
             moduleName = "">
@@ -124,8 +124,8 @@
          <BreakpointContent
             uuid = "DDA75FCD-AF6F-450C-A125-A2F0683B9A3C"
             shouldBeEnabled = "Yes"
-            ignoreCount = "0"
             condition = "!(BOOL)[NSThread isMainThread]"
+            ignoreCount = "0"
             continueAfterRunningActions = "No"
             symbolName = "-[UIView updateConstraintsIfNeeded]"
             moduleName = "">
@@ -219,16 +219,112 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DA75412C-AF8B-4DD1-9127-5D47DFFB1F7B"
+            uuid = "159AB714-B42D-4DAC-86C0-CC04CFF476CE"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Sosnick App/adminVCFiles/TestingViewController.swift"
+            filePath = "Sosnick App/userVCFiles/SecondViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "checkIfThereIsAnyReminders()"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "checkDatabase()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2A54BC33-09C9-453A-A583-90C82A31AEA3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sosnick App/RequestTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "updateUI()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A86A93A2-B46F-495C-989F-8A72CD7A62CB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sosnick App/ImageViewExtension.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "loadImageUsingCacheWithUrlString(urlString:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8B6E2929-EB5D-4F9A-AA22-9F588738D34E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sosnick App/ImageViewExtension.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "loadImageUsingCacheWithUrlString(urlString:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E2EB2244-9D59-4B34-9E34-05764DFD7513"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sosnick App/userVCFiles/NotificationsTableViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7A06D3CC-C409-4639-9C5D-07EF2BABBAA9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sosnick App/userVCFiles/NotificationsTableViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E7221D39-B848-4BED-A4F1-9E77C37291DA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sosnick App/userVCFiles/CompletedRequestsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "checkUser()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

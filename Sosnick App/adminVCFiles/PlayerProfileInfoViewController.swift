@@ -26,6 +26,9 @@ class PlayerProfileInfoViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var apparelBottomSizeTextField: UITextField!
     @IBOutlet weak var battingGloveSizeTextField: UITextField!
    // @IBOutlet weak var throwsSegmentController: UISegmentedControl!
+    @IBOutlet weak var editBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var backBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var completedRequestsButton: UIButton!
     
    // @IBOutlet weak var batsSegmentController: UISegmentedControl!
     @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
@@ -40,8 +43,10 @@ class PlayerProfileInfoViewController: UIViewController, UIScrollViewDelegate {
     var cleatPreference : String = ""
     var profilePicURL : String = ""
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        fontSetup()
         self.hideKeyboardWhenTappedAround() //if tapped anywhere around the screen hide keyboard
         self.scrollView.delegate = self
         scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 250) //scroll view setup
@@ -49,6 +54,28 @@ class PlayerProfileInfoViewController: UIViewController, UIScrollViewDelegate {
         setupProfilePicture()
         // Do any additional setup after loading the view.
     }
+    
+    func fontSetup() {
+        
+        
+        editBarButtonItem.setTitleTextAttributes([ NSAttributedString.Key.font: UIFont(name: "ErasITC-Medium", size: 15)!], for: UIControl.State.normal)
+        backBarButtonItem.setTitleTextAttributes([ NSAttributedString.Key.font: UIFont(name: "ErasITC-Medium", size: 15)!], for: UIControl.State.normal)
+        let buttonAttributes: [NSAttributedString.Key: Any] = [
+        .font: UIFont(name: "ErasITC-Demi", size: 17)!,
+        .foregroundColor: UIColor.blue,
+        .underlineStyle: NSUnderlineStyle.single.rawValue]
+        
+        let attributeString = NSMutableAttributedString(string: "Completed Requests",
+                                                        attributes: buttonAttributes)
+        completedRequestsButton.setAttributedTitle(attributeString, for: .normal)
+        
+        
+    }
+    
+    @IBAction func completeRequestsButtonPressed(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "goToComplete", sender: self)
+    }
+
     
     func setupTextFields(){
         let docRef = db.collection("users").document(uid) //user database
@@ -112,7 +139,7 @@ class PlayerProfileInfoViewController: UIViewController, UIScrollViewDelegate {
     }
     func setupProfilePicture(){
         if profilePicURL == ""{ //if no profile pic
-            profilePicture.image =  UIImage(named: "addProfilePicture") //show generic
+            profilePicture.image =  UIImage(named: "profile-1") //show generic
             
         } else{ //if there is one
             //profilePicture.downloaded(from: profilePicURL)
@@ -252,6 +279,14 @@ class PlayerProfileInfoViewController: UIViewController, UIScrollViewDelegate {
                 
                 }.resume()
             
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToComplete"{
+            let destinationVC = segue.destination as! CompletedRequestsViewController
+            destinationVC.uid = uid
+            destinationVC.admin = true
         }
     }
     

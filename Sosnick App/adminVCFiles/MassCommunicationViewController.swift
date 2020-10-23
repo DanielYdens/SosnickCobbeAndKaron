@@ -15,6 +15,8 @@ class MassCommunicationViewController: UIViewController {
     @IBOutlet weak var sendButton: StyleButton!
     @IBOutlet weak var messageTextView: UITextView!
     
+    @IBOutlet weak var backButton: UIBarButtonItem!
+    @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var titleTextField: UITextField!
     
     var database = Firestore.firestore()
@@ -22,7 +24,13 @@ class MassCommunicationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        backButton.setTitleTextAttributes([ NSAttributedString.Key.font: UIFont(name: "ErasITC-Medium", size: 15)!], for: UIControl.State.normal)
         getCurrentDate()
+        backgroundImage.image = UIImage(named: "apexLogo")
+        messageTextView.layer.cornerRadius = 5
+        messageTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+        messageTextView.layer.borderWidth = 0.5 //ascetic adjustments
+        messageTextView.clipsToBounds = true
         self.hideKeyboardWhenTappedAround() //if they tap anywhere around screen hide keyboard
         // Do any additional setup after loading the view.
     }
@@ -61,6 +69,9 @@ class MassCommunicationViewController: UIViewController {
         let timeInterval = date.timeIntervalSince1970
         messageDate = Int(timeInterval)
     }
+    
+   
+
     /*
     // MARK: - Navigation
 

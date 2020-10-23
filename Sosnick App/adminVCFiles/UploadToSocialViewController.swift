@@ -67,10 +67,10 @@ class UploadToSocialViewController: UIViewController, UIImagePickerControllerDel
                     }
                     return
                 }
-                print(metadata!)
+               // print(metadata!)
                 _ = storageRef.downloadURL(completion: { (URL, Error) in
                     if Error != nil {
-                        print("error getting url")
+                        //print("error getting url")
                     }
                     else{
                         self.getPostTime()
@@ -87,14 +87,14 @@ class UploadToSocialViewController: UIViewController, UIImagePickerControllerDel
             let database = Firestore.firestore().collection("posts")
             database.document(postID).setData(["postID" : postID, "URL" : URL,"caption" : caption, "timeStamp" : timeSent]) { (Error) in
                 if let err = Error {
-                    print("Error writing document:\(err)")
+                   // print("Error writing document:\(err)")
                 } else{
-                    print("Document successfully written")
+                   // print("Document successfully written")
                     
                     let refreshAlert = UIAlertController(title: "Success!", message: "The post has been uploaded!", preferredStyle: UIAlertController.Style.alert)
                     
                     refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-                        print("Handle Ok logic here")
+                       // print("Handle Ok logic here")
                         self.captionTextField.text = ""
                         self.uploadImageView.image = nil
                         self.selectButton.isHidden = false

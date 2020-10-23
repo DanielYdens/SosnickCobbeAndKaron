@@ -21,28 +21,39 @@ class ViewController: UIViewController {
     
     
     
-    @IBOutlet weak var sosnickImage: UIImageView!
+    @IBOutlet weak var forgotPasswordButton: UIButton!
+    @IBOutlet weak var loginButton: StyleButton!
+    @IBOutlet weak var imageView : UIImageView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     @IBAction func forgotPasswordPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "forgotPass", sender: self)
+//        let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ForgotPasswordViewController") as! ForgotPasswordViewController //if user pressed forgot password button then they are taken to the forgotpassword flow
+//        self.navigationController?.pushViewController(loginVC, animated: true)
         
-        let loginVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ForgotPasswordViewController") as! ForgotPasswordViewController //if user pressed forgot password button then they are taken to the forgotpassword flow
-        self.navigationController?.pushViewController(loginVC, animated: true)
     }
     
+
+    
+   
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
+        
+    }
     
     
     @IBAction func loginPressed(_ sender: Any) {
         Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
             
             if error != nil {
-                print(error!) //signing in the user
+                //print(error!) //signing in the user
                 self.handleError(error!)
                 
             }
             else {
-                print("success baby")
+               // print("success baby")
                 
                 //self.performSegue(withIdentifier: "goToNext", sender: self)
                 
@@ -53,28 +64,68 @@ class ViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-//        do{
-//            try Auth.auth().signOut()
-//            self.navigationController?.popToRootViewController(animated: true)
-//
-//        }
-//        catch{
-//            print("error: couldnt log out")
-//
-//        }
+        //self.navigationController?.overrideUserInterfaceStyle = .light
+        imageView.image = UIImage(named: "apexWhite")
+        UIView.animate(withDuration: 1) {
+            self.imageView.frame.origin.y -= 500 //animate log in screen elements
+            self.emailTextField.frame.size.height -= 50
+            self.passwordTextField.frame.size.height -= 50
+            self.loginButton.frame.size.height -= 50
+            
+        }
+        setupTextFields()
+        setupImageView()
         
         checkIfLoggedIn()
-        // Do any additional setup after loading the view.
-        // 4- this will add it with the default imageName and edited contextMode
-        //view.addBackground(imageName: "matt-moore", contentMode: .scaleAspectFill) //filling background image
         
-        sosnickImage.layer.borderWidth = 1.0
-        sosnickImage.layer.masksToBounds = false
-        sosnickImage.layer.borderColor = UIColor.white.cgColor
-        //sosnickImage.layer.cornerRadius = sosnickImage.frame.size.width/2
-        sosnickImage.clipsToBounds = true
+        //listen for keyboard events
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         
+        
+    }
+    
+    deinit { //stop listening to hide/show events
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    
+    @objc func keyboardWillChange(notification: Notification){
+        guard let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else{
+            return
+        }
+        if notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification {
+            view.frame.origin.y = -keyboardRect.height/2
+            self.imageView.isHidden = true
+            
+            
+        }
+        else{
+            view.frame.origin.y = 0
+            imageView.isHidden = false
+        }
+        
+       }
+    func setupImageView(){
+        
+        imageView.backgroundColor = .clear
+        imageView.isOpaque = false
+        imageView.contentMode = .scaleAspectFit
+    }
+    
+    func setupTextFields(){
+        emailTextField.textColor = .white
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        emailTextField.backgroundColor = .darkGray
+        emailTextField.addLine(position: .LINE_POSITION_BOTTOM, color: .white, width: 0.75)
+        passwordTextField.textColor = .white
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        passwordTextField.backgroundColor = .darkGray
+        passwordTextField.addLine(position: .LINE_POSITION_BOTTOM, color: .white, width: 0.75)
     }
     
     func checkIfLoggedIn(){
@@ -83,7 +134,7 @@ class ViewController: UIViewController {
             if user != nil{ //if there is a user logged in already
                 self.getUserRole(completion: { (isSuccess, role) in
                     if isSuccess != true{
-                        print("we failed") //fail
+                       // print("we failed") //fail
                     }
                     else{
                         self.storeFCMToken(uid: user!.uid) //else store token
@@ -98,14 +149,14 @@ class ViewController: UIViewController {
                             //self.performSegue(withIdentifier: "goToUser", sender: self)
                         }
                         else{
-                            print("no role yet") //in the case of no role
+                           // print("no role yet") //in the case of no role
                         }
                     }
                 })
                 
             }
             else{
-                print("not logged in") //  no user logged in
+               // print("not logged in") //  no user logged in
         }
     }
     }
@@ -117,7 +168,7 @@ class ViewController: UIViewController {
             let documentRef = userDatabase.collection("users").document(uid)
             documentRef.getDocument { (snapshot, Error) in
                 if Error != nil{
-                    print(Error!)
+                   // print(Error!)
                     return
                 }
                 else{

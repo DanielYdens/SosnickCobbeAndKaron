@@ -18,44 +18,57 @@ class RequestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
 
     @IBAction func submitButtonPressed(_ sender: UIButton) {
-        submitButton.isEnabled = false
         
-        var ref: DocumentReference? = nil
-        if let userName = name {
-            ref = db.collection("userRequestC").addDocument(data: [
-                "category": pickerTextField.text!,
-                "description": descriptionTextField.text!,
-                "isProcessed" : false,
-                "date" : requestDate,
-                "uid" : userUID,
-                "dateNum" : 999999999999 - requestDateNum,
-                "user" : Auth.auth().currentUser?.email ?? "",
-                "message" : false,
-                "name" : userName,
-                "status" : "userSubmitted"
-            ]) { err in
-                if let err = err {
-                    print("Error adding document: \(err)")
-                } else {
-                    print("Document added with ID: \(ref!.documentID)")
-                    self.initializeChatVariables(DocumentID: ref!.documentID)
-                    self.pickerTextField.text = ""
-                    self.descriptionTextField.text = ""
-                    self.submitButton.isEnabled = true
-                    let banner = GrowingNotificationBanner(title: "Success!", subtitle: "Your request has been submitted and will be processed as soon as possible", leftView: self.leftView, style: .success)
-                    banner.show()
-                    
-                    
+        if pickerTextField.text! != "" && descriptionTextField.text! != "" {
+            submitButton.isEnabled = false
+            var ref: DocumentReference? = nil
+            if let userName = name {
+                ref = db.collection("userRequestC").addDocument(data: [
+                    "category": pickerTextField.text!,
+                    "description": descriptionTextField.text!,
+                    "isProcessed" : false,
+                    "date" : requestDate,
+                    "uid" : userUID,
+                    "dateNum" : 999999999999 - requestDateNum,
+                    "user" : Auth.auth().currentUser?.email ?? "",
+                    "message" : false,
+                    "name" : userName,
+                    "status" : "userSubmitted"
+                ]) { err in
+                    if let err = err {
+                        print("Error adding document: \(err)")
+                    } else {
+                        print("Document added with ID: \(ref!.documentID)")
+                        self.initializeChatVariables(DocumentID: ref!.documentID)
+                        self.pickerTextField.text = ""
+                        self.descriptionTextField.text = ""
+                        self.submitButton.isEnabled = true
+                        let banner = GrowingNotificationBanner(title: "Success!", subtitle: "Your request has been submitted and will be processed as soon as possible", leftView: self.leftView, style: .success)
+                        banner.show()
+                        
+                        
+                    }
                 }
             }
         }
+        else{
+            let refreshAlert = UIAlertController(title: "Uh oh!", message: "It looks like you haven't completed filled out the request form! Please do that before submitting.", preferredStyle: UIAlertController.Style.alert)
+            
+            refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                print("yay")
+            }))
+            self.present(refreshAlert, animated: true, completion: nil) //stop from having half complete requests
+            
+        }
+        
     }
 
     @IBOutlet weak var pickerTextField: UITextField!
     
     @IBOutlet weak var descriptionTextField: UITextView!
     
-
+    @IBOutlet weak var backgroundImage: UIImageView!
+    
     @IBOutlet weak var submitButton: UIButton!
     
     var name : String? = ""
@@ -67,6 +80,8 @@ class RequestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     var requestDateNum : Int = 0 // FIXME dont have so many globals
     var isNil = false
     
+    
+
    // var date =
     
     
@@ -74,6 +89,8 @@ class RequestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        backgroundImage.image = UIImage(named: "apexLogo")
+        
         getName()
         getUID()
 //        view.addBackground(imageName: "stadium", contentMode: .scaleAspectFill)
@@ -82,7 +99,6 @@ class RequestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         pickerTextField.inputView = pickerView
         getCurrentDate()
         initializeDescriptionTextView()
-        self.title = "Concierge Request"
        
         // Do any additional setup after loading the view.
     }
@@ -111,6 +127,9 @@ class RequestViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         pickerTextField.text = categories[row]
     }
+    
+    
+      
     
     func getCurrentDate(){
         let date =  Date()

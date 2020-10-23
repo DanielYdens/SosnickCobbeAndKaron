@@ -30,27 +30,49 @@ class InfoViewController: UIViewController {
 //
 //    }
     
-
+    @IBOutlet weak var backBarButtonItem: UIBarButtonItem!
+    
+    @IBOutlet weak var chatBarButtonItem: UIBarButtonItem!
+    
     @IBOutlet weak var descriptionTextView: UITextView!
     
+    @IBOutlet weak var backgroundImage: UIImageView!
+    
+    @IBOutlet weak var cancelButton: StyleButton!
     
     @IBOutlet weak var dateTextField: UITextField!
     @IBOutlet weak var categoryTextField: UITextField!
     
     @IBOutlet weak var submitButton: UIButton!
     
+    override func viewWillAppear(_ animated: Bool) {
+        if buttonsHidden {
+            cancelButton.isHidden = true
+            submitButton.isHidden = true
+        }
+        else{
+            cancelButton.isHidden = false
+            submitButton.isHidden = false
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.navigationController?.isNavigationBarHidden = false
+        
+        backBarButtonItem.setTitleTextAttributes([ NSAttributedString.Key.font: UIFont(name: "ErasITC-Medium", size: 15)!], for: UIControl.State.normal)
+        chatBarButtonItem.setTitleTextAttributes([ NSAttributedString.Key.font: UIFont(name: "ErasITC-Medium", size: 15)!], for: UIControl.State.normal)
+        backgroundImage.image = UIImage(named: "apexLogo")
         fillDataAndInitialize()
-
-        self.title = "Request Information"
+        cancelButton.backgroundColor = UIColor.systemRed
+        self.title = "Request Info"
         descriptionTextView.layer.cornerRadius = 5
         descriptionTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
         descriptionTextView.layer.borderWidth = 0.5
         descriptionTextView.clipsToBounds = true
         // Do any additional setup after loading the view.
     }
+    
+    var buttonsHidden = false
     let leftView = UIImageView(image: #imageLiteral(resourceName: "greenCheck"))
     var reqCategory : String = ""
     var reqDescription : String = ""
@@ -74,25 +96,35 @@ class InfoViewController: UIViewController {
     @IBAction func  completePressed(_ sender: UIButton) {
         let documentRef = db.collection("userRequestC").document(docID)
         
+        let refreshAlert = UIAlertController(title: "Are You sure?", message: "This will mark this request as pending", preferredStyle: UIAlertController.Style.alert) //presents a popup asking if they want to admin complete the request
         
-        documentRef.updateData([
-            "isProcessed" : true
-        ]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated") //success
-                let banner = GrowingNotificationBanner(title: "Success!", subtitle: "Your request has been updated and will be processed as soon as possible.", leftView: self.leftView, style: .success)
-                banner.show()
-                _ = self.navigationController?.popViewController(animated: true)
-                
+        refreshAlert.addAction(UIAlertAction(title: "Yes, I'm sure", style: .default, handler: { (action: UIAlertAction!) in //if they click yes im sure
+           // print("Handle Ok logic here")
+            documentRef.updateData([
+                "isProcessed" : true
+            ]) { err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                } else {
+                    print("Document successfully updated") //success
+                    let banner = GrowingNotificationBanner(title: "Success!", subtitle: "Your request has been marked as completed!", leftView: self.leftView, style: .success)
+                    banner.show()
+                    _ = self.navigationController?.popViewController(animated: true)
+                    
+                }
             }
-        }
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+           // print("Handle Cancel Logic here") //if they click cancel do nothing
+        }))
+        
+        present(refreshAlert, animated: true, completion: nil) //show popup
         
 
     }
     
-    @IBAction func CancelButtonPressed(_ sender: UIBarButtonItem) { //cancel button pressed
+    @IBAction func CancelButtonPressed(_ sender: UIButton) { //cancel button pressed
         let cancelAlert = UIAlertController(title: "Are You sure?", message: "This will permanently delete this request.", preferredStyle: UIAlertController.Style.alert)
         
         cancelAlert.addAction(UIAlertAction(title: "Yes, I'm sure", style: .default, handler: { (action: UIAlertAction!) in

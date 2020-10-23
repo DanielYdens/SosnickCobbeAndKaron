@@ -12,4 +12,5 @@ class Message {
     var sender : String = ""
     var messageBody : String = ""
     var time : Int = 0
+    var imageURL : String = ""
 }

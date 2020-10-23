@@ -31,17 +31,19 @@ class CreateUserViewController: UIViewController {
     
     @IBOutlet weak var roleSegmentedControl: UISegmentedControl!
     
+    @IBOutlet weak var backgroundImage: UIImageView!
+    
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         switch roleSegmentedControl.selectedSegmentIndex
         { //set role to whatever segment the admin selects
         case 0:
-            print("First Segment Selected")
+           // print("First Segment Selected")
             role = "Player"
         case 1:
-            print("Second Segment Selected")
+          //  print("Second Segment Selected")
             role = "Admin"
         case 2:
-            print("third segment selected")
+          //  print("third segment selected")
             role = "Equipment Admin"
         default:
             break
@@ -62,7 +64,7 @@ class CreateUserViewController: UIViewController {
                         let repeatAlert = UIAlertController(title: "You already have this Email registered to an account!", message: "Please enter a different email.", preferredStyle: UIAlertController.Style.alert)
                         
                         repeatAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-                            print("Handle Ok logic here")
+                         //   print("Handle Ok logic here")
                             self.clearTextFields() // clear text fields
                             repeated = true // admin added a repeat user
                         }))
@@ -80,13 +82,13 @@ class CreateUserViewController: UIViewController {
                 // Create user in secondary app.
                 secondaryAppAuth.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in //creating the user without having them sign in
                     if error != nil {
-                        print(error!)
+                       // print(error!)
                     } else {
                         //Print created users email.
-                        print(user!.user.email!)
+                       // print(user!.user.email!)
                         self.uid = user!.user.uid
                         //Print current logged in users email.
-                        print(Auth.auth().currentUser?.email ?? "default")
+                       // print(Auth.auth().currentUser?.email ?? "default")
                         
                         try! secondaryAppAuth.signOut() //sign them out autimatically
                         self.createUserInformation()
@@ -103,6 +105,22 @@ class CreateUserViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func setupFonts() {
+        guard let customFont = UIFont(name: "ErasITC-Medium", size: UIFont.labelFontSize + 5) else {
+                   fatalError("""
+                       Failed to load the "CustomFont-Light" font.
+                       Make sure the font file is included in the project and the font name is spelled correctly.
+                       """
+                   )
+        }
+        firstTextField.font = customFont
+        lastTextField.font = customFont
+        passwordTextField.font = customFont
+        emailTextField.font = customFont
+        
+
     }
     
     func createUserInformation(){
@@ -158,6 +176,8 @@ class CreateUserViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupFonts()
+        backgroundImage.image = UIImage(named: "apexLogo")
         self.title = "Register New Users"
         self.hideKeyboardWhenTappedAround()
         
