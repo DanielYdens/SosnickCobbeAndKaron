@@ -53,7 +53,7 @@ class MassMessageViewController: UIViewController, UITableViewDataSource, UITabl
                     self.reminders.append(reminder)
                 }
                 self.massMessagesTableView.reloadData()
-                self.scrollToBottom()
+                //self.scrollToBottom()
             }
         }
     }
@@ -64,6 +64,7 @@ class MassMessageViewController: UIViewController, UITableViewDataSource, UITabl
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = massMessagesTableView.dequeueReusableCell(withIdentifier: "MassMessagesTableViewCell", for: indexPath) as! MassMessagesTableViewCell
+        print("title: ", reminders[indexPath.row].title)
         cell.titleLabel.text = reminders[indexPath.row].title
         
         cell.messageLabel.text = reminders[indexPath.row].message
@@ -83,12 +84,12 @@ class MassMessageViewController: UIViewController, UITableViewDataSource, UITabl
         return cell
     }
     
-    func scrollToBottom(){
-        DispatchQueue.main.async {
-         let indexPath = IndexPath(row: self.reminders.count-1, section: 0)
-         self.massMessagesTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-        }
-    }
+//    func scrollToBottom(){
+//        DispatchQueue.main.async {
+//         let indexPath = IndexPath(row: self.reminders.count-1, section: 0)
+//         self.massMessagesTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+//        }
+//    }
     
 
     /*

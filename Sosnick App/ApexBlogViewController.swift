@@ -20,9 +20,11 @@ class ApexBlogViewController: UIViewController {
     var current : Int = 0
     var messages : [massMessage] = []
     
+    override func viewDidAppear(_ animated: Bool) {
+        checkIfThereIsAnyReminders()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkIfThereIsAnyReminders()
         loadBlog()
         // Do any additional setup after loading the view.
     }
