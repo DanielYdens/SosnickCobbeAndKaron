@@ -168,6 +168,7 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     //table view functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.adminTableView.setEmptyMessage("You currently have no active requests!")
         if searching {
             return searchRequest.count //if searching return the number of items in search request array
         }
@@ -272,7 +273,6 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
                 nonEquipmentRequests.append(req)
             }
         }
-        equipmentRequestsOnly = equipmentRequestsOnly.reversed()
         nonEquipmentRequests = nonEquipmentRequests.reversed()
     }
     

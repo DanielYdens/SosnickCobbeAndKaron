@@ -59,6 +59,7 @@ class MassMessageViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.massMessagesTableView.setEmptyMessage("No current reminders. Check back later for more.")
         return reminders.count
     }
 

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -29,7 +30,7 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apex(1)" translatesAutoresizingMaskIntoConstraints="NO" id="hQ7-fb-loR">
                                 <rect key="frame" x="10" y="128" width="394" height="358.5"/>
-                                <color key="backgroundColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="secondaryLabelColor"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4Zu-nV-sCT">
                                 <rect key="frame" x="10" y="526.5" width="394" height="180"/>
@@ -50,7 +51,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bt7-fT-X6A" customClass="StyleButton" customModule="Apex_Baseball" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bt7-fT-X6A" customClass="StyleButton" customModule="Apex_Baseball" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="90" width="394" height="45"/>
                                         <color key="backgroundColor" red="0.27021247148513794" green="0.82079344987869263" blue="0.070123918354511261" alpha="0.73881635273972601" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -58,13 +59,13 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="31"/>
                                         <state key="normal" title="Login">
-                                            <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="titleShadowColor" systemColor="darkTextColor"/>
                                         </state>
                                         <connections>
                                             <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="diN-Jk-aBR"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hp-G4-TBo">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hp-G4-TBo">
                                         <rect key="frame" x="0.0" y="145" width="394" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="TJr-Ue-V0q"/>
@@ -79,6 +80,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.11840273480000001" green="0.12549571700000001" blue="0.123560277" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="hQ7-fb-loR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="1mc-Ik-EWw"/>
@@ -89,7 +91,6 @@
                             <constraint firstAttribute="trailing" secondItem="4Zu-nV-sCT" secondAttribute="trailing" constant="10" id="pu3-ah-4kW"/>
                             <constraint firstItem="4Zu-nV-sCT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="yjJ-Y7-4rt"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="KDO-QI-ksw"/>
                     <connections>
@@ -131,7 +132,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U53-3Z-NTX" customClass="StyleButton" customModule="Apex_Baseball" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U53-3Z-NTX" customClass="StyleButton" customModule="Apex_Baseball" customModuleProvider="target">
                                 <rect key="frame" x="70" y="468" width="274" height="34"/>
                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="22"/>
                                 <state key="normal" title="Send Reset Email"/>
@@ -140,6 +141,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Mmp-hS-hvT"/>
                         <color key="backgroundColor" red="0.11840273480000001" green="0.12549571700000001" blue="0.123560277" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="FF0-uE-e9A" firstAttribute="leading" secondItem="Mmp-hS-hvT" secondAttribute="leading" constant="70" id="8Q5-Wg-UYo"/>
@@ -155,7 +157,6 @@
                             <constraint firstItem="Hmf-Sw-yWQ" firstAttribute="leading" secondItem="Mmp-hS-hvT" secondAttribute="leading" constant="50" id="jUa-Pf-XXe"/>
                             <constraint firstItem="Z5l-lo-tta" firstAttribute="leading" secondItem="Mmp-hS-hvT" secondAttribute="leading" constant="70" id="kgF-by-16x"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Mmp-hS-hvT"/>
                     </view>
                     <navigationItem key="navigationItem" id="iO5-6y-Tey"/>
                     <connections>
@@ -175,16 +176,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOa-JN-Z8y">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOa-JN-Z8y">
                                 <rect key="frame" x="167" y="313" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ss5-jF-Hze">
                                 <rect key="frame" x="0.0" y="196" width="414" height="617"/>
-                                <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <color key="sectionIndexBackgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="adminRequestCell" editingAccessoryType="disclosureIndicator" rowHeight="176" id="qpk-0V-WM0" customClass="AdminTableViewCell" customModule="Apex_Baseball" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="176"/>
@@ -310,6 +311,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="rf4-vx-oVd"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ss5-jF-Hze" firstAttribute="trailing" secondItem="rf4-vx-oVd" secondAttribute="trailing" id="HGp-v9-djk"/>
@@ -323,9 +325,8 @@
                             <constraint firstItem="xzh-ag-NqN" firstAttribute="trailing" secondItem="rf4-vx-oVd" secondAttribute="trailing" id="jIi-sL-eIN"/>
                             <constraint firstItem="x7a-XQ-bjQ" firstAttribute="leading" secondItem="rf4-vx-oVd" secondAttribute="leading" id="s3d-Ha-oDt"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="rf4-vx-oVd"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Requests" image="pending2" id="GCd-oZ-ays"/>
+                    <tabBarItem key="tabBarItem" title="Requests" image="rays" catalog="system" id="GCd-oZ-ays"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Requests" id="EI8-PG-zRU">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="gHW-YA-ysL">
@@ -388,7 +389,7 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JeN-Z8-ctz" customClass="StyleButton" customModule="Apex_Baseball" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JeN-Z8-ctz" customClass="StyleButton" customModule="Apex_Baseball" customModuleProvider="target">
                                 <rect key="frame" x="25" y="512" width="364" height="53"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="QWy-wi-02q"/>
@@ -411,7 +412,7 @@
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s0e-Xu-UVa">
                                 <rect key="frame" x="25" y="339" width="364" height="128"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="nFU-TO-egQ"/>
                                 </constraints>
@@ -419,6 +420,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="kiM-1t-ctJ"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="jYv-BD-ara" firstAttribute="leading" secondItem="kiM-1t-ctJ" secondAttribute="leading" constant="25" id="3D2-Ma-6j5"/>
@@ -448,7 +450,6 @@
                             <constraint firstItem="XMs-13-EMm" firstAttribute="top" secondItem="AVn-ex-PDZ" secondAttribute="bottom" constant="45" id="sxr-TM-flt"/>
                             <constraint firstItem="kiM-1t-ctJ" firstAttribute="trailing" secondItem="XMs-13-EMm" secondAttribute="trailing" constant="15" id="vav-zP-tv9"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="kiM-1t-ctJ"/>
                     </view>
                     <navigationItem key="navigationItem" id="0Ds-Tp-WCV"/>
                     <connections>
@@ -542,6 +543,7 @@
                                 </connections>
                             </searchBar>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="AB3-eB-7dy"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="vGb-8S-J8Q" firstAttribute="top" secondItem="AB3-eB-7dy" secondAttribute="top" id="0cK-Ev-ijl"/>
@@ -555,9 +557,8 @@
                             <constraint firstItem="vGb-8S-J8Q" firstAttribute="leading" secondItem="AB3-eB-7dy" secondAttribute="leading" id="pWW-pb-ZZB"/>
                             <constraint firstItem="n40-cB-nWC" firstAttribute="top" secondItem="vGb-8S-J8Q" secondAttribute="bottom" id="zbn-64-M0u"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="AB3-eB-7dy"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Players" image="profile" id="BfB-hu-bgM"/>
+                    <tabBarItem key="tabBarItem" title="Players" image="person.3.fill" catalog="system" id="BfB-hu-bgM"/>
                     <connections>
                         <outlet property="playersTable" destination="Jfg-tx-p3o" id="ztV-di-rPC"/>
                         <outlet property="searchBar" destination="n40-cB-nWC" id="b9T-Br-5Sc"/>
@@ -586,6 +587,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="VCY-Mm-JYQ"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="8OZ-UJ-ZCi" firstAttribute="top" secondItem="VCY-Mm-JYQ" secondAttribute="top" id="DKH-nz-nR5"/>
@@ -593,7 +595,6 @@
                             <constraint firstAttribute="trailing" secondItem="8OZ-UJ-ZCi" secondAttribute="trailing" id="SrW-U2-8GE"/>
                             <constraint firstItem="8OZ-UJ-ZCi" firstAttribute="leading" secondItem="qix-sr-dlN" secondAttribute="leading" id="uig-2m-uj6"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="VCY-Mm-JYQ"/>
                     </view>
                     <size key="freeformSize" width="200" height="55"/>
                     <connections>
@@ -654,6 +655,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="J60-Jf-oJb"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="SRl-q7-arH" firstAttribute="trailing" secondItem="cDC-i4-nur" secondAttribute="trailing" id="312-Ev-s1k"/>
@@ -664,7 +666,6 @@
                             <constraint firstItem="SRl-q7-arH" firstAttribute="top" secondItem="J60-Jf-oJb" secondAttribute="top" id="dPf-FP-Qhl"/>
                             <constraint firstItem="cDC-i4-nur" firstAttribute="top" secondItem="SRl-q7-arH" secondAttribute="bottom" id="qKo-yM-yh5"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="J60-Jf-oJb"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Apex" image="apexLogoOnly" id="90f-14-XmE">
                         <inset key="imageInsets" minX="0.0" minY="230" maxX="0.0" maxY="225"/>
@@ -709,9 +710,10 @@
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yef-0s-cwV">
                                 <rect key="frame" x="0.0" y="108" width="414" height="602"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="pj8-0v-yKK"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="k4j-dq-q8d" firstAttribute="trailing" secondItem="pj8-0v-yKK" secondAttribute="trailing" id="9XN-fi-cck"/>
@@ -722,7 +724,6 @@
                             <constraint firstItem="k4j-dq-q8d" firstAttribute="top" secondItem="pj8-0v-yKK" secondAttribute="top" id="p5T-Bs-Nbd"/>
                             <constraint firstItem="k4j-dq-q8d" firstAttribute="leading" secondItem="pj8-0v-yKK" secondAttribute="leading" id="yYK-lX-gDd"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="pj8-0v-yKK"/>
                     </view>
                     <navigationItem key="navigationItem" id="cmX-Sc-G06"/>
                     <connections>
@@ -771,6 +772,7 @@
                                 </items>
                             </navigationBar>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="By7-Ek-Qf0"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="wEf-PV-ZR5" firstAttribute="leading" secondItem="By7-Ek-Qf0" secondAttribute="leading" id="D2n-yd-x83"/>
@@ -781,7 +783,6 @@
                             <constraint firstItem="wEf-PV-ZR5" firstAttribute="top" secondItem="cUA-zU-Ba2" secondAttribute="bottom" id="gjO-Co-WeG"/>
                             <constraint firstItem="cUA-zU-Ba2" firstAttribute="leading" secondItem="By7-Ek-Qf0" secondAttribute="leading" id="hl0-Sw-L5H"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="By7-Ek-Qf0"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Apex" image="apexLogoOnly" id="Dzr-d9-2rA">
                         <inset key="imageInsets" minX="0.0" minY="230" maxX="0.0" maxY="225"/>
@@ -833,7 +834,7 @@
                                 <rect key="frame" x="0.0" y="56" width="414" height="786"/>
                                 <color key="backgroundColor" white="1" alpha="0.62216395550000003" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uOC-Zb-dFv" customClass="StyleButton" customModule="Apex_Baseball" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uOC-Zb-dFv" customClass="StyleButton" customModule="Apex_Baseball" customModuleProvider="target">
                                 <rect key="frame" x="35" y="753" width="344" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="vnP-vf-yU3"/>
@@ -918,6 +919,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="1Dh-m5-pfa"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="1Dh-m5-pfa" firstAttribute="trailing" secondItem="cJE-la-DjF" secondAttribute="trailing" constant="35" id="4vw-vl-axL"/>
@@ -960,7 +962,6 @@
                             <constraint firstItem="a3Z-Fc-gKF" firstAttribute="top" secondItem="46w-HB-Afu" secondAttribute="bottom" id="sDg-E1-Q68"/>
                             <constraint firstItem="wRs-WI-dUx" firstAttribute="top" secondItem="46w-HB-Afu" secondAttribute="bottom" constant="25" id="vgu-C6-0g4"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="1Dh-m5-pfa"/>
                     </view>
                     <navigationItem key="navigationItem" id="RHx-gn-56P">
                         <barButtonItem key="rightBarButtonItem" title="CHAT" id="szg-Md-znJ">
@@ -1001,7 +1002,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="slS-2e-yeD">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="slS-2e-yeD">
                                         <rect key="frame" x="351" y="10" width="53" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="53" id="WTi-0T-nbc"/>
@@ -1047,6 +1048,7 @@
                                 </items>
                             </navigationBar>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="8Iy-5i-b4W"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Mj4-63-bJe" secondAttribute="trailing" id="AB2-Nl-oEM"/>
@@ -1060,7 +1062,6 @@
                             <constraint firstItem="mxr-Lr-QwN" firstAttribute="trailing" secondItem="8Iy-5i-b4W" secondAttribute="trailing" id="rBs-WC-ola"/>
                             <constraint firstItem="qWF-Dh-R1S" firstAttribute="trailing" secondItem="8Iy-5i-b4W" secondAttribute="trailing" id="tc0-6O-d3F"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="8Iy-5i-b4W"/>
                     </view>
                     <navigationItem key="navigationItem" id="ZcZ-bt-dCd"/>
                     <connections>
@@ -1084,7 +1085,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tHN-55-WvV">
-                                <rect key="frame" x="0.0" y="108" width="414" height="700"/>
+                                <rect key="frame" x="0.0" y="108" width="414" height="651"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -1208,6 +1209,7 @@
                                 </items>
                             </navigationBar>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="7IE-xq-QoR"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="9Ci-YR-XEl" firstAttribute="trailing" secondItem="7IE-xq-QoR" secondAttribute="trailing" id="1Jj-BY-yVs"/>
@@ -1218,9 +1220,8 @@
                             <constraint firstItem="tHN-55-WvV" firstAttribute="bottom" secondItem="7IE-xq-QoR" secondAttribute="bottom" id="nCW-yE-VxB"/>
                             <constraint firstItem="9Ci-YR-XEl" firstAttribute="top" secondItem="7IE-xq-QoR" secondAttribute="top" id="v6i-ie-WP0"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="7IE-xq-QoR"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Completed" image="smallerCheck" id="KtN-qU-CJs"/>
+                    <tabBarItem key="tabBarItem" title="Completed" image="checkmark" catalog="system" id="KtN-qU-CJs"/>
                     <navigationItem key="navigationItem" id="kw7-Ud-vOA"/>
                     <connections>
                         <outlet property="backButton" destination="fnK-W1-d5j" id="qeJ-Xz-vGA"/>
@@ -1385,7 +1386,7 @@
                                                 <fontDescription key="fontDescription" name="ErasITC-Medium" family="Eras Medium ITC" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mlT-3n-vui" customClass="StyleButton" customModule="Apex_Baseball" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mlT-3n-vui" customClass="StyleButton" customModule="Apex_Baseball" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="934" width="374" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="N37-05-BsS"/>
@@ -1470,6 +1471,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Y4A-bQ-omZ"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Ja2-xa-Ao9" firstAttribute="leading" secondItem="Y4A-bQ-omZ" secondAttribute="leading" id="BJW-yW-P6g"/>
@@ -1481,9 +1483,8 @@
                             <constraint firstItem="Hdo-qA-lDd" firstAttribute="trailing" secondItem="Y4A-bQ-omZ" secondAttribute="trailing" id="uGm-nU-Q6g"/>
                             <constraint firstItem="Ja2-xa-Ao9" firstAttribute="trailing" secondItem="Y4A-bQ-omZ" secondAttribute="trailing" id="zaQ-t6-Jgq"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Y4A-bQ-omZ"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="profile" id="jly-4u-hhJ"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.fill" catalog="system" id="jly-4u-hhJ"/>
                     <navigationItem key="navigationItem" title="Title" id="uFe-4I-gg5"/>
                     <size key="freeformSize" width="414" height="1200"/>
                     <connections>
@@ -1568,6 +1569,7 @@
                                 </items>
                             </navigationBar>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="vTQ-2l-rpm"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="hv5-6h-5Xh" firstAttribute="top" secondItem="Nur-d0-ufB" secondAttribute="bottom" id="0Zd-gH-yKw"/>
@@ -1581,7 +1583,6 @@
                             <constraint firstItem="hv5-6h-5Xh" firstAttribute="trailing" secondItem="vTQ-2l-rpm" secondAttribute="trailing" id="vOb-va-poJ"/>
                             <constraint firstItem="hv5-6h-5Xh" firstAttribute="bottom" secondItem="vTQ-2l-rpm" secondAttribute="bottom" id="wZl-0T-0Nv"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="vTQ-2l-rpm"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="News" image="news" id="R8z-8W-8rK">
                         <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1662,7 +1663,7 @@
                                 <fontDescription key="fontDescription" name="ErasITC-Medium" family="Eras Medium ITC" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zF-Ni-7SC" customClass="StyleButton" customModule="Apex_Baseball" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zF-Ni-7SC" customClass="StyleButton" customModule="Apex_Baseball" customModuleProvider="target">
                                 <rect key="frame" x="35" y="694" width="344" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="r9j-U9-DaF"/>
@@ -1704,7 +1705,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifJ-Nk-FyW" customClass="StyleButton" customModule="Apex_Baseball" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifJ-Nk-FyW" customClass="StyleButton" customModule="Apex_Baseball" customModuleProvider="target">
                                 <rect key="frame" x="35" y="634" width="344" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="5ab-CV-XXl"/>
@@ -1716,6 +1717,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Yd1-bC-4qT"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="7zF-Ni-7SC" firstAttribute="leading" secondItem="Yd1-bC-4qT" secondAttribute="leading" constant="35" id="2y9-d2-17c"/>
@@ -1755,7 +1757,6 @@
                             <constraint firstItem="Yd1-bC-4qT" firstAttribute="trailing" secondItem="9si-iU-Eyu" secondAttribute="trailing" constant="35" id="wZw-t1-TJP"/>
                             <constraint firstItem="Pst-rI-PKz" firstAttribute="leading" secondItem="Yd1-bC-4qT" secondAttribute="leading" constant="35" id="zVF-dH-orf"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Yd1-bC-4qT"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Title" id="aYR-KD-LCI">
@@ -1793,7 +1794,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WcB-J4-khl">
                                 <rect key="frame" x="0.0" y="758" width="414" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MfH-yZ-lpp">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MfH-yZ-lpp">
                                         <rect key="frame" x="357" y="5" width="49" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="80R-eN-kr9"/>
@@ -1866,6 +1867,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="wjh-S8-O99"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="UcA-t4-aDI" secondAttribute="trailing" id="6ef-2H-vNp"/>
@@ -1879,7 +1881,6 @@
                             <constraint firstAttribute="trailing" secondItem="WcB-J4-khl" secondAttribute="trailing" id="r9s-Nm-Fm9"/>
                             <constraint firstItem="Dbe-mt-Glp" firstAttribute="leading" secondItem="wjh-S8-O99" secondAttribute="leading" id="w2N-Nz-oqz"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="wjh-S8-O99"/>
                     </view>
                     <navigationItem key="navigationItem" id="iIq-9n-U7T"/>
                     <connections>
@@ -2022,6 +2023,7 @@
                                 </items>
                             </navigationBar>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="cb2-ro-Srb"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -2033,9 +2035,8 @@
                             <constraint firstItem="MO8-vL-yCm" firstAttribute="top" secondItem="FpB-xK-1i4" secondAttribute="bottom" id="US9-LN-Nch"/>
                             <constraint firstAttribute="bottomMargin" secondItem="MO8-vL-yCm" secondAttribute="bottom" id="tT0-DT-RQ0"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="cb2-ro-Srb"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Requests" image="smallerProgress" id="n0Z-K3-qWe">
+                    <tabBarItem key="tabBarItem" title="Requests" image="rays" catalog="system" id="n0Z-K3-qWe">
                         <inset key="imageInsets" minX="2" minY="0.0" maxX="2" maxY="-4"/>
                         <inset key="largeContentSizeImageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-1"/>
                         <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2125,7 +2126,7 @@
                                     <constraint firstItem="bQr-al-pg3" firstAttribute="leading" secondItem="RLZ-Rt-QQz" secondAttribute="leading" constant="30" id="zPy-Ek-i78"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLS-mX-kwK" customClass="StyleButton" customModule="Apex_Baseball" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLS-mX-kwK" customClass="StyleButton" customModule="Apex_Baseball" customModuleProvider="target">
                                 <rect key="frame" x="30" y="689" width="354" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="ACB-F4-0tJ"/>
@@ -2137,6 +2138,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="V5H-1b-ta9"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="gLS-mX-kwK" firstAttribute="top" secondItem="N5K-uf-qj2" secondAttribute="bottom" constant="25" id="5Jo-1t-tfI"/>
@@ -2156,7 +2158,6 @@
                             <constraint firstItem="RLZ-Rt-QQz" firstAttribute="trailing" secondItem="V5H-1b-ta9" secondAttribute="trailing" id="uaC-OR-StI"/>
                             <constraint firstItem="RLZ-Rt-QQz" firstAttribute="top" secondItem="0yG-Va-qFJ" secondAttribute="bottom" id="xkS-0J-oLn"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="V5H-1b-ta9"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="plus" id="J1T-3N-Pce">
                         <inset key="imageInsets" minX="135" minY="10" maxX="135" maxY="15"/>
@@ -2223,7 +2224,7 @@
                                     <action selector="segmentChanged:" destination="0PD-nO-bdh" eventType="valueChanged" id="hDl-6y-dzU"/>
                                 </connections>
                             </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDl-yh-5fa" customClass="StyleButton" customModule="Apex_Baseball" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDl-yh-5fa" customClass="StyleButton" customModule="Apex_Baseball" customModuleProvider="target">
                                 <rect key="frame" x="50" y="482" width="314" height="36"/>
                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="24"/>
                                 <state key="normal" title="Register">
@@ -2249,6 +2250,7 @@
                                 </items>
                             </navigationBar>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="W6T-ge-0J3"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="kbg-5V-NQe" firstAttribute="top" secondItem="oDc-4G-jNu" secondAttribute="bottom" constant="75" id="5oW-DG-xog"/>
@@ -2281,7 +2283,6 @@
                             <constraint firstItem="W6T-ge-0J3" firstAttribute="trailing" secondItem="SeM-Wl-HDk" secondAttribute="trailing" constant="50" id="tFC-fC-iEg"/>
                             <constraint firstItem="0Hd-Ng-91G" firstAttribute="top" secondItem="kbg-5V-NQe" secondAttribute="bottom" constant="20" id="vGy-GZ-9Ib"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="W6T-ge-0J3"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Add User" image="plus" catalog="system" id="euP-P1-6h8"/>
                     <connections>
@@ -2391,6 +2392,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="QKL-ak-A2E"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xeY-ee-BvN" firstAttribute="leading" secondItem="QKL-ak-A2E" secondAttribute="leading" id="0yl-Pj-su1"/>
@@ -2406,7 +2408,6 @@
                             <constraint firstItem="xeY-ee-BvN" firstAttribute="trailing" secondItem="QKL-ak-A2E" secondAttribute="trailing" id="wJ6-n9-M1x"/>
                             <constraint firstItem="xeY-ee-BvN" firstAttribute="trailing" secondItem="QKL-ak-A2E" secondAttribute="trailing" id="z6k-Hp-bwk"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="QKL-ak-A2E"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="News" image="news" id="rwl-gQ-eNo"/>
                     <connections>
@@ -2577,7 +2578,7 @@
                                                 <fontDescription key="fontDescription" name="ErasITC-Medium" family="Eras Medium ITC" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AGk-l5-mrP" customClass="StyleButton" customModule="Apex_Baseball" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AGk-l5-mrP" customClass="StyleButton" customModule="Apex_Baseball" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="1051" width="374" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="tVw-OC-Bb5"/>
@@ -2685,6 +2686,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="6aY-KC-GTI"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="GEm-8C-NiM" secondAttribute="trailing" id="0MJ-Ov-z8c"/>
@@ -2700,7 +2702,6 @@
                             <constraint firstItem="KFy-3T-Fq6" firstAttribute="trailing" secondItem="6aY-KC-GTI" secondAttribute="trailing" id="u5z-Hn-0rE"/>
                             <constraint firstItem="lhD-kB-Khs" firstAttribute="top" secondItem="KFy-3T-Fq6" secondAttribute="bottom" id="yQd-yI-jGD"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6aY-KC-GTI"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="profile" id="rWW-Pz-B2q"/>
                     <navigationItem key="navigationItem" title="Title" id="M65-B8-q4N"/>
@@ -2733,18 +2734,28 @@
     <inferredMetricsTieBreakers>
         <segue reference="xNM-yJ-e37"/>
         <segue reference="NKl-f4-YNX"/>
-        <segue reference="f9v-Rk-m1q"/>
+        <segue reference="14L-4T-0ot"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="apex(1)" width="700" height="500"/>
         <image name="apexLogoOnly" width="700" height="500"/>
+        <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="news" width="26.5" height="26.5"/>
-        <image name="pending2" width="33" height="33"/>
-        <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="person.3.fill" catalog="system" width="128" height="61"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus" width="340" height="243"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="profile" width="30" height="30"/>
-        <image name="smallerCheck" width="33" height="33"/>
-        <image name="smallerProgress" width="33" height="33"/>
+        <image name="rays" catalog="system" width="128" height="122"/>
         <image name="sync" width="26.5" height="26.5"/>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

@@ -63,8 +63,13 @@ class CompletedRequestsTableViewCell : UITableViewCell {
                 print(Error!)
             }
             else{
-                self.lastMessageTime = DocumentSnapshot?.get("mostRecentMessage") as! Int
-                self.userSeenTime = DocumentSnapshot?.get("userLastSeen") as! Int
+                
+                if let mostRecent = DocumentSnapshot?.get("mostRecentMessage") as? Int {
+                    self.lastMessageTime = mostRecent
+                }
+                if let userLast = DocumentSnapshot?.get("userLastSeen") as? Int {
+                    self.userSeenTime = userLast
+                }
                 self.blueDotSetup()
             }
         }
