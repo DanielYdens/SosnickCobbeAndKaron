@@ -66,11 +66,11 @@ class ViewController: UIViewController {
         checkIfLoggedIn()
         // Do any additional setup after loading the view.
         // 4- this will add it with the default imageName and edited contextMode
-        view.addBackground(imageName: "matt-moore", contentMode: .scaleAspectFill) //filling background image
-        
-        sosnickImage.layer.borderWidth = 1.0
+        //view.addBackground(imageName: "matt-moore", contentMode: .scaleAspectFill) //filling background image
+        sosnickImage.image = UIImage(named: "apex")
+        //sosnickImage.layer.borderWidth = 1.0
         sosnickImage.layer.masksToBounds = false
-        sosnickImage.layer.borderColor = UIColor.white.cgColor
+        //sosnickImage.layer.borderColor = UIColor.white.cgColor
         //sosnickImage.layer.cornerRadius = sosnickImage.frame.size.width/2
         sosnickImage.clipsToBounds = true
         

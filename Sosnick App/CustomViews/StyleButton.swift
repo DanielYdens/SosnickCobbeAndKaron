@@ -21,7 +21,8 @@ class StyleButton: UIButton {
     }
     
     private func setupButton(){
-        backgroundColor = UIColor(displayP3Red: 57/255, green: 135/255, blue: 198/255, alpha: 1)
+        //backgroundColor = UIColor(displayP3Red: 57/255, green: 135/255, blue: 198/255, alpha: 1)
+        backgroundColor = UIColor(displayP3Red: 6/255, green: 91/255, blue: 99/255, alpha: 1)
         layer.cornerRadius = frame.size.height/2
         setTitleColor(.white, for: .normal)
         

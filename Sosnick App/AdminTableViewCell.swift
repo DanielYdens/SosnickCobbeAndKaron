@@ -72,7 +72,7 @@ class AdminTableViewCell : UITableViewCell {
         }
                
         if adminReq?.status == "adminConfirmed" { //if admin confirms show pending symbol
-            isProcessedImageView.image = UIImage(named: "pending")
+            isProcessedImageView.image = UIImage(named: "tracking")
         }
        
         dateLabel?.text = adminReq?.date

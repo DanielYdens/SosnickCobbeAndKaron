@@ -68,7 +68,9 @@ class AdminViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         //accessData()
-        
+        let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white] //search bar cancel button to white
+        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white] //text field color to white
         self.adminTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.adminTableView.dataSource = self
         self.adminTableView.delegate = self //want this view controller to be the delegate and data source fo the table

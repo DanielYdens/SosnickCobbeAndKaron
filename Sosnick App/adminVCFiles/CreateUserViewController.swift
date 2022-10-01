@@ -66,6 +66,7 @@ class CreateUserViewController: UIViewController {
                             self.clearTextFields() // clear text fields
                             repeated = true // admin added a repeat user
                         }))
+                        
                         self.present(repeatAlert, animated: true,completion: nil) //present the alert
                         
                         

@@ -49,8 +49,8 @@
             timestampString = "590909350.310392"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "downloadImage(url:completion:)"
             landmarkType = "7">
             <Locations>

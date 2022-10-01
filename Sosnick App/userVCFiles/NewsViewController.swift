@@ -9,12 +9,31 @@
 import UIKit
 import Firebase
 import FirebaseFirestore
+//import Alamofire
 
 class NewsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     let imagePostsCache = NSCache<NSString, UIImage>()
     var cachePostImage : UIImage?
     var posts = [Post]()
+    
+    struct Parameters : Encodable {
+        let app_id : String
+        let app_secret : String
+        let grant_type : String
+        let redirect_uri : String
+        let code : String
+        
+    }
+    
+    let parameters = Parameters(app_id : "app_id=603532347144383", app_secret : "app_secret=209394f22ff416eff13446598a0df753", grant_type: "grant_type=authorization_code", redirect_uri: "redirect_uri=https://acrobat.adobe.com/us/en", code: "code=AQC16WoSZFi1_str_9Zpf60gj1Cu9sJj25VeAlH2qdPSNLRoYvY3deWasC9M3QeBOPPcE7obHTwsWKXJhQolaVshXdEF_fp5u6RORh2h-aqoy9X0P9Il1auE96tEaMdlJWeY3A4ytIV7Uwi_ulVDff8rUBMaxeyuGsGX6LsODNkewc9cVsp5bLojJN--6jQ6SfWMEaSFHlC8ns7tgJWyLaWcxWt0LA-8hvGvksZFublrHg")
+    
+//    Alamofire.request("https://httpbin.org/post",
+//               method: .post,
+//               parameters: login,
+//               encoder: JSONParameterEncoder.default).response { response in
+//        debugPrint(response)
+//    }
    
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -39,9 +58,8 @@ class NewsViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as! PostCell
         //creating the cell
+        cell.backgroundColor = UIColor(red: 6/255, green: 91/255, blue: 99/255, alpha: 1)
         
-        cell.captionLabel.numberOfLines = 0
-        cell.captionLabel.text = posts[indexPath.row].caption
         
         //cell.postImageView.downdownloaded(from: posts[indexPath.row].URL)
         let url = NSURL(string: posts[indexPath.row].URL)

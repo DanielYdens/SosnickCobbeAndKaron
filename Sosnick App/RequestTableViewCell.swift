@@ -77,7 +77,7 @@ class RequestTableViewCell: UITableViewCell {
         }
         
         if request?.status == "adminConfirmed" { //if admin confirms show pending symbol
-            statusImageView.image = UIImage(named: "pending2")
+            statusImageView.image = UIImage(named: "tracking")
         }
         if request?.isProcessed == true{ //if user completes show a check
             statusImageView.image = UIImage(named: "check")
